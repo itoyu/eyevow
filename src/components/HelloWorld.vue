@@ -35,6 +35,13 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  created() {
+    // display store data
+    console.log('hellow world vue:' + this.$store.state.count);
+
+    // count up store counter(commit method)
+    this.$store.commit('countup')
   }
 }
 </script>
