@@ -1,12 +1,8 @@
 <template>
   <div id="app">
     <Header msg="This is the header! "/>
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/product">Product</router-link>
-    </div>
     <router-view/>
+    <Nav />
   </div>
 </template>
 
@@ -23,11 +19,13 @@
 
 <script>
 import Header from '@/components/Header.vue'
+import Nav from '@/components/Nav.vue'
 
 export default {
   name: 'app',
   components: {
-    Header
+    Header,
+    Nav
   }
 }
 
