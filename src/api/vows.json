@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "user": {
+      "id": "e_taro"
+    },
+    "text": "01 I going to make a go of this project!",
+    "cheer_count": 10,
+    "archived": true
+  },
+  {
+    "id": 2,
+    "user": {
+      "id": "y_taro"
+    },
+    "text": "02 I going to make a go of this project!",
+    "cheer_count": 20,
+    "archived": false
+  },
+  {
+    "id": 3,
+    "user": {
+      "id": "e_taro"
+    },
+    "text": "03 I going to make a go of this project!",
+    "cheer_count": 30,
+    "archived": true
+  },
+  {
+    "id": 4,
+    "user": {
+      "id": "v_taro"
+    },
+    "text": "04 I going to make a go of this project!",
+    "cheer_count": 0,
+    "archived": true
+  },
+  {
+    "id": 5,
+    "user": {
+      "id": "o_taro"
+    },
+    "text": "05 I going to make a go of this project!",
+    "cheer_count": 0,
+    "archived": false
+  },
+  {
+    "id": 6,
+    "user": {
+      "id": "w_taro"
+    },
+    "text": "06 I going to make a go of this project!",
+    "cheer_count": 60,
+    "archived": false
+  }
+]

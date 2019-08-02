@@ -9,7 +9,7 @@
 export default {
   created() {
     // display store data
-    console.log('about vue:' + this.$store.state.count);
+    // console.log('about vue:' + this.$store.state.count);
 
     // count up store counter(commit method)
     this.$store.commit('countup')
