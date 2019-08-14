@@ -1,0 +1,27 @@
+/* ==========================================================================
+   Fonts
+  ========================================================================== */
+
+// title
+@font-face {
+  font-family: 'SchnyderM';
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  src: url('/en/assets/font/SchnyderM-Bold-Web.eot');
+  src: url('/en/assets/font/SchnyderM-Bold-Web.eot?#iefix') format('embedded-opentype'),
+       url('/en/assets/font/SchnyderM-Bold-Web.woff2') format('woff2'),
+       url('/en/assets/font/SchnyderM-Bold-Web.woff') format('woff');
+}
+@font-face {
+  font-family: 'CentraNo2';
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+  src: url('/en/assets/font/CentraNo2-Book.eot');
+  src: url('/en/assets/font/CentraNo2-Book.eot?#iefix') format('embedded-opentype'),
+       url('/en/assets/font/CentraNo2-Book.woff2') format('woff2'),
+       url('/en/assets/font/CentraNo2-Book.woff') format('woff');
+}

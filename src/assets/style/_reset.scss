@@ -1,0 +1,86 @@
+@charset 'UTF-8';
+
+*,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+form,
+dl,
+dt,
+dd,
+div,
+table,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1;
+  font-size: 1em;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+section,
+div {
+  margin: 0;
+  padding: 0;
+}
+
+img,
+figure,
+iframe,
+object {
+  border: 0;
+  height: auto;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  outline: none;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+}
+
+input, button, textarea, select, option {
+  appearance: none;
+}
+input[type="text"],
+input[type="email"],
+textarea,
+select,
+option,
+button {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  background: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+label {
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+button {
+  cursor: pointer;
+}

@@ -1,0 +1,820 @@
+
+/* ==========================================================================
+   pages: Index
+   ========================================================================== */
+
+body.top {
+  width: 100%;
+
+  .kv {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    transition: 0.6s $Base;
+
+    @include mq(pc) {
+      min-width: 1024px;
+      min-height: 700px;
+      margin-bottom: 175px;
+    }
+    @include mq(sp) {
+      margin-bottom: 83px;
+    }
+
+    .title {
+      position: absolute;
+      z-index: 2;
+      opacity: 0;
+      transition: 2s $Base;
+      transition-delay: 1s;
+
+      img {
+        width: 100%;
+      }
+
+      @include mq(pc) {
+        // margin: -13px 0 0 -290px;
+        padding-right: 80px;
+        width: 294px;
+        top: calc(50% - 13px);
+        left: calc(50% - 290px);
+
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 2px;
+          height: 110px;
+          background: #000;
+        }
+      }
+      @include mq(sp) {
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        width: 225px;
+        transform: translate(-50%,-90%);
+      }
+    }
+    .copy {
+      position: absolute;
+      z-index: 2;
+      opacity: 0;
+      transition: 2s $Base;
+      transition-delay: .8s;
+
+      @include mq(pc) {
+        top: calc(50% - 10px);
+        left: calc(50% + 64px);
+      }
+      @include mq(sp) {
+        top: calc(50% + 40px);
+        left: 50%;
+        width: 237px;
+        transform: translateX(-50%);
+      }
+    }
+
+    .line {
+      position: absolute;
+      @include ff_en;
+      @include verticalRl;
+      z-index: 2;
+
+      @include mq(pc) {
+        top: 30px;
+        right: 37px;
+        font-size: 25px;
+      }
+      @include mq(sp) {
+        top: 16px;
+        right: 16px;
+        font-size: 15px;
+      }
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 0;
+      right: 28px;
+      font-size: 14px;
+      @include ff_en;
+      @include verticalRl;
+      z-index: 2;
+
+      a {
+        position: relative;
+        padding: 0 0 40px 3px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1px;
+          height: 100%;
+          background: #000;
+          animation: scroll 3s infinite;
+        }
+      }
+      @include mq(sp) {
+        right: 16px;
+        a {
+          padding: 0 0 40px 3px;
+        }
+      }
+    }
+
+    p.shoulder {
+      position: absolute;
+      top: 28px;
+      left: 32px;
+      font-size: 12px;
+      @include ff_en;
+      z-index: 2;
+
+      @include mq(sp) {
+        display: none;
+      }
+    }
+
+    .links {
+      position: absolute;
+      transition: 1.8s $Base;
+      opacity: 0;
+      transition-delay: 1s;
+
+      @include mq(pc) {
+        width: 150px;
+        right: 142px;
+        bottom: 22px;
+      }
+      @include mq(sp) {
+        display: none;
+      }
+
+      &_item {
+        display: block;
+        a {
+          position: relative;
+          display: inline-block;
+          padding-bottom: 2px;
+          color: #222;
+          @include ff_en;
+
+          @include mq(pc) {
+            margin-bottom: 16px;
+            padding-right: 22px;
+            font-size: 16px;
+          }
+
+          &::before,
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            transition: .8s $Base;
+          }
+          &::before {
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: #222;
+          }
+          &::after {
+            right: 3px;
+            bottom: 8px;
+            transform: rotate(-45deg);
+            border-bottom: 1px solid #222;
+            border-left: 1px solid #222;
+            width: 6px;
+            height: 6px;
+          }
+
+          &:hover {
+            &::before {
+              width: 0px;
+            }
+            &::after {
+              bottom: 3px;
+            }
+          }
+        }
+      }
+    }
+
+    .post {
+      &_item {
+        position: absolute;
+        transition: 1.8s $Base;
+        opacity: 0;
+
+        .img {
+          height: auto;
+        }
+        .txt {
+          display: block;
+          padding-top: 6px;
+          font-size: 12px;
+          color: #999;
+          line-height: 1.35;
+          text-align: right;
+          @include ff_en;
+
+          @include mq(sp) {
+            font-size: 10px;
+          }
+        }
+      }
+      #post01 {
+        left: 14.6%;
+        top: -142px;
+        width: 400px;
+        transition-delay: 0.9s;
+
+        @include mq(sp) {
+          left: calc(50% + 12px);
+          top: auto;
+          bottom: -33px;
+          width: 100px;
+        }
+      }
+      #post02 {
+        left: calc(50% + 7px);
+        top: 10.7%;
+        width: 150px;
+        transition-delay: 0.6s;
+
+        @include mq(sp) {
+          left: auto;
+          right: -140px;
+          top: auto;
+          bottom: 138px;
+          width: 180px;
+        }
+      }
+      #post03 {
+        right: 11.7%;
+        top: 30px;
+        width: 250px;
+
+        @include mq(sp) {
+          left: 20px;
+          right: auto;
+          top: -20px;
+          width: 180px;
+        }
+      }
+      #post04 {
+        left: 5.8%;
+        top: calc(50% - 70px);
+        width: 150px;
+        transition-delay: 0.3s;
+
+        @include mq(sp) {
+          display: none;
+        }
+      }
+      #post05 {
+        right: 5.8%;
+        top: calc(50% - 6px);
+        width: 150px;
+        transition-delay: 0.4s;
+
+        @include mq(sp) {
+          display: none;
+        }
+      }
+      #post06 {
+        left: 9.5%;
+        bottom: -90px;
+        width: 250px;
+        transition-delay: 0.5s;
+
+        @include mq(sp) {
+          left: 0;
+          bottom: 30px;
+          width: 140px;
+        }
+      }
+      #post07 {
+        left: 35.8%;
+        bottom: 42px;
+        width: 150px;
+        transition-delay: 0.2s;
+
+        @include mq(sp) {
+          left: -70px;
+          top: calc(50% - 80px);
+          bottom: auto;
+          width: 100px;
+        }
+      }
+      #post08 {
+        left: calc(50% + 37px);
+        bottom: -130px;
+        width: 250px;
+        transition-delay: 0.7s;
+
+        @include mq(sp) {
+          left: auro;
+          right: 45px;
+          top: 100px;
+          bottom: auto;
+          width: 100px;
+        }
+      }
+    }
+
+    // Animate
+    &.ready {
+      .copy,
+      .title,
+      .links,
+      .post_item {
+        opacity: 1;
+      }
+    }
+  }
+
+  // common parts
+  h2.tit {
+    position: relative;
+    text-align: center;
+    @include ff_en;
+
+    @include mq(pc) {
+      margin-bottom: 55px;
+      padding: 100px 0 32px;
+      font-size: 38px;
+    }
+    @include mq(sp) {
+      margin-bottom: 60px;
+      padding: 100px 0 44px;
+      font-size: 38px;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      background: #000;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+
+      @include mq(pc) {
+        width: 100px;
+        height: 2px;
+      }
+      @include mq(sp) {
+        width: 100px;
+        height: 2px;
+      }
+    }
+  }
+  p.lead {
+    margin-bottom: 2em;
+    line-height: 2;
+    text-align: center;
+
+    @include mq(sp) {
+      padding: 0 32px;
+    }
+  }
+  .arr {
+    position: relative;
+    display: inline-block;
+    top: -3px;
+    margin-left: 15px;
+    width: 24px;
+    height: 10px;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      background: #000;
+      position: absolute;
+      height: 2px;
+      transition: .6s $Base;
+
+      @include mq(sp) {
+        height: 1px;
+      }
+    }
+    &::before {
+      width: 22px;
+      bottom: 1px;
+      right: 0;
+    }
+    &::after {
+      width: 8px;
+      bottom: 4px;
+      right: -2px;
+      transform: rotate(40deg);
+    }
+  }
+  a.btn {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+    text-align: center;
+    transition: .6s $Base;
+    border: 1px solid #000;
+    @include ff_en;
+
+    @include mq(pc) {
+      padding: 18px 5px;
+      font-size: 19px;
+    }
+    @include mq(sp) {
+      padding: 20px 5px;
+      padding-left: 20px;
+      font-size: 18px;
+      line-height: 1.5;
+      width: calc(100% - 64px);
+    }
+
+    &:hover {
+      background: #000;
+      color: #fff;
+
+      .arr {
+        &::before,
+        &::after {
+          background: #fff;
+        }
+      }
+    }
+  }
+
+  .product {
+    &_item {
+      width: 100%;
+
+      .img {
+        position: relative;
+        .p_img {
+          width: 100%;
+          height: auto;
+        }
+
+        .p_logo {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+
+          @include mq(sp) {
+            width: 196px;
+          }
+        }
+      }
+      .info {
+        @include mq(pc) {
+          display: flex;
+          justify-content: space-between;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 56px 20px 112px;
+          max-width: 1140px;
+        }
+        @include mq(sp) {
+          padding: 26px 20px 35px;
+        }
+
+        &_outline {
+          @include mq(pc) {
+            width: 52%;
+          }
+
+          .tit {
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1.9;
+            letter-spacing: 0.2em;
+
+            @include mq(sp) {
+              margin-bottom: 14px;
+              font-size: 14px;
+            }
+          }
+          .txt {
+            font-size: 14px;
+            line-height: 2.5;
+
+            @include mq(sp) {
+              font-size: 12px;
+              line-height: 2;
+            }
+          }
+        }
+        &_detail {
+          @include mq(pc) {
+            width: 40.3%;
+          }
+          @include mq(sp) {
+            padding-top: 33px;
+          }
+
+          .name {
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 2;
+            letter-spacing: 0.25em;
+
+            @include mq(sp) {
+              font-size: 14px;
+            }
+          }
+          .sub {
+            font-size: 12px;
+            color: #999999;
+            letter-spacing: 0.15em;
+            font-weight: bold;
+
+            @include mq(sp) {
+              font-size: 9px;
+            }
+          }
+          .point {
+            margin: 22px 0 30px;
+            font-size: 9px;
+            line-height: 2;
+            position: relative;
+
+            &_item {
+              margin-right: 5px;
+              font-weight: bold;
+            }
+            .point_item {
+              position: absolute;
+              top: 4px;
+              left: 0;
+            }
+            .tag_item {
+              display: inline-block;
+              padding-left: 82px;
+              line-height: 2;
+            }
+          }
+          .produce {
+            margin-top: 20px;
+            font-size: 12px;
+            font-weight: bold;
+
+            @include mq(sp) {
+              font-size: 9px;
+            }
+
+            .by {
+              letter-spacing: 0.15em;
+            }
+            .member {
+              letter-spacing: 0.15em;
+
+              img {
+                margin-left: 20px;
+                vertical-align: middle;
+                @include mq(sp) {
+                  margin-left: 11px;
+                  zoom: 0.8;
+                }
+              }
+            }
+          }
+          .tag {
+            position: relative;
+
+            @include mq(pc) {
+              margin-top: 60px;
+              padding-top: 18px;
+              padding-right: 120px;
+              border-top: 1px solid #c0c0c0;
+              line-height: 2;
+            }
+
+            @include mq(sp) {
+              margin: 20px 0 0;
+            }
+
+            &_item {
+              letter-spacing: 0.1em;
+              line-height: 1.8;
+            }
+
+            .link {
+              @include ff_en;
+
+              @include mq(pc) {
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding: 22px 0;
+                font-size: 18px;
+                letter-spacing: 0.05em;
+              }
+              @include mq(sp) {
+                position: relative;
+                display: block;
+                border-top: 1px solid #c0c0c0;
+                border-bottom: 1px solid #c0c0c0;
+                padding: 13px 0;
+                line-height: 1;
+                font-size: 14px;
+                letter-spacing: 0.1em;
+              }
+
+              .arr_d {
+                margin-left: 20px;
+                vertical-align: middle;
+                transition: .8s $Base;
+                position: relative;
+                right: 0;
+
+                @include mq(pc) {
+                  top: -2px;
+                }
+                @include mq(sp) {
+                  position: absolute;
+                  right: 1px;
+                  top: 50%;
+                  margin-top: -4px;
+                  width: 10px;
+                  height: 10px;
+                }
+              }
+              @include mq(pc) {
+                &:hover {
+                  .arr_d {
+                    right: 5px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    @include mq(sp) {
+      .product01 {
+        h2.img .p_logo {
+          width: 196px;
+        }
+      }
+      .product02 {
+        h2.img .p_logo {
+          width: 140px;
+        }
+      }
+      .product03 {
+        h2.img .p_logo {
+          width: 78px;
+        }
+      }
+    }
+  }
+
+  .shop {
+    background: #fafafa;
+
+    @include mq(pc) {
+      padding: 95px 0 100px;
+    }
+    @include mq(sp) {
+      padding: 70px 0 60px;
+    }
+
+    .btn {
+      background: #000;
+      color: #fff;
+      letter-spacing: 0.2em;
+      line-height: 1;
+
+      @include mq(pc) {
+        margin: 0 auto 100px;
+        width: 450px;
+        font-size: 18px;
+
+        &:hover {
+          background: #fff;
+          color: #000;
+        }
+      }
+      @include mq(sp) {
+        margin: 0 auto 72px;
+        padding: 13px 10px;
+        width: calc(100% - 40px);
+        font-size: 12px;
+      }
+    }
+    &_explain {
+      display: flex;
+      background: #fff;
+      margin: 0 auto;
+
+      @include mq(pc) {
+        padding: 40px 0;
+        width: 1100px;
+      }
+      @include mq(sp) {
+        flex-direction: column;
+        padding: 0 35px;
+        width: calc(100% - 40px);
+      }
+
+      .logo {
+        text-align: center;
+
+        @include mq(pc) {
+          border-right: 1px solid #cbcbcb;
+          width: 50%;
+
+          img {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 294px;
+            height: auto;
+          }
+        }
+        @include mq(sp) {
+          padding: 50px 15px;
+          border-bottom: 1px solid #cbcbcb;
+        }
+      }
+      .info {
+        @include mq(pc) {
+          width: 50%;
+          padding: 24px 68px 0 58px;
+        }
+        @include mq(sp) {
+          padding: 40px 0 40px;
+        }
+
+        .lead {
+          margin: 0;
+          text-align: left;
+          font-size: 12px;
+
+          @include mq(sp) {
+            margin: 0 0 1.5em;
+            padding: 0;
+            text-align: center;
+          }
+        }
+        .link {
+          margin-top: 30px;
+          font-size: 19px;
+          text-align: right;
+          @include ff_en;
+
+          @include mq(sp) {
+            margin-top: 36px;
+            text-align: center;
+          }
+
+          .arr {
+            margin-left: 14px;
+            width: 40px;
+            transition: 0.8s $Base;
+            position: relative;
+            right: 0;
+
+            &::before {
+              width: 40px;
+            }
+            &::after {
+              width: 10px;
+            }
+            @include mq(sp) {
+              width: 30px;
+
+              &::before {
+                width: 30px;
+              }
+              &::after {
+                width: 8px;
+              }
+            }
+          }
+          @include mq(pc) {
+            &:hover {
+              .arr {
+                right: 4px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

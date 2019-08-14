@@ -9,6 +9,7 @@
         Vow:{{item.text}}
         Cheer:{{item.cheer_count}}
         Achieved:{{item.archived}}
+        Index: {{index}}
       </li>
     </ul>
   </div>

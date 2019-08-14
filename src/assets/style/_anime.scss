@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Animation
+  ========================================================================== */
+
+/* loading */
+@keyframes scroll {
+  0% {
+    top: 0;
+    height: 0;
+  }
+  25% {
+    top: 0;
+    height: 100%;
+  }
+  75% {
+    top: auto;
+    bottom: 0;
+    height: 100%;
+  }
+  100% {
+    top: auto;
+    bottom: 0;
+    height: 0;
+  }
+}
+@keyframes loading {
+  0% {transform: rotate(0deg);}
+  100% {transform: rotate(360deg);}
+}
+@keyframes imgShow {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes arrFloat {
+  0% {
+    transform: translate(-50%, -10px);
+  }
+  70% {
+    transform: translate(-50%, 0px);
+  }
+  100% {
+    transform: translate(-50%, -10px);
+  }
+}
+
+@keyframes bgGrad {
+  0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}

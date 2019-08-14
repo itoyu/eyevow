@@ -1,0 +1,80 @@
+/* ==========================================================================
+   Parts
+  ========================================================================== */
+
+.hide {
+  display: none !important;
+}
+.vh100 {
+  height: 100vh;
+}
+
+.js-in {
+  // transition: 1.8s
+  transition-duration: 2s;
+  transition-timing-function: $Base;
+  transition-property: opacity, transform;
+  opacity: 0;
+
+  @include mq(pc) {
+    transform: translateY(30px);
+  }
+  @include mq(sp) {
+    transform: translateY(20px);
+  }
+
+  &.inview {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* link */
+a {
+  display: inline-block;
+  outline: none;
+  transition: 1s $Base;
+  color: $fc_def;
+
+  @include mq(pc) {
+    &:hover {
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+/* ico */
+.ico {
+  display: inline-block;
+  vertical-align: middle;
+
+  img {
+    position: relative;
+    vertical-align: middle;
+  }
+}
+
+#dummyCener {
+  position: fixed;
+  display: block;
+  top: 0px;
+  left: 50%;
+  width: 1px;
+  height: 100vh;
+  background: #f00;
+  margin-left: 1px;
+  z-index: 999;
+}
+
+
+/* loading */
+// .more {
+//   display: block;
+//   text-align: center;
+//
+//   &_loading {
+//     animation: loading 1s infinite;
+//   }
+// }

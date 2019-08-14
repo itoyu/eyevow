@@ -1,6 +1,9 @@
 <template>
   <header class="global">
     <h1>{{ msg }}</h1>
+    <nav>
+      <a>login</a>
+    </nav>
   </header>
 </template>
 

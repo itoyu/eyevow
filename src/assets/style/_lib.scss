@@ -1,0 +1,183 @@
+/* ==========================================================================
+   Vars
+  ========================================================================== */
+$ff_def: '游ゴシック体', YuGothic, '游ゴシック Medium', 'Yu Gothic Medium', '游ゴシック', 'Yu Gothic', sans-serif;
+$ff_min: 'Hannari', '游明朝', YuMincho, 'ヒラギノ明朝 ProN W3', 'Hiragino Mincho ProN', 'HG明朝E', 'ＭＳ Ｐ明朝', 'ＭＳ 明朝', serif;
+
+@mixin ff_en {
+  font-family: 'mono45-headline', monospace;
+  font-weight: 500;
+}
+
+$fc_def: #222222;
+$bg_def: #ffffff;
+
+$Base: cubic-bezier(0.23, 1, 0.32, 1);
+$Expo-out: cubic-bezier(.17,.67,.41,.98);
+$Ease-in: cubic-bezier(.44,.04,.84,.42);// Power3.easeInOut
+
+
+/* ==========================================================================
+   Break
+  ========================================================================== */
+$breakpoints: (
+ 'sp': 'screen and (max-width: 768px)',
+ 'pc': 'screen and (min-width: 769px)',
+) !default;
+
+@mixin mq($breakpoint: sp) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+/* show control */
+@include mq(pc) {
+  .pcShow { display: block !important; }
+  .spShow { display: none !important; }
+  .pcShowIb { display: inline-block !important; }
+  .spShowIb { display: none !important; }
+  .pcShowFx { display: flex !important; }
+  .spShowFx { display: none !important; }
+}
+@include mq(sp) {
+  .pcShow { display: none !important; }
+  .spShow { display: block !important; }
+  .pcShowIb { display: none !important; }
+  .spShowIb { display: inline-block !important; }
+  .pcShowFx { display: none !important; }
+  .spShowFx { display: flex !important; }
+}
+
+/* spaces */
+@for $i from 0 through 20 {
+  .mgt#{$i * 5} {
+    margin-top:#{$i * 5}px;
+  }
+  .mgb_sp#{$i * 5} {
+    @include mq(sp) {
+      margin-top:#{$i * 5}px !important;
+    }
+  }
+}
+
+
+/* ==========================================================================
+   Other
+  ========================================================================== */
+
+@mixin bg_before($h) {
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: #{$h};
+    background: $c_yellow;
+  }
+}
+
+@mixin plus($size, $bold) {
+  span {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: #{$size}px;
+    height: #{$bold}px;
+    overflow: hidden;
+    background: #666;
+    transition: .5s $Base;
+
+    &:first-child {
+      transform: translate(-50%,-50%);
+    }
+    &:last-child {
+      transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+    }
+  }
+  &.current {
+    span:last-child {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-50%) rotate(0deg);
+    }
+  }
+}
+
+@mixin link_hover {
+  position: relative;
+  // overflow: hidden;
+  .txt {
+    position: relative;
+    font-weight: 700;
+    transition: $tr_late;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -3px;
+    width: 0;
+    height: 5px;
+    background: $red01;
+    transform: skewX(-12deg);
+    transition: $tr_fast ease-out;
+  }
+
+  &:hover::before {
+    left: -5%;
+    width: 110%;
+  }
+
+  &.current {
+    &::before {
+      left: -5%;
+      width: 110%;
+      background: $blue01;
+    }
+  }
+}
+
+@mixin verticalRl {
+  writing-mode: tb-rl; /* only IE */
+  writing-mode: vertical-rl;
+  -moz-writing-mode: vertical-rl;
+  -o-writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+}
+@mixin verticalTB {
+  writing-mode: lr-tb !important; /* only IE */
+  writing-mode: horizontal-tb !important;
+  -moz-writing-mode: horizontal-tb !important;
+  -o-writing-mode: horizontal-tb !important;
+  -webkit-writing-mode: horizontal-tb !important;
+}
+@mixin clearfix {
+  _height: 1px;
+  _overflow: visible;
+  zoom: 1;
+
+  &::after {
+    content: '.';
+    display: block;
+    height: 0px;
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+    line-height: 0;
+  }
+}
+// * hack IE
+$hack-ie11: "*::-ms-backdrop";
+@mixin hack-ie($hack-ver:'') {
+  // * IE11 hack(add selector *::-ms-backdrop)
+  @if $hack-ver == "ie11" {
+    @media all and (-ms-high-contrast:none\0) {
+      @content;
+    }
+  }
+}

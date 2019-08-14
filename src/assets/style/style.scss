@@ -1,0 +1,30 @@
+  /*
+  Theme Name: eyevow
+  Theme URI: eyevow.com
+  Author: KAJIL
+  Author URI: https://kajil.co
+  Description:
+*/
+
+
+/*----- 0.0 Vendor -----*/
+
+/*----- 1.0 Reset -----*/
+@import 'reset';
+
+/*----- 2.0 Library & Fonts -----*/
+@import 'lib';
+@import 'fonts';
+
+/*----- 3.0 Header & Footer -----*/
+@import 'header';
+@import 'footer';
+@import 'frame';
+
+/*----- 4.0 Components -----*/
+@import 'components';
+@import 'anime';
+
+/*----- 5.0 Pages Components -----*/
+
+/*----- 6.0 Popup pages -----*/
