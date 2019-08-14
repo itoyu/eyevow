@@ -1,7 +1,64 @@
 /* ==========================================================================
-   Header
+  Header
   ========================================================================== */
 // transform: translateX(-50%);
 // fill: $c_yellow;
 // transition: .4s $Base;
 // transform: rotate(-45deg);
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  background: #F5F5F6;
+  box-shadow: $bar_shadow;
+
+  .logo {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+
+    img {
+      height: 30px;
+      width: auto;
+    }
+  }
+
+  .config {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+
+    .notice {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #3B469B;
+    }
+    .icon {
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #ffffff;
+    }
+  }
+
+  .message {
+    position: absolute;
+    top: 50%;
+    right: 56px;
+    transform: translateY(-50%);
+    width: calc(100% - 56px - 104px);
+    text-align: right;
+    font-size: 14px;
+    color: #3B469B;
+  }
+}

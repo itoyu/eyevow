@@ -10,12 +10,16 @@ $ff_min: 'Hannari', '游明朝', YuMincho, 'ヒラギノ明朝 ProN W3', 'Hiragi
 }
 
 $fc_def: #222222;
-$bg_def: #ffffff;
+$bg_def: #F5F5F6;
 
+$menu_color: #cad1d5;
+$menu_color_active: #3B469B;
+
+
+$bar_shadow: 0 0 4px 0px rgba(120,120,120,0.1);
+
+// Easing
 $Base: cubic-bezier(0.23, 1, 0.32, 1);
-$Expo-out: cubic-bezier(.17,.67,.41,.98);
-$Ease-in: cubic-bezier(.44,.04,.84,.42);// Power3.easeInOut
-
 
 /* ==========================================================================
    Break

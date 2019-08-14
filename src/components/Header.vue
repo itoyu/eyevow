@@ -1,8 +1,18 @@
 <template>
-  <header class="global">
-    <h1>{{ msg }}</h1>
-    <nav>
-      <a>login</a>
+  <header id="header">
+    <nav class="logo">
+      <router-link to="/">
+        <img alt="eyevow" src="@/assets/img/logo.png">
+      </router-link>
+    </nav>
+    <p class="message">{{ msg }}</p>
+    <nav class="config">
+      <router-link to="/edit">
+        <span class="notice"></span>
+        <figure class="icon">
+          <img alt="profile icon" src="@/assets/img/icon_eyevow_illust.png">
+        </figure>
+      </router-link>
     </nav>
   </header>
 </template>
@@ -16,10 +26,9 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  header.global {
+  /* header.global {
     text-align: center;
     background: #ccc;
-  }
+  } */
 </style>

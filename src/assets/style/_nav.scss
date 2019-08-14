@@ -1,0 +1,135 @@
+/* ==========================================================================
+  Nav
+  ========================================================================== */
+#nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 54px;
+  background: #ffffff;
+  box-shadow: $bar_shadow;
+  display: flex;
+  justify-content: space-around;
+
+  a {
+    position: relative;
+    width: 50px;
+    height: 46px;
+
+    .icon,
+    .label {
+      display: block;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+    }
+    .icon {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 25px;
+      transform: translate(-50%,-50%);
+
+      svg {
+        path {
+          fill: $menu_color;
+        }
+      }
+    }
+    .label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: $menu_color;
+    }
+
+    &.nav_edit {
+      .icon {
+        margin-top: -1px;
+      }
+    }
+
+    // Nav Item
+    &.nav_item {
+
+      &.router-link-active {
+        .icon svg path {
+          fill: $menu_color_active;
+        }
+        .label {
+          color: $menu_color_active;
+        }
+      }
+    }
+
+    // Action Btn
+    &.action {
+      top: -13px;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #ffffff;
+      box-shadow: $bar_shadow;
+
+      &.action_shop,
+      &.action_vow {
+        background: radial-gradient(#cad1d5, #b7c0c6);
+      }
+      &.action_achieve {
+        background: radial-gradient(#F5DE2F, #F5C02F);
+      }
+      &.action_shop {
+        .icon {
+          img {
+            margin-top: -8px;
+          }
+        }
+      }
+
+      &.action_shop,
+      &.action_achieve {
+        display: none;
+      }
+
+      svg path { fill: #ffffff; }
+
+      .bg,
+      .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+      }
+      .bg {
+        width: 50px;
+        height: 50px;
+        opacity: 0.8;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .label {
+        color: #fff;
+        bottom: 11px;
+      }
+
+      &.router-link-active {
+        &.action_shop,
+        &.action_vow {
+          background: radial-gradient(#3B469B, #0E1653);
+        }
+        &.action_achieve {
+          // background: radial-gradient(#F5DE2F, #F5C02F);
+        }
+      }
+
+    }
+  }
+}

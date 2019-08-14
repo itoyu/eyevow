@@ -1,5 +1,5 @@
 /* ==========================================================================
-   frame
+  Frame
   ========================================================================== */
 
 html,
@@ -15,77 +15,4 @@ body {
   overflow-x: hidden;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-
-  @include mq(pc) {
-    font-size: 12px;
-  }
-  @include mq(sp) {
-    font-size: 12px;
-  }
-
-  &.fixed {
-    overflow: hidden;
-  }
-}
-
-article {
-  @include mq(pc) {
-    padding-top: 42px;
-  }
-  @include mq(sp) {
-    padding-top: 46px;
-  }
-}
-
-#wrap {
-  width: 100%;
-  opacity: 0;
-  overflow: hidden;
-  transition: .4s $Base;
-
-  &.ready {
-    opacity: 1;
-  }
-  &.fadeout {
-    opacity: 0;
-  }
-}
-
-
-.in {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-
-  @include mq(pc) {
-    width: 100%;
-    max-width: 1000px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  &_480 {
-    @include mq(pc) {
-      width: 520px;
-    }
-  }
-  &_800 {
-    @include mq(pc) {
-      max-width: 840px;
-    }
-  }
-  &_1028 {
-    @include mq(pc) {
-      max-width: 1068px;
-    }
-    @include mq(sp) {
-      padding-left: 25px;
-      padding-right: 25px;
-    }
-  }
-  &_full {
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
