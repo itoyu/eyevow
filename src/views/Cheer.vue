@@ -1,8 +1,71 @@
 <template>
   <div class="cheer">
-    <h1>This is an cheer page</h1>
-    <p>Cheers</p>
-    <ul>
+    <h1 class="page_title">About</h1>
+    <p class="page_lead">ここでは他のユーザーの誓いを見ることができます。応援したい「誓い(vow)」を見つけたら「CHEER」ボタンを押して声援を送りましょう。</p>
+
+    <ul class="tab_nav">
+      <li class="tab_nav_item active">HOT</li>
+      <li class="tab_nav_item">PROGRESS</li>
+      <li class="tab_nav_item">ACHIVED</li>
+    </ul>
+
+    <div class="tab_contents">
+      <div class="tab_contents_item">
+
+        <ul class="cheer_list">
+          <li class="cheer_list_item">
+            <figure class="cheer_icon"><img alt="" src="@/assets/img/eyevow/icon_illust_01.png"></figure>
+            <div class="cheer_info">
+              <p class="cheer_name">Name</p>
+              <p class="cheer_text">エモすぎる楽曲を作って世界一のロックバンドを結成する！</p>
+              <p class="cheer_time">2h</p>
+            </div>
+            <div class="cheer_action">
+              <p class="cheer_action_num">3</p>
+              <button class="cheer_action_btn">CHEER</button>
+            </div>
+          </li>
+          <li class="cheer_list_item">
+            <figure class="cheer_icon"><img alt="" src="@/assets/img/eyevow/icon_illust_01.png"></figure>
+            <div class="cheer_info">
+              <p class="cheer_name">User Name User Name User Name User Name User Name </p>
+              <p class="cheer_text">エモすぎる楽曲を作って世界一のロックバンドを結成する！</p>
+              <p class="cheer_time">19.12.27</p>
+            </div>
+            <div class="cheer_action">
+              <!-- <p class="cheer_action_num">3</p> -->
+              <button class="cheer_action_btn">CHEER</button>
+            </div>
+          </li>
+          <li class="cheer_list_item achived">
+            <figure class="cheer_icon"><img alt="" src="@/assets/img/eyevow/icon_illust_01.png"></figure>
+            <div class="cheer_info">
+              <p class="cheer_name">Name</p>
+              <p class="cheer_text">たくさん勉強して宇宙の星々を研究する学者になります。たくさん勉強して宇宙の星々を研究する学者になります。たくさん勉強して宇宙の星々を研究する学者になります。</p>
+              <p class="cheer_time">19.11.03</p>
+            </div>
+            <div class="cheer_action">
+              <!-- <p class="cheer_action_num">3</p> -->
+              <button class="cheer_action_btn">ACHIVED</button>
+            </div>
+          </li>
+          <li class="cheer_list_item achived">
+            <figure class="cheer_icon"><img alt="" src="@/assets/img/eyevow/icon_illust_01.png"></figure>
+            <div class="cheer_info">
+              <p class="cheer_name">Name</p>
+              <p class="cheer_text">たくさん勉強して宇宙の星々を研究する学者になります。たくさん勉強して宇宙の星々を研究する学者になります。たくさん勉強して宇宙の星々を研究する学者になります。</p>
+              <p class="cheer_time">19.10.03</p>
+            </div>
+            <div class="cheer_action">
+              <p class="cheer_action_num">333</p>
+              <button class="cheer_action_btn">ACHIVED</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- <ul>
       <li v-for="(item, index) in list" v-bind:key="item.id">
         ID:{{item.id}}
         User:{{item.user.id}}
@@ -11,7 +74,7 @@
         Achieved:{{item.archived}}
         Index: {{index}}
       </li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 
@@ -32,7 +95,7 @@ export default {
     //     this.list = res.data
     // })
     this.list = vows;
-    console.log(this.list);
+    // console.log(this.list);
   }
 }
 </script>

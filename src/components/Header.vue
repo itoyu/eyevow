@@ -10,7 +10,7 @@
       <router-link to="/edit">
         <span class="notice"></span>
         <figure class="icon">
-          <img alt="profile icon" src="@/assets/img/icon_eyevow_illust.png">
+          <img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png">
         </figure>
       </router-link>
     </nav>

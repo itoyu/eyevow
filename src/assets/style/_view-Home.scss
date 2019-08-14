@@ -1,0 +1,33 @@
+/* ==========================================================================
+  view Home
+  ========================================================================== */
+.home {
+
+  .title {
+    position: relative;
+    margin: 32px 0 0;
+    text-align: center;
+    z-index: 2;
+
+    img {
+      display: inline-block;
+      width: 220px;
+      height: auto;
+    }
+  }
+
+  .character {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    &_img {
+      height: 90%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+  }
+}

@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header msg="This is the header! "/>
-    <router-view/>
+    <div id="contents">
+      <router-view/>
+    </div>
     <Nav />
   </div>
 </template>

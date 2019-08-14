@@ -53,7 +53,7 @@ export default {
     iconEdit
   },
   data: function () {
-    return 'vow'
+    return 'vow';
   }
 }
 </script>

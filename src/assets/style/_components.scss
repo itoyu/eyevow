@@ -1,80 +1,65 @@
 /* ==========================================================================
-   Parts
+  Components
   ========================================================================== */
-
-.hide {
-  display: none !important;
-}
-.vh100 {
-  height: 100vh;
-}
-
-.js-in {
-  // transition: 1.8s
-  transition-duration: 2s;
-  transition-timing-function: $Base;
-  transition-property: opacity, transform;
-  opacity: 0;
-
-  @include mq(pc) {
-    transform: translateY(30px);
-  }
-  @include mq(sp) {
-    transform: translateY(20px);
-  }
-
-  &.inview {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 /* link */
 a {
-  display: inline-block;
-  outline: none;
   transition: 1s $Base;
   color: $fc_def;
+}
 
-  @include mq(pc) {
-    &:hover {
+/* page title */
+.page_title {
+  margin: 15px 0;
+  text-align: center;
+  color: $title_color;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+}
+
+/* page lead */
+.page_lead {
+  margin-bottom: 15px;
+  padding: 0 20px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* chat */
+.chat {
+  position: absolute;
+  padding: 0 30px;
+  width: 100%;
+  bottom: 100px;
+
+  &_item {
+    display: inline-block;
+    margin-bottom: 1em;
+    padding: 6px 8px;
+    font-size: 12px;
+    box-shadow: $bar_shadow;
+    // background: #E8FCF6;
+    background: #fff;
+    line-height: 1.5;
+    border-radius: 6px 6px 0px 6px;
+  }
+}
+
+/* tab */
+.tab_nav {
+  margin-bottom: 24px;
+  text-align: center;
+
+  &_item {
+    margin: 0 8px;
+    padding: 4px 0;
+    display: inline-block;
+    border-bottom: 3px solid $line_def;
+    color: $menu_color;
+
+    &.active {
+      border-color: $line_act;
+      color: $menu_color_active;
     }
   }
-  &:focus {
-    outline: none;
-  }
 }
-
-/* ico */
-.ico {
-  display: inline-block;
-  vertical-align: middle;
-
-  img {
-    position: relative;
-    vertical-align: middle;
-  }
-}
-
-#dummyCener {
-  position: fixed;
-  display: block;
-  top: 0px;
-  left: 50%;
-  width: 1px;
-  height: 100vh;
-  background: #f00;
-  margin-left: 1px;
-  z-index: 999;
-}
-
-
-/* loading */
-// .more {
-//   display: block;
-//   text-align: center;
-//
-//   &_loading {
-//     animation: loading 1s infinite;
-//   }
-// }
