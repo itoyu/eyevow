@@ -48,6 +48,28 @@ a {
   // color: $icon_notice;
 }
 
+/* btn */
+.btn {
+  display: inline-block;
+  padding: 14px;
+  line-height: 1;
+  color: #ffffff;
+  background: $line_act;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 20px;
+
+  &_sns {
+    background: #ffffff;
+    text-align: center;
+    img {
+      width: auto;
+      height: 15px;
+    }
+  }
+
+}
+
 /* startbtn */
 #startbtn {
   position: absolute;
