@@ -13,6 +13,7 @@
   height: 48px;
   background: #F5F5F6;
   box-shadow: $bar_shadow;
+  z-index: 5;
 
   .logo {
     position: absolute;
@@ -34,7 +35,7 @@
     width: 36px;
     height: 36px;
 
-    .notice {
+    .badge {
       position: absolute;
       left: 0px;
       top: 0px;

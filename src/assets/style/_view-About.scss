@@ -1,0 +1,163 @@
+.about {
+  position: relative;
+  padding: 0 0 140px;
+
+/* ==========================================================================
+  view About Tutorial
+  ========================================================================== */
+
+  .tutorial {
+    padding: 0 20px;
+
+    &_item {
+      margin-bottom: 20px;
+      display: flex;
+
+      .tutorial_img {
+        width: 162px;
+        box-shadow: $bar_shadow;
+      }
+      .tutorial_info {
+        padding-left: 15px;
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: center;
+      }
+      p {
+        width: 100%;
+        line-height: 1.5;
+
+        &.label {
+          padding-bottom: 6px;
+          font-size: 14px;
+          color: $menu_color;
+        }
+        &.txt {
+          font-size: 12px;
+        }
+      }
+
+    }
+    &_item.txt {
+      display: block;
+    }
+  }
+
+/* ==========================================================================
+  view About Story
+  ========================================================================== */
+
+  .story {
+    padding: 0 20px;
+
+    &_item {
+      margin-bottom: 20px;
+      display: flex;
+
+      .story_img {
+        width: 162px;
+        box-shadow: $bar_shadow;
+      }
+      .story_info {
+        padding-left: 15px;
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: center;
+      }
+      p {
+        width: 100%;
+        line-height: 1.5;
+
+        &.label {
+          padding-bottom: 6px;
+          font-size: 14px;
+          color: $icon_notice;
+
+          .num {
+            padding-right: 1em;
+            font-size: 0.8em;
+          }
+        }
+        &.txt {
+          font-size: 12px;
+        }
+      }
+    }
+
+    &_detail {
+      .story_detail_tit {
+        margin-bottom: 30px;
+        text-align: center;
+        color: $icon_notice;
+      }
+      .story_detail_img {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+
+/* ==========================================================================
+  view About Statement
+  ========================================================================== */
+  .statement {
+    padding: 0 20px;
+    text-align: center;
+
+    &_tit {
+      margin-bottom: 20px;
+      color: $icon_notice;
+    }
+    &_catch {
+      margin-bottom: 30px;
+      // font-family: $ff_min;
+      font-size: 20px;
+    }
+    &_txt {
+      p {
+        margin-bottom: 0.8em;
+        line-height: 1.7;
+      }
+    }
+  }
+
+
+/* ==========================================================================
+  view About Statement
+  ========================================================================== */
+  .credit {
+    padding: 0 30px;
+
+    &_tit {
+      margin-bottom: 20px;
+      text-align: center;
+      color: $icon_notice;
+      font-size: 16px;
+    }
+
+    &_item {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+
+      dt, dd {
+        width: 50%;
+        margin-bottom: 5px;
+        line-height: 1.5;
+      }
+      dt {
+        padding-right: 8px;
+        text-align: right;
+        color: $menu_color;
+      }
+      dd {
+        padding-left: 8px;
+      }
+    }
+  }
+
+}

@@ -2,9 +2,14 @@
   view Home
   ========================================================================== */
 .home {
+  display: flex;
+  // flex-direction: column;
+  flex-wrap: wrap;
+  height: 100%;
 
   .title {
     position: relative;
+    width: 100%;
     margin: 32px 0 0;
     text-align: center;
     z-index: 2;
@@ -28,6 +33,129 @@
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;
+    }
+  }
+}
+
+/* chat */
+.chat {
+  // position: absolute;
+  position: relative;
+  align-self: flex-end;
+  padding: 0 30px;
+  width: 100%;
+
+  &_item {
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 1em;
+
+    span {
+      vertical-align: middle;
+    }
+    .icon {
+      position: absolute;
+      left: 4px;
+      top: 0px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #fff;
+    }
+    .txt {
+      display: inline-block;
+      padding: 6px 8px;
+      font-size: 12px;
+      box-shadow: $bar_shadow;
+      // background: #E8FCF6;
+      background: #fff;
+      line-height: 1.5;
+      border-radius: 0px 6px 6px 6px;
+    }
+  }
+}
+
+/* notice */
+.notice {
+  position: relative;
+  align-self: flex-end;
+  margin-bottom: 80px;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  &_icon {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    top: 5px;
+
+    .badge {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #3B469B;
+    }
+    .icon {
+      width: 36px;
+      height: 36px;
+      padding: 8px 0 0;
+      border-radius: 50%;
+      text-align: center;
+      overflow: hidden;
+      border: 2px solid #ffffff;
+      background: #dbd0ae;
+
+      img {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &_detail {
+    width: calc(100% - 50px);
+    margin: 10px 0 0;
+    padding: 15px 8px 8px;
+    font-size: 12px;
+    box-shadow: $bar_shadow;
+    // background: #E8FCF6;
+    background: #fff;
+    line-height: 1.5;
+    border-radius: 8px 8px 0px 8px;
+    overflow-y: auto;
+    height: 130px;
+
+    &_item {
+      position: relative;
+      margin-bottom: 1em;
+      padding-left: 24px;
+
+      span {
+        vertical-align: middle;
+      }
+      .icon {
+        position: absolute;
+        left: 0;
+        top: 3px;
+        width: 16px;
+      }
+      .txt {
+        line-height: 1.5;
+      }
+      .time {
+        display: inline;
+        margin-left: 0.6em;
+        font-size: 0.8em;
+        color: $menu_color;
+      }
     }
   }
 }

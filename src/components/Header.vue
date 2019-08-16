@@ -8,7 +8,7 @@
     <p class="message">{{ msg }}</p>
     <nav class="config">
       <router-link to="/edit">
-        <span class="notice"></span>
+        <span class="badge"></span>
         <figure class="icon">
           <img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png">
         </figure>

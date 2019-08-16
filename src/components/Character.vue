@@ -1,13 +1,6 @@
 <template>
   <div class="character">
     <figure class="character_img"></figure>
-
-    <div class="chat">
-      <p class="chat_item">誓いを込めてくれてありがとう</p>
-      <p class="chat_item">誓い達成に向けてがんばってね！</p>
-      <p class="chat_item">誓い達成に向けてがんばってね！誓い達成に向けてがんばってね！誓い達成に向けてがんばってね！</p>
-    </div>
-
   </div>
 </template>
 

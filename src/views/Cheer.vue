@@ -1,12 +1,12 @@
 <template>
   <div class="cheer">
-    <h1 class="page_title">About</h1>
-    <p class="page_lead">ここでは他のユーザーの誓いを見ることができます。応援したい「誓い(vow)」を見つけたら「CHEER」ボタンを押して声援を送りましょう。</p>
+    <h1 class="page_title">Cheer</h1>
+    <p class="page_lead">ここでは他のユーザーの誓いを見ることができます。応援したい「誓い(vow)」を見つけたら「Cheer」ボタンを押して声援を送りましょう。</p>
 
     <ul class="tab_nav">
-      <li class="tab_nav_item active">HOT</li>
-      <li class="tab_nav_item">PROGRESS</li>
-      <li class="tab_nav_item">ACHIVED</li>
+      <li class="tab_nav_item active">Hot</li>
+      <li class="tab_nav_item">Progress</li>
+      <li class="tab_nav_item">Achived</li>
     </ul>
 
     <div class="tab_contents">
@@ -22,7 +22,7 @@
             </div>
             <div class="cheer_action">
               <p class="cheer_action_num">3</p>
-              <button class="cheer_action_btn">CHEER</button>
+              <button class="cheer_action_btn">Cheer</button>
             </div>
           </li>
           <li class="cheer_list_item">
@@ -34,7 +34,7 @@
             </div>
             <div class="cheer_action">
               <!-- <p class="cheer_action_num">3</p> -->
-              <button class="cheer_action_btn">CHEER</button>
+              <button class="cheer_action_btn">Cheer</button>
             </div>
           </li>
           <li class="cheer_list_item achived">
@@ -46,7 +46,7 @@
             </div>
             <div class="cheer_action">
               <!-- <p class="cheer_action_num">3</p> -->
-              <button class="cheer_action_btn">ACHIVED</button>
+              <button class="cheer_action_btn">Achived</button>
             </div>
           </li>
           <li class="cheer_list_item achived">
@@ -58,7 +58,7 @@
             </div>
             <div class="cheer_action">
               <p class="cheer_action_num">333</p>
-              <button class="cheer_action_btn">ACHIVED</button>
+              <button class="cheer_action_btn">Achived</button>
             </div>
           </li>
         </ul>
@@ -83,6 +83,7 @@
 import vows from '@/api/vows.json'
 
 export default {
+  name: 'Cheer',
   data: function() {
     return {
       list: []
