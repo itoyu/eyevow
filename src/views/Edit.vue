@@ -39,7 +39,7 @@
       <dl class="myvow_preview">
         <dt>
           <p class="txt">eyevowの画像が確認できます。</p>
-          <router-link to="/edit/photo" class="btn btn_noram">View</router-link>
+          <router-link to="/edit/review" class="btn btn_normal">View</router-link>
         </dt>
         <dd>
           <p class="txt">Share</p>

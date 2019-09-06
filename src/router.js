@@ -54,6 +54,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/Vow.vue')
     },
     {
+      path: '/eyevow',
+      name: 'eyevow',
+      component: () => import(/* webpackChunkName: "about" */ './views/Eyevow.vue')
+    },
+    {
       path: '/cheer',
       name: 'cheer',
       component: () => import(/* webpackChunkName: "about" */ './views/Cheer.vue')
@@ -62,6 +67,11 @@ export default new Router({
       path: '/edit',
       name: 'edit',
       component: () => import(/* webpackChunkName: "about" */ './views/Edit.vue')
+    },
+    {
+      path: '/edit/review',
+      name: 'editReview',
+      component: () => import(/* webpackChunkName: "about" */ './views/EditReview.vue')
     },
     {
       path: '/product/:id(\\d+)',
