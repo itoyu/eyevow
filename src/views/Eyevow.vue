@@ -7,11 +7,12 @@
 </template>
 
 <script>
-// import Transform from '@/components/Transform.vue'
-import VowMake from '@/components/VowMake.vue'
+import Transform from '@/components/Transform.vue'
+import VowComplete from '@/components/VowComplete.vue'
+
 
 export default {
-  name: 'Vow',
+  name: 'Eyevow',
   components: {
     Transform,
     VowComplete

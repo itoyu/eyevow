@@ -49,7 +49,8 @@
         <span class="dt_txt">誓う</span>
       </dt>
       <dd>
-        <div class="vow_make_input">
+        <div class="vow_make_input" style="margin-bottom: 100px;">
+          <p class="txt txt_vow">宇宙飛行士になるぞ！</p>
           <p class="txt">この内容でeyevowに誓いますか？</p>
           <p class="note">※誓いは後から変更できません</p>
           <router-link class="btn btn_vow" to="/eyevow">VOW</router-link>
