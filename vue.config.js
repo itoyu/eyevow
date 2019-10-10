@@ -18,4 +18,7 @@ module.exports = {
         name: 'assets/[name].[hash:8].[ext]',
       });
   },
+  devServer: {
+    disableHostCheck: true
+  }
 };

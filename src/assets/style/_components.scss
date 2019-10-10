@@ -57,7 +57,7 @@ a {
   background: $line_act;
   text-align: center;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 22px;
 
   &_sns {
     background: #ffffff;
@@ -70,6 +70,38 @@ a {
     }
   }
 
+  &_back {
+    padding: 12px;
+    background: $bg_def;
+    color: $title_color;
+  }
+  &_check {
+    padding: 8px 14px;
+    svg {
+      margin-right: 5px;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      path {
+        fill: #fff;
+      }
+    }
+  }
+  &_vow {
+    padding: 14px 14px;
+    svg {
+      margin-right: 8px;
+      display: inline-block;
+      // width: 20px;
+      // height: 20px;
+      zoom: 0.8;
+      vertical-align: middle;
+      path {
+        fill: #fff;
+      }
+    }
+  }
 }
 
 /* startbtn */
@@ -85,7 +117,7 @@ a {
     padding: 13px 26px;
     border-radius: 45px;
     letter-spacing: 0.1em;
-    color: #fff;
+    color: #ffffff;
     background: $menu_color_active;
 
     &::before {
@@ -96,6 +128,42 @@ a {
       bottom: -15px;
       border: 8px solid transparent;
       border-top: 10px solid $menu_color_active;
+    }
+  }
+}
+
+/* popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  background: rgba(202,209,213,0.8);
+
+  &_in {
+    position: relative;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: auto;
+    transform: translateY(-50%);
+  }
+  &_message {
+    // color: #000;
+    padding: 0 30px 20px;
+    text-align: center;
+
+    .chat_item {
+      display: inline-block;
+    }
+  }
+  &_nav {
+    text-align: center;
+
+    .btn {
+      margin: 0 10px;
     }
   }
 }

@@ -73,9 +73,9 @@ option,
 button {
   padding: 0;
   border: none;
-  border-radius: 0;
+  border-radius: 4;
   outline: none;
-  background: none;
+  background: #fff;
   box-sizing: border-box;
   -webkit-tap-highlight-color:rgba(0,0,0,0);
 }

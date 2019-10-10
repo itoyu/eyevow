@@ -1,19 +1,16 @@
 <template>
   <div class="vow">
     <h1 class="page_title">Vow</h1>
-    <VowPopup />
     <VowMake />
   </div>
 </template>
 
 <script>
-import VowPopup from '@/components/VowPopup.vue'
 import VowMake from '@/components/VowMake.vue'
 
 export default {
   name: 'Vow',
   components: {
-    VowPopup,
     VowMake
   }
 }

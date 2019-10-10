@@ -7,7 +7,7 @@
       <dd>
         <figure class="img"><img alt="" src="@/assets/img/eyevow/character_illust_02.png"></figure>
         <p class="txt">たくさん勉強して宇宙の星々を研究する学者になるぞ！</p>
-        <router-link class="btn" to="/mypage">My Page</router-link>
+        <router-link class="btn" to="/">HOME</router-link>
       </dd>
     </dl>
   </div>
