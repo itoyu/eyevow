@@ -12,7 +12,7 @@
         <div class="vow_make_type">
           <swiper :options="swiperOption">
             <swiper-slide>
-              <figure class="img"><img alt="" src="@/assets/img/eyevow/character_illust_02.png"></figure>
+              <figure class="img"><img alt="" src="@/assets/img/eyevow/character_illust_01.png"></figure>
               <p class="txt">イラスト</p>
             </swiper-slide>
             <swiper-slide>
