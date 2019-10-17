@@ -1,5 +1,5 @@
 <template>
-  <header id="header">
+  <header id="header" v-if="login">
     <nav class="logo">
       <router-link to="/">
         <img alt="eyevow" src="@/assets/img/logo.png">
@@ -18,12 +18,22 @@
 </template>
 
 <script>
+
 export default {
   name: 'Header',
   props: {
     msg: String
+  },
+  computed: {
+    login() {
+      return this.$store.state.app.login
+    }
+  },
+  created() {
+    console.log(this.$store.state.count);
   }
 }
+
 </script>
 
 <style scoped>
