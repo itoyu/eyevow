@@ -5,7 +5,7 @@
         <img alt="eyevow" src="@/assets/img/logo.png">
       </router-link>
     </nav>
-    <p class="message">{{ msg }}</p>
+    <p class="message">title: {{ pageTitle }}</p>
     <nav class="config">
       <router-link to="/edit">
         <span class="badge"></span>
@@ -18,20 +18,27 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Header',
-  props: {
-    msg: String
+  data() {
+    return {};
   },
   computed: {
+    ...mapGetters({
+      pageTitle:'pageTitle',
+    }),
     login() {
       return this.$store.state.app.login
     }
   },
   created() {
     // console.log(this.$store.state.count);
-    console.log(location.pathname);
+    // console.log(location.pathname);
+  },
+  mounted() {
+    console.log('mounted: ',location.pathname);
   }
 }
 

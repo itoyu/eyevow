@@ -3,16 +3,26 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   strict: true,
   state: {
     count: 0,
+    pageTitle: 'Home',
     app: {
       login: false
     }
   },
+  actions: {
+    changePage({ commit }, title) {
+      commit('cahgePageTitle', title);
+    },
+  },
   mutations: {
     // test:count up
+    cahgePageTitle(state, title) {
+      const st = state;
+      st.pageTitle = title;
+    },
     countup(state) {
       state.count ++
     },
@@ -23,7 +33,11 @@ export default new Vuex.Store({
       state.app.login = false
     }
   },
-  actions: {
-
-  }
+  getters: {
+    pageTitle(state) {
+      const st = state;
+      return st.pageTitle;
+    },
+  },
 })
+export default store;
