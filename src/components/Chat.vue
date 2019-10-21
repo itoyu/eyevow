@@ -48,7 +48,9 @@ export default {
           chatStop();
         }
         if(chatCnt === 4) {
-          document.getElementById('startbtn').classList.add('show');
+          if(document.getElementById('startbtn')) {
+            document.getElementById('startbtn').classList.add('show');
+          }
         }
       }
 
