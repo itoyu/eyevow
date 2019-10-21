@@ -5,7 +5,7 @@
         <img alt="eyevow" src="@/assets/img/logo.png">
       </router-link>
     </nav>
-    <p class="message">title: {{ pageTitle }}</p>
+    <h1 class="title">{{ pageTitle }}</h1>
     <nav class="config">
       <router-link to="/edit">
         <span class="badge"></span>
