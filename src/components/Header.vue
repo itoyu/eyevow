@@ -1,5 +1,5 @@
 <template>
-  <header id="header" v-if="login">
+  <header id="header" :class="{'active': $route.path !== '/' || login }">
     <nav class="logo">
       <router-link to="/">
         <img alt="eyevow" src="@/assets/img/logo.png">
@@ -31,14 +31,11 @@ export default {
   },
   created() {
     // console.log(this.$store.state.count);
+    console.log(location.pathname);
   }
 }
 
 </script>
 
 <style scoped>
-  /* header.global {
-    text-align: center;
-    background: #ccc;
-  } */
 </style>

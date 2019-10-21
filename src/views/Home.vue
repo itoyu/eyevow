@@ -32,10 +32,7 @@ export default {
 }
 </script>
 
-<style lang="scss" _scoped>
-#header {
-  // display: none;
-}
+<style lang="scss" scoped>
 .chat {
   margin-bottom: 70px;
 }
