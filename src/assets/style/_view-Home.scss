@@ -2,16 +2,27 @@
   view Home
   ========================================================================== */
 .home {
+  position: relative;
   display: flex;
   // flex-direction: column;
   flex-wrap: wrap;
+  align-items: flex-start;
   height: 100%;
 
-  .title {
-    position: relative;
-    width: 100%;
-    margin: 32px 0 0;
+  .catch {
+    position: absolute;
+    top: 8px;
     text-align: center;
+    width: 100%;
+    z-index: 2;
+    // align-self: flex-start;
+  }
+  .title {
+    position: absolute;
+    top: 22px;
+    width: 100%;
+    text-align: center;
+    // align-self: flex-start;
     z-index: 2;
 
     img {
@@ -42,13 +53,39 @@
   // position: absolute;
   position: relative;
   align-self: flex-end;
-  padding: 0 30px;
   width: 100%;
+  height: 255px;
+  overflow: auto;
+  display: flex;
+  flex-basis: 0;
+  flex-grow: 1;
+
+  &.scroll {
+
+  }
+
+  &_wrap {
+    padding: 0 30px;
+    width: 100%;
+    display: flex;
+    // align-self: flex-end;
+    align-self: flex-end;
+    flex-direction: column;
+  }
 
   &_item {
     position: relative;
     padding-left: 50px;
     margin-bottom: 1em;
+    display: none;
+
+    &.show {
+      animation: fadeIn .5s;
+      display: block;
+    }
+    &.hide {
+      display: none;
+    }
 
     span {
       vertical-align: middle;

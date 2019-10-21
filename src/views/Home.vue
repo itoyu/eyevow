@@ -1,10 +1,11 @@
 <template>
   <div class="home">
+    <p class="catch">あなたの誓いを応援する相棒</p>
     <h1 class="title"><img alt="eyevow" src="@/assets/img/title.png"></h1>
     <Character />
     <Chat />
-    <Notice />
-    <StartBtn />
+    <Notice  v-if="login" />
+    <StartBtn  v-if="!login" />
   </div>
 </template>
 
@@ -22,6 +23,11 @@ export default {
     Chat,
     Notice,
     StartBtn
+  },
+  computed: {
+    login: function() {
+      return this.$store.state.app.login
+    }
   }
 }
 </script>
@@ -31,6 +37,6 @@ export default {
   // display: none;
 }
 .chat {
-
+  margin-bottom: 70px;
 }
 </style>
