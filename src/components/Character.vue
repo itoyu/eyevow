@@ -1,10 +1,10 @@
 <template>
   <div class="character">
-    <div v-if="login">
+    <div v-if="login" class="character_slide">
       <p>login user</p>
       <figure class="character_img character_img_illust01"></figure>
     </div>
-    <div v-else>
+    <div v-else class="character_slide">
       <figure class="character_img character_img_illust01"></figure>
     </div>
   </div>
@@ -24,7 +24,7 @@ export default {
     // console.log('hellow world vue:' + this.$store.state.count);
   },
   mounted () {
-    const character = document.querySelector('.character_img');
+    const character = document.querySelector('.character');
     character.style.height = window.innerHeight + 'px';
   }
 }

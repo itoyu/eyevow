@@ -23,8 +23,8 @@ export default {
     Nav
   },
   mounted () {
-    const contents = document.querySelector('#contents');
-    contents.style.height = window.innerHeight + 'px';
+    // const contents = document.querySelector('#contents');
+    // contents.style.height = window.innerHeight + 'px';
   }
 }
 

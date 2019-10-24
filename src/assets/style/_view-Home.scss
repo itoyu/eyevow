@@ -39,6 +39,10 @@
     width: 100vw;
     height: 100vh;
 
+    &_slide {
+      height: 100%;
+      width: 100%;
+    }
     &_img {
       height: 90%;
       background-repeat: no-repeat;
@@ -77,14 +81,13 @@
     position: relative;
     padding-left: 50px;
     margin-bottom: 1em;
-    display: none;
 
     &.show {
       animation: fadeIn .5s;
-      display: block;
+      display: block !important;
     }
     &.hide {
-      display: none;
+      display: none !important;
     }
 
     span {

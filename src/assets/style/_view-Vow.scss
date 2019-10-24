@@ -11,14 +11,28 @@
     margin: 0 3px;
     width: 6px;
     height: 6px;
-    background: $menu_color_active;
+    background: $line_pre;
   }
   .swiper-slide {
     position: relative;
     overflow: hidden;
+    height: 280px !important;
     border-radius: 12px;
+    // border: transparent 2px solid;
+    border: #fff 3px solid;
     background: $line_def;
     height: auto;
+
+    &.swiper-slide-active {
+      // border-color: $menu_color_active;
+      border-color: $line_pre;
+    }
+
+    .img {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
     .txt {
       position: absolute;
@@ -41,27 +55,38 @@
       color: #fff;
     }
   }
-
   .vow_make_item {
+    display: none;
     margin-bottom: 30px;
 
     dt {
-      padding: 0 20px;
+      padding: 0 15px;
     }
 
     &:last-child {
       margin-bottom: 100px;
     }
+    &.show {
+      animation: fadeIn .5s;
+      display: block !important;
+      opacity: 1 !important;
+    }
   }
   .vow_make_nav {
     padding-right: 20px;
     text-align: right;
+
+    &.center {
+      padding: 20px 0 150px;
+      text-align: center;
+    }
   }
   .vow_make_type {
+    margin-top: 20px;
     margin-bottom: 15px;
   }
   .vow_make_input {
-    padding: 10px 20px 0;
+    padding: 10px 50px 0;
     margin-bottom: 15px;
 
     textarea {
@@ -69,7 +94,13 @@
       width: 100%;
       line-height: 1.3;
       box-shadow: $bar_shadow;
+      border: #fff 3px solid;
       border-radius: 6px;
+      font-size: 14px;
+
+      &:focus {
+        border-color: $line_pre;
+      }
     }
   }
   .vow_make_confirm {
@@ -94,5 +125,45 @@
       }
     }
 
+  }
+
+  #vow_make_step01 {
+    display: block;
+    opacity: 0;
+
+    &.disabled {
+      .swiper-container {
+        pointer-events: none;
+      }
+      .swiper-pagination-bullet {
+        background: $menu_color_active;
+      }
+      .swiper-slide {
+        opacity: 0.6;
+
+        &.swiper-slide-active {
+          opacity: 1;
+          border-color: $menu_color_active;
+        }
+      }
+    }
+  }
+  #vow_make_step02 {
+    margin-bottom: 120px;
+
+    &.disabled {
+
+      textarea {
+        pointer-events: none;
+        opacity: 0.6;
+        border-color: $menu_color_active;
+        &.blank {
+          border-color: #fff;
+        }
+      }
+    }
+  }
+  #vow_make_step03 {
+    margin-top: -100px;
   }
 }
