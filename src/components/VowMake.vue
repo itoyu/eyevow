@@ -11,15 +11,15 @@
       <dd>
         <div class="vow_make_type">
           <swiper :options="swiperOption">
-            <swiper-slide>
+            <swiper-slide data-vowtype="illust">
               <figure class="img"><img alt="" src="@/assets/img/eyevow/character_illust_01.png"></figure>
               <p class="txt">イラスト</p>
             </swiper-slide>
-            <swiper-slide>
+            <swiper-slide data-vowtype="photo">
               <figure class="img"><img alt="" src="@/assets/img/eyevow/character_cosplayers_02.png"></figure>
-              <p class="txt">レイヤー</p>
+              <p class="txt">写真</p>
             </swiper-slide>
-            <swiper-slide>
+            <swiper-slide data-vowtype="figure">
               <figure class="img soon">Coming Soon.</figure>
               <p class="txt">フィギュア</p>
             </swiper-slide>
@@ -28,13 +28,13 @@
         </div>
         <nav class="vow_make_nav">
           <toggle-button v-on:change="vowMakeHandler_type"
-            :value="false" :labels="{checked: 'OK', unchecked: 'Pick'}" :width="64" :height="28" color="#3b469B" id="vowMake01" />
+            :value="false" :labels="{checked: 'OK', unchecked: 'Pick'}" :width="64" :height="28" color="#3b469B" />
         </nav>
       </dd>
     </dl>
 
     <!-- Step 02 -->
-    <dl class="vow_make_item disabled" id="vow_make_step02">
+    <dl class="vow_make_item" id="vow_make_step02">
       <dt>
         <p class="chat_item">
           <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
@@ -54,7 +54,7 @@
     </dl>
 
     <!-- Step 03 -->
-    <dl class="vow_make_item disabled" id="vow_make_step03">
+    <dl class="vow_make_item" id="vow_make_step03">
       <dt>
         <p class="chat_item">
           <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
@@ -62,7 +62,7 @@
         </p>
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-            <span class="txt">∵∴∵∴∵∴∵∴∵∴∵∴<br>■タイプ：イラスト<br>■誓い：宇宙飛行士になるぞぉ！<br>∵∴∵∴∵∴∵∴∵∴∵∴</span>
+            <span class="txt">∵∴∵∴∵∴∵∴∵∴∵∴<br>■タイプ：{{vowMake.type}}<br>■誓い：{{vowMake.text}}<br>∵∴∵∴∵∴∵∴∵∴∵∴</span>
           </p>
         <p class="chat_item">
           <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
@@ -70,8 +70,8 @@
         </p>
       </dt>
       <dd>
-        <nav class="vow_make_nav center">
-          <router-link class="btn btn_vow" to="/eyevow"><iconEye />OK !</router-link>
+        <nav class="vow_make_nav center"> <!-- v-on:click="vowMakeHandlerCheck" -->
+          <router-link :class="{'disabled': vowMakeReady}" class="btn btn_vow" to="/eyevow"><iconEye />OK !</router-link>
         </nav>
       </dd>
     </dl>
@@ -94,6 +94,12 @@ export default {
   data() {
     return {
       vowTextData: '',
+      vowMake: {
+        step01: false,
+        step02: false,
+        type: '',
+        text: ''
+      },
       swiperOption: {
         loop: true,
         centeredSlides: true,
@@ -108,21 +114,7 @@ export default {
   },
   methods: {
     init: function() {
-      // const vowMakeItems = document.querySelectorAll('.vow_make_item');
       const vowMakeType = document.getElementById('vow_make_step01');
-            // vowMakeText = document.getElementById('vow_make_step02'),
-            // vowMakeConfirm = document.getElementById('vow_make_step03');
-
-      // console.log(vowMakeType);
-      // console.log(vowMakeText);
-      // console.log(vowMakeConfirm);
-
-
-      // setTimeout(function() {
-      //   console.log('detachEvents');
-      //   swiper.classList.add('disabled');
-      // }, 5000);
-
 
       function vowMakeStart() {
         vowMakeType.classList.add('show');
@@ -137,26 +129,19 @@ export default {
     // Step01
     vowMakeHandler_type: function(e) {
       const vowMakeType = document.getElementById('vow_make_step01'),
-            vowMakeText = document.getElementById('vow_make_step02');
+            vowMakeText = document.getElementById('vow_make_step02'),
+            sliderPickItem = document.querySelector('.swiper-slide-active');
 
-      (e.value) ? disabledPick() : enablePick();
-
-      function disabledPick() {
+      if(e.value) {
         vowMakeType.classList.add('disabled');
+        this.vowMake.type = sliderPickItem.getAttribute('data-vowtype');
+        this.vowMake.step01 = true;
 
         // Enable Step02
-        setTimeout(function() {
-          vowMakeText.classList.add('show');
-          vowMakeText.classList.remove('disabled');
-        }, 500);
-      }
-      function enablePick() {
+        vowMakeText.classList.add('show');
+      } else {
         vowMakeType.classList.remove('disabled');
-
-        // Disable Step02
-        setTimeout(function() {
-          vowMakeText.classList.add('disabled');
-        }, 500);
+        this.vowMake.step01 = false;
       }
     },
 
@@ -165,28 +150,26 @@ export default {
       const vowMakeText = document.getElementById('vow_make_step02'),
             vowMakeConfirm = document.getElementById('vow_make_step03');
 
-      (e.value) ? disabledPick() : enablePick();
-
-      function disabledPick() {
+      if(e.value) {
         vowMakeText.classList.add('disabled');
 
+        this.vowMake.text = this.vowText;
+        this.vowMake.step02 = true;
+
         // Enable Step03
-        setTimeout(function() {
-          vowMakeConfirm.classList.add('show');
-          vowMakeConfirm.classList.remove('disabled');
-        }, 500);
-      }
-      function enablePick() {
+        vowMakeConfirm.classList.add('show');
+      } else {
         vowMakeText.classList.remove('disabled');
-
-        // Disable Step03
-        setTimeout(function() {
-          vowMakeConfirm.classList.add('disabled');
-        }, 500);
+        this.vowMake.step02 = false;
       }
+    },
 
-      console.log(this.vowText);
+    // Step03
+    vowMakeHandlerCheck: function() {
+      console.log(this.vowMake.type);
+      console.log(this.vowMake.text);
     }
+
   },
   computed: {
     vowText: {
@@ -199,6 +182,9 @@ export default {
     },
     vowTextBlank() {
       return (this.vowTextData === '') ? true : false;
+    },
+    vowMakeReady() {
+      return (this.vowMake.step01 && this.vowMake.step02) ? false : true;
     }
   },
   components: {

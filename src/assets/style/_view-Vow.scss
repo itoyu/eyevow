@@ -155,7 +155,6 @@
 
       textarea {
         pointer-events: none;
-        opacity: 0.6;
         border-color: $menu_color_active;
         &.blank {
           border-color: #fff;
@@ -165,5 +164,12 @@
   }
   #vow_make_step03 {
     margin-top: -100px;
+
+    .btn_vow {
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.6;
+      }
+    }
   }
 }
