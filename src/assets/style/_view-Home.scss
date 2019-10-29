@@ -7,7 +7,7 @@
   // flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
-  height: 100%;
+  height: calc(100vh - 150px);
 
   .catch {
     position: absolute;

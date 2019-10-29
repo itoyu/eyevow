@@ -33,6 +33,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#contents {
+  height: 100vh;
+}
 .chat {
   margin-bottom: 70px;
 }

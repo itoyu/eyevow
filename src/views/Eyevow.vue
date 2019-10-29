@@ -1,21 +1,30 @@
 <template>
   <div class="vow">
-    <h1 class="page_title">Vow</h1>
-    <Transform />
     <VowComplete />
+    <Transform />
   </div>
 </template>
 
 <script>
-import Transform from '@/components/Transform.vue'
+// import PopConfirm from '@/components/PopConfirm.vue'
 import VowComplete from '@/components/VowComplete.vue'
+import Transform from '@/components/Transform.vue'
 
 
 export default {
   name: 'Eyevow',
   components: {
-    Transform,
-    VowComplete
+    // PopConfirm,
+    VowComplete,
+    Transform
+  },
+  methods: {
+    init: function() {
+      document.querySelector('body').classList.add('focus');
+    }
+  },
+  created() {
+    this.init();
   }
 }
 </script>

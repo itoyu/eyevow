@@ -63,6 +63,7 @@ a {
   overflow: hidden;
   font-size: 13px;
   border-radius: 26px;
+  vertical-align: middle;
 
   &_sns {
     background: #ffffff;
@@ -151,12 +152,21 @@ a {
   width: 100vw;
   height: 100vh;
   z-index: 5;
-  background: rgba(202,209,213,0.8);
+  background: rgba(202,209,213,0.95);
+  display: none;
+
+  &.show {
+    display: block;
+  }
+  &.hide {
+    display: none;
+  }
 
   &_in {
     position: relative;
     top: 50%;
     left: 0;
+    padding: 0 20px;
     width: 100%;
     height: auto;
     transform: translateY(-50%);

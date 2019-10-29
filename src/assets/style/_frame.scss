@@ -16,10 +16,24 @@ body {
   font-weight: 400;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
+
+  // &.fix {
+  //   overflow: hidden;
+  // }
+
+  &.focus {
+    #header, #nav {
+      display: none;
+    }
+    #contents {
+      padding: 0;
+      height: 100vh;
+    }
+  }
 }
 
 #contents {
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 70px;
   padding-bottom: 80px;
 }

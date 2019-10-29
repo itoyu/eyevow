@@ -57,7 +57,7 @@
   }
   .vow_make_item {
     display: none;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
 
     dt {
       padding: 0 15px;
@@ -77,8 +77,11 @@
     text-align: right;
 
     &.center {
-      padding: 20px 0 150px;
+      padding: 20px 0 0;
       text-align: center;
+      .btn {
+        margin: 0 10px;
+      }
     }
   }
   .vow_make_type {
@@ -149,7 +152,7 @@
     }
   }
   #vow_make_step02 {
-    margin-bottom: 120px;
+    margin-top: -20px;
 
     &.disabled {
 
@@ -163,12 +166,107 @@
     }
   }
   #vow_make_step03 {
-    margin-top: -100px;
+    margin-top: -20px;
 
     .btn_vow {
       &.disabled {
         pointer-events: none;
         opacity: 0.6;
+      }
+    }
+  }
+
+  .transform {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0;
+    // z-index: 10;
+
+    &.show {
+      opacity: 1;
+    }
+
+    &_in {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &_anim {
+      text-align: center;
+      color: #fff;
+
+      p {
+        margin: 10px;
+        letter-spacing: 0.1em;
+      }
+    }
+  }
+
+  &_complete {
+    padding: 20px 0;
+
+    .title {
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: $menu_color_active;
+      text-align: center;
+    }
+
+    &_item {
+      padding: 0 15px;
+    }
+    &_wrap {
+      margin: 20px auto 20px;
+      width: calc(100% - 60px);
+      border-radius: 12px;
+      overflow: hidden;
+
+      .vow_complete_img {
+
+      }
+      .vow_complete_text {
+        position: relative;
+        margin-top: -30px;
+        padding: 10px 8px;
+        border-radius: 0 0 6px 6px;
+        background: #fff;
+        overflow: hidden;
+
+        p {
+          font-size: 14px;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+  .signup {
+    padding-top: 20px;
+    text-align: center;
+
+    &_item {
+      position: relative;
+      margin-bottom: 15px;
+      display: inline-block;
+      border-radius: 6px;
+      text-align: center;
+      width: calc(100% - 80px);
+
+      &_twitter { background: #1dadeb; }
+      &_line { background: #00C400; }
+      &_google { background: #dc4437; }
+
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        margin: -5px 5px 0 0;
+        path {
+          fill: #fff;
+        }
       }
     }
   }
