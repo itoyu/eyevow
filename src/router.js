@@ -81,12 +81,6 @@ const router  = new Router({
       meta: { title:'Edit' }
     },
     {
-      path: '/edit/review',
-      name: 'editReview',
-      component: () => import(/* webpackChunkName: "about" */ './views/EditReview.vue'),
-      meta: { title:'Edit' }
-    },
-    {
       path: '/product/:id(\\d+)',
       name: 'productDetail',
       component: () => import(/* webpackChunkName: "about" */ './views/Product.vue'),
