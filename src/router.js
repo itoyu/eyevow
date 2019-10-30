@@ -93,7 +93,14 @@ const router  = new Router({
       props: route => ({ 'id': Number(route.params.id) }),
       meta: route => ({ title: `Product ${route.params.id}` })
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 })
 export default router;
 

@@ -24,10 +24,18 @@ export default {
     Notice,
     StartBtn
   },
+  methods: {
+    init: function() {
+      document.querySelector('body').classList.remove('focus');
+    }
+  },
   computed: {
     login: function() {
       return this.$store.state.app.login
     }
+  },
+  created() {
+    this.init();
   }
 }
 </script>
