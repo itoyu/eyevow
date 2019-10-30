@@ -21,6 +21,14 @@ export default {
   name: 'Vow',
   components: {
     VowMake
+  },
+  methods: {
+    init: function() {
+      document.querySelector('body').classList.remove('focus');
+    }
+  },
+  created() {
+    this.init();
   }
 }
 </script>
