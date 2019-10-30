@@ -75,15 +75,15 @@ const router  = new Router({
       meta: { title:'Cheer' }
     },
     {
-      path: '/mypage',
-      name: 'mypage',
-      component: () => import(/* webpackChunkName: "about" */ './views/Mypage.vue'),
-      meta: { title:'Mypage' }
+      path: '/edit',
+      name: 'edit',
+      component: () => import(/* webpackChunkName: "about" */ './views/Edit.vue'),
+      meta: { title:'Edit' }
     },
     {
-      path: '/mypage/review',
-      name: 'mypageReview',
-      component: () => import(/* webpackChunkName: "about" */ './views/Edit.vue'),
+      path: '/edit/review',
+      name: 'editReview',
+      component: () => import(/* webpackChunkName: "about" */ './views/EditReview.vue'),
       meta: { title:'Edit' }
     },
     {

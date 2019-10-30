@@ -39,7 +39,7 @@
       <div class="popup_in">
         <div style="text-align: center;">
           <p style="margin-bottom: 20px;">Social login...</p>
-          <router-link  class="btn btn_vow" to="/mypage">Mypage</router-link>
+          <router-link  class="btn btn_vow" to="/">Home</router-link>
         </div>
       </div>
     </div>

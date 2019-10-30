@@ -3,38 +3,51 @@
   ========================================================================== */
 .edit {
   position: relative;
-  padding: 20px 0 80px;
+  // padding: 20px 0;
+
+  &_item {
+    margin-top: 40px;
+  }
 
   &_tit {
     text-align: center;
     margin-bottom: 10px;
-    // font-size: 20px;
+    font-size: 16px;
     color: $icon_notice;
   }
 
   .profile {
-    padding: 0 20px 40px;
+    padding: 0 30px;
     position: relative;
     display: flex;
     align-items: center;
 
     &_name {
       flex: 1;
+
       dt {
-        margin-bottom: 5px;
         color: $title_color;
       }
       dd {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $title_color;
+
         input {
-          width: 100%;
-          padding: 8px 0;
-          border-bottom: 1px solid $line_def;
+          padding: 10px 0;
+          background: none;
+          font-size: 14px;
+          flex: 1;
+        }
+        button {
+          margin-left: 10px;
         }
       }
     }
     &_photo {
+      margin-left: 10px;
       padding-left: 15px;
-      width: 95px;
+      width: 80px;
       dt {
         display: none;
       }
@@ -52,19 +65,22 @@
             transform: translate(-50%,-50%);
           }
         }
+        .file_upload {
+          input {
+            display: none;
+          }
+        }
       }
     }
   }
 
   .myvow {
-    padding: 0 20px 40px;
+    padding: 0 30px;
     position: relative;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    // align-items: flex-start;
 
     &_txt {
-      margin-top: -10px;
       flex: 1;
 
       dt {
@@ -74,7 +90,6 @@
       dd {
         width: 100%;
         padding: 8px 0;
-        border-bottom: 1px solid $line_def;
         line-height: 1.5;
       }
     }
@@ -86,51 +101,50 @@
       }
       dd {
         figure {
-        }
-        p {
-          padding-top: 4px;
-          text-align: center;
-          //color: $title_color;
-          font-size: 12px;
-        }
-      }
-    }
-    &_preview {
-      width: 100%;
-      display: flex;
-      padding-top: 20px;
-
-      dt {
-        flex: 1;
-        .btn {
-          width: 90%;
-        }
-      }
-      dd {
-        width: 105px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        text-align: center;
-
-        .txt {
-          text-align: center;
-          width: 100%;
-        }
-        .btn_sns {
-          // width: 180%;
-          width: 40px;
-          height: 40px;
-          max-width: 100%;
+          border: 2px solid #fff;
+          border-radius: 14px;
           overflow: hidden;
         }
       }
-      p {
-        margin-bottom: 10px;
-        color: $title_color;
-        text-align: center;
+    }
+  }
+  .preview {
+    margin: 20px 0 20px;
+    text-align: center;
+  }
+
+  .btn_closePopup {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    transform: translate(50%,-50%);
+    z-index: 2;
+  }
+
+  .vow_complete_wrap {
+    position: relative;
+    margin: 0px auto 0;
+    width: calc(100% - 20px);
+
+    .vow_complete_text {
+      // margin-top: -2px;
+      padding: 15px 15px 12px;
+    }
+
+    .effect {
+      position: absolute;
+      width: 260px;
+
+      &.effect01 {
+        top: 10%;
+        left: -10%;
+        transform: rotate(90deg);
+      }
+      &.effect02 {
+        bottom: 10%;
+        right: -10%;
+        transform: rotate(-90deg);
       }
     }
   }
-
 }

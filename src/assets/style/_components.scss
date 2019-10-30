@@ -64,6 +64,14 @@ a {
   font-size: 13px;
   border-radius: 26px;
   vertical-align: middle;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+
+  &_min {
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 12px;
+  }
 
   &_sns {
     background: #ffffff;
@@ -81,6 +89,7 @@ a {
     background: $bg_def;
     color: $title_color;
   }
+
   &_check {
     padding: 8px 14px;
     svg {
@@ -94,6 +103,7 @@ a {
       }
     }
   }
+
   &_vow {
     svg {
       margin-right: 10px;
@@ -106,6 +116,14 @@ a {
         fill: #fff;
       }
     }
+  }
+
+  &_closePopup {
+    padding: 7px 10px;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
   }
 }
 
