@@ -2,13 +2,14 @@
   <header id="header" :class="{'active': $route.path !== '/' || login }">
     <nav class="logo">
       <router-link to="/">
-        <img alt="eyevow" src="@/assets/img/logo.png">
+        <!-- <img alt="eyevow" src="@/assets/img/title_min.png" v-if="$route.path !== '/'"> -->
+        <img alt="eyevow" src="@/assets/img/title.png">
       </router-link>
     </nav>
-    <h1 class="title">{{ pageTitle }}</h1>
+    <h1 class="title" v-if="$route.path !== '/'">{{ pageTitle }}</h1>
     <nav class="config">
       <router-link to="/edit">
-        <span class="badge"></span>
+        <!-- <span class="badge"></span> -->
         <figure class="icon">
           <img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png">
         </figure>

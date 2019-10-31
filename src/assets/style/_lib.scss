@@ -1,15 +1,14 @@
 /* ==========================================================================
    Vars
   ========================================================================== */
-$ff_def: '游ゴシック体', YuGothic, '游ゴシック Medium', 'Yu Gothic Medium', '游ゴシック', 'Yu Gothic', sans-serif;
-$ff_min: 'Hannari', '游明朝', YuMincho, 'ヒラギノ明朝 ProN W3', 'Hiragino Mincho ProN', 'HG明朝E', 'ＭＳ Ｐ明朝', 'ＭＳ 明朝', serif;
+$ff_def: 'Lato', 'Noto Sans Japanese', sans-serif;
 
 @mixin ff_en {
   font-family: 'mono45-headline', monospace;
   font-weight: 500;
 }
 
-$fc_def: #2F2F36;
+$fc_def: #444444;
 $bg_def: #F5F5F6;
 
 $title_color: #A8B3B9;
