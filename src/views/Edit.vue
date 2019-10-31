@@ -90,8 +90,8 @@ export default {
     },
     // プロフィール画像の変更
     updateProfilePhoto: function(e) {
-      console.log(e);
       const file = e.srcElement.files[0];
+      console.log(file);
 
     },
     openPopup: function() {

@@ -10,7 +10,7 @@
         <span class="txt">応援したいものがあったら「Cheer」ボタンを押して声援を送ってあげて</span>
       </p>
     </div>
-    
+
     <ul class="tab_nav">
       <li class="tab_nav_item active">Hot</li>
       <li class="tab_nav_item">Progress</li>
@@ -28,9 +28,9 @@
               <p class="cheer_text">エモすぎる楽曲を作って世界一のロックバンドを結成する！</p>
               <p class="cheer_time">2h</p>
             </div>
-            <div class="cheer_action">
+            <div class="cheer_action current">
               <p class="cheer_action_num">3</p>
-              <button class="cheer_action_btn">Cheer</button>
+              <button class="cheer_action_btn"><iconLike /></button>
             </div>
           </li>
           <li class="cheer_list_item">
@@ -42,10 +42,11 @@
             </div>
             <div class="cheer_action">
               <!-- <p class="cheer_action_num">3</p> -->
-              <button class="cheer_action_btn">Cheer</button>
+              <button class="cheer_action_btn"><iconLike /></button>
             </div>
           </li>
           <li class="cheer_list_item achived">
+            <span class="icon_achieve"><iconAchieve /></span>
             <figure class="cheer_icon"><img alt="" src="@/assets/img/eyevow/icon_illust_01.png"></figure>
             <div class="cheer_info">
               <p class="cheer_name">Name</p>
@@ -54,10 +55,11 @@
             </div>
             <div class="cheer_action">
               <!-- <p class="cheer_action_num">3</p> -->
-              <button class="cheer_action_btn">Achived</button>
+              <button class="cheer_action_btn"><iconLike /></button>
             </div>
           </li>
           <li class="cheer_list_item achived">
+            <span class="icon_achieve"><iconAchieve /></span>
             <figure class="cheer_icon"><img alt="" src="@/assets/img/eyevow/icon_illust_01.png"></figure>
             <div class="cheer_info">
               <p class="cheer_name">Name</p>
@@ -66,7 +68,7 @@
             </div>
             <div class="cheer_action">
               <p class="cheer_action_num">333</p>
-              <button class="cheer_action_btn">Achived</button>
+              <button class="cheer_action_btn"><iconLike /></button>
             </div>
           </li>
         </ul>
@@ -89,6 +91,8 @@
 <script>
 // import axios from 'axios'
 import vows from '@/api/vows.json'
+import iconLike from '@/assets/img/icon_like.svg?inline'
+import iconAchieve from '@/assets/img/icon_achieve.svg?inline'
 
 export default {
   name: 'Cheer',
@@ -96,6 +100,10 @@ export default {
     return {
       list: []
     }
+  },
+  components: {
+    iconLike,
+    iconAchieve
   },
   created() {
     // axios

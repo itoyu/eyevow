@@ -17,12 +17,8 @@
                 <p class="txt">イラスト</p>
               </swiper-slide>
               <swiper-slide data-vowtype="photo">
-                <figure class="img"><img alt="" src="@/assets/img/eyevow/character_cosplayers_02.png"></figure>
+                <figure class="img"><img alt="" src="@/assets/img/eyevow/character_photo_01.png"></figure>
                 <p class="txt">写真</p>
-              </swiper-slide>
-              <swiper-slide data-vowtype="figure">
-                <figure class="img soon">Coming Soon.</figure>
-                <p class="txt">フィギュア</p>
               </swiper-slide>
             </swiper>
             <div class="swiper-pagination"></div>
@@ -126,7 +122,7 @@ export default {
         text: ''
       },
       swiperOption: {
-        loop: true,
+        // loop: true,
         centeredSlides: true,
         slidesPerView: 1.4,
         spaceBetween: 20,

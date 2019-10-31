@@ -35,15 +35,19 @@ a {
   text-align: center;
 
   &_item {
-    margin: 0 8px;
-    padding: 4px 0;
+    margin: 0 6px;
+    padding: 4px 10px 6px;
+    min-width: 50px;
     display: inline-block;
-    border-bottom: 3px solid $line_def;
-    color: $menu_color;
+    overflow: hidden;
+    border-radius: 12px;
+    color: $title_color;
+    background: #fff;
+    font-size: 12px;
 
     &.active {
-      border-color: $line_act;
-      color: $menu_color_active;
+      color: #fff;
+      background: $menu_color_active;
     }
   }
 }
