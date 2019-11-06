@@ -1,11 +1,13 @@
 <template>
   <div class="home">
-    <p class="catch">あなたの誓いを応援する相棒</p>
-    <h1 class="title"><img alt="eyevow" src="@/assets/img/title.png"></h1>
+    <div v-if="!login">
+      <p class="catch">あなたの誓いを応援する相棒</p>
+      <h1 class="title"><img alt="eyevow" src="@/assets/img/title.png"></h1>
+    </div>
     <Character />
     <Chat />
     <Notice  v-if="login" />
-    <StartBtn  v-if="!login" />
+    <StartBtn v-if="!login" />
   </div>
 </template>
 
@@ -31,7 +33,7 @@ export default {
   },
   computed: {
     login: function() {
-      return this.$store.state.app.login
+      return this.$store.state.app.isLogin
     }
   },
   created() {
@@ -43,8 +45,5 @@ export default {
 <style lang="scss" scoped>
 #contents {
   height: 100vh;
-}
-.chat {
-  margin-bottom: 70px;
 }
 </style>

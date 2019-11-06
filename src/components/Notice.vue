@@ -9,7 +9,7 @@
     <div class="notice_detail">
       <p class="notice_detail_item">
         <span class="icon icon_cheer"><img alt="" src="@/assets/img/icon_line_cheer.svg"></span>
-        <span class="txt">あなたの誓いにCHEERが <span class="cheer_num">24</span> つつきました</span>
+        <span class="txt">誓いを立てたので、一部のアイテムが<a href="https://thebase.in/" class="txtlink" target="_blank">ECサイト</a>から買えるようになりました。</span>
         <span class="time">2h</span>
       </p>
       <p class="notice_detail_item">

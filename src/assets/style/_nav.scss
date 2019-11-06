@@ -82,7 +82,8 @@
         background: radial-gradient(#cad1d5, #b7c0c6);
       }
       &.action_achieve {
-        background: radial-gradient(#F5DE2F, #F5C02F);
+        background: radial-gradient(#cad1d5, #b7c0c6);
+        // background: radial-gradient(#F5DE2F, #F5C02F);
       }
       &.action_shop {
         .icon {
@@ -92,10 +93,10 @@
         }
       }
 
-      &.action_shop,
-      &.action_achieve {
-        display: none;
-      }
+      // &.action_shop,
+      // &.action_achieve {
+      //   display: none;
+      // }
 
       svg path { fill: #ffffff; }
 
@@ -127,7 +128,7 @@
           background: radial-gradient(#3B469B, #0E1653);
         }
         &.action_achieve {
-          // background: radial-gradient(#F5DE2F, #F5C02F);
+          background: radial-gradient(#F5DE2F, #F5C02F);
         }
       }
 

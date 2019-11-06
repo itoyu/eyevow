@@ -10,6 +10,7 @@ const store = new Vuex.Store({
     count: 0,
     pageTitle: 'Home',
     vow: false,
+    achieve: false,
     app: {
       isLogin: false
     }
@@ -36,6 +37,15 @@ const store = new Vuex.Store({
     },
     setVow(state) {
       state.vow = true;
+    },
+    unsetVow(state) {
+      state.vow = false;
+    },
+    setAchieve(state) {
+      state.achieve = true;
+    },
+    unsetAchieve(state) {
+      state.achieve = false;
     }
   },
   getters: {

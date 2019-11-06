@@ -8,12 +8,12 @@
     </nav>
     <h1 class="title" v-if="$route.path !== '/'">{{ pageTitle }}</h1>
     <nav class="config">
-      <router-link to="/edit">
+      <button @click="signout">
         <!-- <span class="badge"></span> -->
         <figure class="icon">
           <img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png">
         </figure>
-      </router-link>
+      </button>
     </nav>
   </header>
 </template>
@@ -26,6 +26,11 @@ export default {
   data() {
     return {};
   },
+  methods: {
+    signout: function() {
+      this.$store.commit('isLogout');
+    }
+  },
   computed: {
     ...mapGetters({
       pageTitle:'pageTitle',
@@ -35,9 +40,8 @@ export default {
     }
   },
   watch: {
-    login: function(newValue, oldValue) {
-      console.log('newValue: ', newValue);
-      console.log('oldValue: ', oldValue);
+    login: function(newValue) {
+      return newValue;
     }
   },
   created() {

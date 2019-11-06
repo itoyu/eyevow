@@ -22,68 +22,68 @@ const router  = new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/AboutTutorial.vue'),
+      component: () => import('./views/AboutTutorial.vue'),
       meta: { title:'About' }
     },
     {
       path: '/about/story',
       name: 'aboutStory',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/AboutStory.vue'),
+      component: () => import('./views/AboutStory.vue'),
       meta: { title:'Story' }
     },
     {
       path: '/about/story/:id', //:id(\\d+)
       name: 'aboutStoryDetail',
-      component: () => import(/* webpackChunkName: "about" */ './views/AboutStoryDetail.vue'),
+      component: () => import('./views/AboutStoryDetail.vue'),
       props: route => ({ 'id': Number(route.params.id) }),
       meta: route => ({ title: `Story ${route.params.id}` })
     },
     {
       path: '/about/statement',
       name: 'aboutStatement',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/AboutStatement.vue'),
+      component: () => import('./views/AboutStatement.vue'),
       meta: { title:'Statement' }
     },
     {
       path: '/about/credit',
       name: 'aboutCredit',
-      component: () => import(/* webpackChunkName: "about" */ './views/AboutCredit.vue'),
+      component: () => import('./views/AboutCredit.vue'),
       meta: { title:'Credit' }
     },
     {
       path: '/vow',
       name: 'vow',
-      component: () => import(/* webpackChunkName: "about" */ './views/Vow.vue'),
+      component: () => import('./views/Vow.vue'),
       meta: { title:'Vow' }
+    },
+    {
+      path: '/achieve',
+      name: 'achieve',
+      component: () => import('./views/Achieved.vue'),
+      meta: { title:'Achieved' }
     },
     {
       path: '/eyevow',
       name: 'eyevow',
-      component: () => import(/* webpackChunkName: "about" */ './views/Eyevow.vue'),
+      component: () => import('./views/Eyevow.vue'),
       meta: { title:'eyevow' }
     },
     {
       path: '/cheer',
       name: 'cheer',
-      component: () => import(/* webpackChunkName: "about" */ './views/Cheer.vue'),
+      component: () => import('./views/Cheer.vue'),
       meta: { title:'Cheer' }
     },
     {
       path: '/edit',
       name: 'edit',
-      component: () => import(/* webpackChunkName: "about" */ './views/Edit.vue'),
+      component: () => import('./views/Edit.vue'),
       meta: { title:'Edit' }
     },
     {
       path: '/product/:id(\\d+)',
       name: 'productDetail',
-      component: () => import(/* webpackChunkName: "about" */ './views/Product.vue'),
+      component: () => import('./views/Product.vue'),
       props: route => ({ 'id': Number(route.params.id) }),
       meta: route => ({ title: `Product ${route.params.id}` })
     }

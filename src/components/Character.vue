@@ -2,7 +2,7 @@
   <div class="character">
     <div v-if="login" class="character_slide">
       <p>login user</p>
-      <figure class="character_img character_img_illust01"></figure>
+      <figure class="character_img character_img_illust02"></figure>
     </div>
     <div v-else class="character_slide">
       <figure class="character_img character_img_illust01"></figure>
@@ -15,7 +15,12 @@ export default {
   name: 'Character',
   computed: {
     login() {
-      return this.$store.state.app.login
+      return this.$store.state.app.isLogin
+    }
+  },
+  watch: {
+    login: function(newValue) {
+      return newValue;
     }
   },
   created() {
@@ -34,5 +39,8 @@ export default {
 <style lang="scss" scoped>
 .character_img_illust01 {
   background-image: url(../assets/img/eyevow/character_illust_01.png);
+}
+.character_img_illust02 {
+  background-image: url(../assets/img/eyevow/character_illust_02.png);
 }
 </style>

@@ -63,9 +63,14 @@
   display: flex;
   flex-basis: 0;
   flex-grow: 1;
+  margin-bottom: 70px;
 
   &.scroll {
 
+  }
+  &.member {
+    margin-bottom: 0px;
+    top: 40px;
   }
 
   &_wrap {
@@ -120,7 +125,7 @@
 .notice {
   position: relative;
   align-self: flex-end;
-  margin-bottom: 80px;
+  margin-bottom: 15px;
   padding: 0 30px;
   display: flex;
   flex-direction: row-reverse;

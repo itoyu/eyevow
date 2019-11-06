@@ -11,17 +11,17 @@
         <span class="icon"><iconAbout /></span>
         <span class="label">About</span>
       </router-link>
-      <router-link class="action action_achieve" to="/achieve">
+      <router-link class="action action_achieve" to="/achieve" v-if="login">
         <span class="bg"><img alt="" src="@/assets/img/icon_action_bg.svg"></span>
         <span class="icon"><iconEye /></span>
         <span class="label">Achieved</span>
       </router-link>
-      <router-link class="action action_shop" to="/shop">
+      <router-link class="action action_shop" to="/shop" v-if="achieve">
         <span class="bg"><img alt="" src="@/assets/img/icon_action_bg.svg"></span>
         <span class="icon"><iconShop /></span>
         <span class="label">Shop</span>
       </router-link>
-      <router-link class="action action_vow" to="/vow">
+      <router-link class="action action_vow" to="/vow" v-if="!login">
         <span class="bg"><img alt="" src="@/assets/img/icon_action_bg.svg"></span>
         <span class="icon"><iconEye /></span>
         <span class="label">Vow</span>
@@ -62,6 +62,22 @@ export default {
   data: function () {
     return {
       state: 'vow'
+    }
+  },
+  watch: {
+    login: function(newValue) {
+      return newValue;
+    },
+    achieve: function(newValue) {
+      return newValue;
+    }
+  },
+  computed: {
+    login: function() {
+      return this.$store.state.app.isLogin
+    },
+    achieve: function() {
+      return this.$store.state.achieve
     }
   }
 }
