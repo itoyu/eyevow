@@ -39,7 +39,7 @@
       <div class="popup_in">
         <div style="text-align: center;">
           <p style="margin-bottom: 20px;">Social login...</p>
-          <router-link  class="btn btn_vow" to="/">Home</router-link>
+          <button class="btn btn_vow" @click="completeSignup">Home</button>
         </div>
       </div>
     </div>
@@ -58,12 +58,24 @@ export default {
     iconArr
   },
   created() {
-    // console.log('vow complete');
+    console.log('setVow');
+    this.$store.commit('setVow');
   },
   methods: {
     signup: function(s) {
       console.log(s);
       document.querySelector('.popup').classList.add('show');
+    },
+    completeSignup: function() {
+      console.log('completeSignup');
+      this.$store.commit('isLogin');
+      // window.location = "/"
+
+        // window.location = '/';
+      console.log(this.$store.state.app.isLogin);
+      setTimeout(function() {
+        window.location = '/';
+      },300)
     }
   }
 }

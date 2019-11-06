@@ -31,12 +31,19 @@ export default {
       pageTitle:'pageTitle',
     }),
     login() {
-      return this.$store.state.app.login
+      return this.$store.state.app.isLogin
+    }
+  },
+  watch: {
+    login: function(newValue, oldValue) {
+      console.log('newValue: ', newValue);
+      console.log('oldValue: ', oldValue);
     }
   },
   created() {
     // console.log(this.$store.state.count);
     // console.log(location.pathname);
+    console.log('login: ' + this.$store.state.app.isLogin);
   },
   mounted() {
     console.log('mounted: ',location.pathname);

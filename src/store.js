@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -8,8 +9,9 @@ const store = new Vuex.Store({
   state: {
     count: 0,
     pageTitle: 'Home',
+    vow: false,
     app: {
-      login: false
+      isLogin: false
     }
   },
   actions: {
@@ -26,11 +28,14 @@ const store = new Vuex.Store({
     countup(state) {
       state.count ++
     },
-    login(state) {
-      state.app.login = true
+    isLogin(state) {
+      state.app.isLogin = true;
     },
-    logout(state) {
-      state.app.login = false
+    isLogout(state) {
+      state.app.isLogin = false;
+    },
+    setVow(state) {
+      state.vow = true;
     }
   },
   getters: {
@@ -39,5 +44,6 @@ const store = new Vuex.Store({
       return st.pageTitle;
     },
   },
+  plugins: [createPersistedState()]
 })
 export default store;
