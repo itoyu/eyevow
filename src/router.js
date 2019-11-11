@@ -59,6 +59,12 @@ const router  = new Router({
     {
       path: '/achieve',
       name: 'achieve',
+      component: () => import('./views/Achieve.vue'),
+      meta: { title:'Achieved' }
+    },
+    {
+      path: '/achieved',
+      name: 'achieved',
       component: () => import('./views/Achieved.vue'),
       meta: { title:'Achieved' }
     },

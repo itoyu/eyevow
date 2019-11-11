@@ -191,18 +191,17 @@
     }
 
     &_in {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
+      // position: relative;
+      // top: 50%;
+      // transform: translateY(-50%);
     }
     &_anim {
-      text-align: center;
-      color: #fff;
-
-      p {
-        margin: 10px;
-        letter-spacing: 0.1em;
-      }
+      // text-align: center;
+      // color: #fff;
+      // p {
+      //   margin: 10px;
+      //   letter-spacing: 0.1em;
+      // }
     }
   }
 
