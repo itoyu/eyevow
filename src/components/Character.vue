@@ -1,7 +1,9 @@
 <template>
   <div class="character">
-    <div v-if="login" class="character_slide">
-      <p>login user</p>
+    <div v-if="achieve" class="character_slide">
+      <figure class="character_img character_img_illust03"></figure>
+    </div>
+    <div v-else-if="login" class="character_slide">
       <figure class="character_img character_img_illust02"></figure>
     </div>
     <div v-else class="character_slide">
@@ -14,6 +16,9 @@
 export default {
   name: 'Character',
   computed: {
+    achieve() {
+      return this.$store.state.app.isAchieve
+    },
     login() {
       return this.$store.state.app.isLogin
     }
@@ -42,5 +47,8 @@ export default {
 }
 .character_img_illust02 {
   background-image: url(../assets/img/eyevow/character_illust_02.png);
+}
+.character_img_illust03 {
+  background-image: url(../assets/img/eyevow/character_illust_03.png);
 }
 </style>

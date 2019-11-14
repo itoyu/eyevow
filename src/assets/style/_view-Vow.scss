@@ -206,7 +206,7 @@
   }
 
   &_complete {
-    padding: 20px 0;
+    padding: 20px 0 0;
 
     .title {
       margin-bottom: 20px;
@@ -263,6 +263,52 @@
         top: 50%;
         left: 20px;
         margin: -5px 5px 0 0;
+        path {
+          fill: #fff;
+        }
+      }
+    }
+  }
+
+  .reward {
+    margin-top: 40px;
+    padding: 25px 50px 20px;
+    background: $icon_notice;
+
+    .title {
+      color: $fc_def;
+    }
+
+    .nav_item {
+      position: relative;
+      display: block;
+      margin-bottom: 15px;
+      background: #fff;
+      // color: $icon_notice;
+      color: $fc_def;
+
+      svg {
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        margin: -5px 5px 0 0;
+        path {
+          fill: $icon_notice;
+        }
+      }
+    }
+    .reward_item {
+      // background: $icon_notice;
+    }
+    .btn_back {
+      color: #fff;
+      background: none;
+
+      svg {
+        position: relative;
+        vertical-align: middle;
+        top: 1px;
+        left: -2px;
         path {
           fill: #fff;
         }

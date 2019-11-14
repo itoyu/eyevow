@@ -4,13 +4,13 @@
     <dl class="vow_complete_item">
       <dt>
         <p class="chat_item">
-          <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+          <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_03.png"></span>
           <span class="txt">誓い達成おめでとう！</span>
         </p>
       </dt>
       <dd class="vow_complete_wrap">
         <div class="vow_complete_img">
-          <figure class="img"><img alt="" src="@/assets/img/eyevow/character_illust_02.png"></figure>
+          <figure class="img"><img alt="" src="@/assets/img/eyevow/character_illust_03.png"></figure>
         </div>
         <div class="vow_complete_text">
           <p>たくさん勉強して宇宙の星々を研究する学者になるぞ！</p>
@@ -20,31 +20,17 @@
 
     <div class="page_lead">
       <p class="chat_item">
-        <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-        <span class="txt">この誓いを残しておくために<br>アカウント登録してね。</span>
+        <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_03.png"></span>
+        <span class="txt">誓い達成の特典があるわよ</span>
       </p>
-      <p class="chat_item">
-        <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-        <span class="txt">SNSのアカウントで<br>アカウント登録 / ログインできるよ。</span>
-      </p>
-
-      <nav class="signup">
-        <button @click="signup('twitter')" class="signup_item signup_item_twitter btn"><iconArr />Twitter</button>
-        <button @click="signup('line')" class="signup_item signup_item_line btn"><iconArr />Line</button>
-        <button @click="signup('google')" class="signup_item signup_item_google btn"><iconArr />Google</button>
-      </nav>
     </div>
 
-    <div class="popup popup_signup">
-      <div class="popup_in">
-        <div style="text-align: center;">
-          <p style="margin-bottom: 20px;">Social login...</p>
-          <button class="btn btn_vow" @click="completeSignup">Home</button>
-        </div>
-      </div>
-    </div>
-
-
+    <nav class="reward">
+      <h2 class="title">REWARDS</h2>
+      <router-link to="/about/story/epilogue" class="nav_item reward_item btn"><iconArr />EPILOGUE</router-link>
+      <a href="https://thebase.in/" target="_blank" class="nav_item reward_item btn"><iconArr />ONLINE SHOP</a>
+      <router-link to="/" class="nav_item btn btn_back"><iconArr />HOME</router-link>
+    </nav>
 
   </div>
 </template>
@@ -57,26 +43,14 @@ export default {
   components: {
     iconArr
   },
-  created() {
-    console.log('setVow');
-    this.$store.commit('setVow');
-  },
   methods: {
-    signup: function(s) {
-      console.log(s);
-      document.querySelector('.popup').classList.add('show');
-    },
-    completeSignup: function() {
-      console.log('completeSignup');
-      this.$store.commit('isLogin');
-      // window.location = "/"
-
-        // window.location = '/';
-      console.log(this.$store.state.app.isLogin);
-      setTimeout(function() {
-        window.location = '/';
-      },300)
+    init: function() {
+      console.log('Achieved');
+      this.$store.commit('setAchieve');
     }
+  },
+  created() {
+    this.init();
   }
 }
 </script>

@@ -29,6 +29,7 @@ export default {
   methods: {
     signout: function() {
       this.$store.commit('isLogout');
+      this.$store.commit('unsetAchieve');
     }
   },
   computed: {

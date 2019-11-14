@@ -3,7 +3,7 @@
     <div class="transform_in">
       <div class="transform_anim">
         <div id="trans_anim_gif" class="transform_parts transform_bg"><img alt="" src="@/assets/img/effect_trans_bg.gif"></div>
-        <figure class="transform_char01 transform_char transform_parts"><img alt="" src="@/assets/img/eyevow/character_cosplayers_01.png"></figure>
+        <figure class="transform_char01 transform_char transform_parts"><img alt="" src="@/assets/img/eyevow/character_illust_01.png"></figure>
         <span class="transform_effect01 transform_parts"><img alt="" src="@/assets/img/effect_trans0101.gif"></span>
         <span class="transform_effect02 transform_parts"><img alt="" src="@/assets/img/effect_trans0102.gif"></span>
         <!-- <span class="transform_effect03 transform_parts"><img alt="" src="@/assets/img/effect_trans0103.gif"></span>

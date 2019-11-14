@@ -12,7 +12,8 @@ const store = new Vuex.Store({
     vow: false,
     achieve: false,
     app: {
-      isLogin: false
+      isAchieve: false,
+      isLogin: false,
     }
   },
   actions: {
@@ -42,10 +43,10 @@ const store = new Vuex.Store({
       state.vow = false;
     },
     setAchieve(state) {
-      state.achieve = true;
+      state.app.isAchieve = true;
     },
     unsetAchieve(state) {
-      state.achieve = false;
+      state.app.isAchieve = false;
     }
   },
   getters: {
