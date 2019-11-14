@@ -7,7 +7,7 @@
     <Character />
     <Chat />
     <Notice  v-if="login" />
-    <StartBtn v-if="!login" />
+    <!-- <StartBtn v-if="!login" /> -->
   </div>
 </template>
 
@@ -16,7 +16,7 @@
 import Character from '@/components/Character.vue'
 import Chat from '@/components/Chat.vue'
 import Notice from '@/components/Notice.vue'
-import StartBtn from '@/components/StartBtn.vue'
+// import StartBtn from '@/components/StartBtn.vue'
 
 export default {
   name: 'Home',
@@ -24,7 +24,7 @@ export default {
     Character,
     Chat,
     Notice,
-    StartBtn
+    // StartBtn
   },
   methods: {
     init: function() {

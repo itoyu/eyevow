@@ -130,7 +130,7 @@
   view About Statement
   ========================================================================== */
   .credit {
-    padding: 0 30px;
+    padding: 0 20px;
 
     &_tit {
       margin-bottom: 20px;
@@ -140,22 +140,72 @@
     }
 
     &_item {
-      display: flex;
-      flex-wrap: wrap;
+      // display: flex;
+      // flex-wrap: wrap;
       margin-bottom: 20px;
+      padding: 0 10px;
 
       dt, dd {
-        width: 50%;
+        display: block;
+        width: 100%;
         margin-bottom: 5px;
         line-height: 1.5;
       }
       dt {
-        padding-right: 8px;
-        text-align: right;
+        // padding-right: 8px;
+        // text-align: right;
         color: $menu_color;
       }
       dd {
         padding-left: 8px;
+      }
+    }
+
+    .credit_list {
+      margin-bottom: 60px;
+      padding: 0 20px 0;
+
+      &_item {
+        margin-bottom: 30px;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+
+        .credit_icon {
+          position: relative;
+          top: 5px;
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+        .credit_info {
+          position: relative;
+          padding: 0 0 0 12px;
+          flex: 1;
+        }
+        .credit_name {
+          line-height: 1.5;
+          font-weight: 600;
+          color: $color_cheer;
+          // font-size: 16px;
+        }
+        .credit_role {
+          font-size: 12px;
+          line-height: 1.5;
+          color: $title_color;
+        }
+        .credit_text {
+          margin-top: 0.5em;
+          font-size: 14px;
+          line-height: 1.5;
+          font-size: 12px;
+        }
       }
     }
   }

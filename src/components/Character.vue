@@ -33,9 +33,13 @@ export default {
     // display store data
     // console.log('hellow world vue:' + this.$store.state.count);
   },
-  mounted () {
+  mounted() {
     const character = document.querySelector('.character');
     character.style.height = window.innerHeight + 'px';
+
+    setTimeout(function() {
+      document.querySelector('.character').classList.add('show');
+    }, 1000)
   }
 }
 </script>

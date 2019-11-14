@@ -2,7 +2,9 @@
   <div id="app">
     <Header msg="This is the header! "/>
     <div id="contents">
-      <router-view/>
+      <vue-page-transition name="fade">
+        <router-view/>
+      </vue-page-transition>
     </div>
     <Nav />
   </div>

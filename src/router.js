@@ -12,86 +12,72 @@ const router  = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
-      meta: { title:'Home' }
+      meta: { title: 'Home' },
+      component: Home
     },
     {
-      path: '/about',
-      name: 'aboutTutorial',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('./views/AboutTutorial.vue'),
-      meta: { title:'About' }
-    },
-    {
-      path: '/about/story',
-      name: 'aboutStory',
-      component: () => import('./views/AboutStory.vue'),
-      meta: { title:'Story' }
-    },
-    {
-      path: '/about/story/:id', //:id(\\d+)
-      name: 'aboutStoryDetail',
-      component: () => import('./views/AboutStoryDetail.vue'),
-      props: route => ({ 'id': Number(route.params.id) }),
-      meta: route => ({ title: `Story ${route.params.id}` })
-    },
-    {
-      path: '/about/statement',
-      name: 'aboutStatement',
-      component: () => import('./views/AboutStatement.vue'),
-      meta: { title:'Statement' }
-    },
-    {
-      path: '/about/credit',
-      name: 'aboutCredit',
-      component: () => import('./views/AboutCredit.vue'),
-      meta: { title:'Credit' }
+      path: '/about/:id',
+      meta: { title: 'About' },
+      component: () => import('./views/About.vue'),
+
+      children: [
+        {
+          path: '/about/',
+          meta: { title: 'Tutorial' },
+          component:() => import('./views/AboutTutorial')
+        },
+        {
+          path: '/about/statement',
+          meta: { title: 'Statement' },
+          component:() => import('./views/AboutStatement')
+        },
+        {
+          path: '/about/credit',
+          meta: { title: 'Credit' },
+          component:() => import('./views/AboutCredit')
+        },
+        {
+          path: '/about/story',
+          meta: { title: 'Story' },
+          component:() => import('./views/AboutStory')
+        },
+        {
+          path: '/about/story/:id', //:id(\\d+)
+          props: route => ({ 'id': Number(route.params.id) }),
+          meta: route => ({ title: `Story ${route.params.id}` }),
+          component: () => import('./views/AboutStoryDetail.vue')
+        }
+      ]
     },
     {
       path: '/vow',
-      name: 'vow',
-      component: () => import('./views/Vow.vue'),
-      meta: { title:'Vow' }
+      meta: { title: 'Vow' },
+      component: () => import('./views/Vow.vue')
     },
     {
       path: '/achieve',
-      name: 'achieve',
-      component: () => import('./views/Achieve.vue'),
-      meta: { title:'Achieved' }
+      meta: { title: 'Achieved' },
+      component: () => import('./views/Achieve.vue')
     },
     {
       path: '/achieved',
-      name: 'achieved',
-      component: () => import('./views/Achieved.vue'),
-      meta: { title:'Achieved' }
+      meta: { title: 'Achieved' },
+      component: () => import('./views/Achieved.vue')
     },
     {
       path: '/eyevow',
-      name: 'eyevow',
-      component: () => import('./views/Eyevow.vue'),
-      meta: { title:'eyevow' }
+      meta: { title: 'eyevow' },
+      component: () => import('./views/Eyevow.vue')
     },
     {
       path: '/cheer',
-      name: 'cheer',
-      component: () => import('./views/Cheer.vue'),
-      meta: { title:'Cheer' }
+      meta: { title: 'Cheer' },
+      component: () => import('./views/Cheer.vue')
     },
     {
       path: '/edit',
-      name: 'edit',
-      component: () => import('./views/Edit.vue'),
-      meta: { title:'Edit' }
-    },
-    {
-      path: '/product/:id(\\d+)',
-      name: 'productDetail',
-      component: () => import('./views/Product.vue'),
-      props: route => ({ 'id': Number(route.params.id) }),
-      meta: route => ({ title: `Product ${route.params.id}` })
+      meta: { title: 'Edit' },
+      component: () => import('./views/Edit.vue')
     }
   ],
   scrollBehavior (to, from, savedPosition) {

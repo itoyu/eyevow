@@ -1,6 +1,15 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <ul class="tab_nav">
+      <router-link to="/about" class="tab_nav_item" exact>Tutorial</router-link>
+      <router-link to="/about/story" class="tab_nav_item">Story</router-link>
+      <router-link to="/about/statement" class="tab_nav_item">Statement</router-link>
+      <router-link to="/about/credit" class="tab_nav_item">Credit</router-link>
+    </ul>
+
+    <div class="tab_contents">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -8,11 +17,13 @@
 
 export default {
   created() {
-    // display store data
-    // console.log('about vue:' + this.$store.state.count);
-
-    // count up store counter(commit method)
-    this.$store.commit('countup')
+    console.log('about page!');
+    this.init();
+  },
+  methods: {
+    init: function() {
+      document.querySelector('body').classList.remove('focus');
+    }
   }
 }
 </script>
