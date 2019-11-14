@@ -4,7 +4,7 @@
 .home {
   position: relative;
   display: flex;
-  // flex-direction: column;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
   height: calc(100vh - 150px);
@@ -63,14 +63,12 @@
   display: flex;
   flex-basis: 0;
   flex-grow: 1;
-  margin-bottom: 70px;
 
   &.scroll {
 
   }
   &.member {
     margin-bottom: 0px;
-    top: 40px;
   }
 
   &_wrap {
@@ -125,7 +123,7 @@
 .notice {
   position: relative;
   align-self: flex-end;
-  margin-bottom: 15px;
+  margin: 15px 0;
   padding: 0 30px;
   display: flex;
   flex-direction: row-reverse;
@@ -167,7 +165,7 @@
 
   &_detail {
     width: calc(100% - 50px);
-    margin: 10px 0 0;
+    margin: 0 0;
     padding: 15px 8px 8px;
     font-size: 12px;
     box-shadow: $bar_shadow;
@@ -177,6 +175,10 @@
     border-radius: 8px 8px 0px 8px;
     overflow-y: auto;
     height: 130px;
+
+    &.show {
+      display: block;
+    }
 
     &_item {
       position: relative;

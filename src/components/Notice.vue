@@ -1,12 +1,12 @@
 <template>
   <div id="notice" class="notice">
-    <nav class="notice_icon">
-      <span class="badge"></span>
+    <button class="notice_icon" @click="tglNotice">
+      <!-- <span class="badge"></span> -->
       <figure class="icon">
         <img alt="" src="@/assets/img/icon_notice.svg">
       </figure>
-    </nav>
-    <div class="notice_detail">
+    </button>
+    <div class="notice_detail" v-show="noticeShow">
       <p class="notice_detail_item">
         <span class="icon icon_cheer"><img alt="" src="@/assets/img/icon_line_cheer.svg"></span>
         <span class="txt">誓いを立てたので、一部のアイテムが<a href="https://thebase.in/" class="txtlink" target="_blank">ECサイト</a>から買えるようになりました。</span>
@@ -30,7 +30,17 @@
 
 export default {
   name: 'Notice',
+  data() {
+    return {
+      noticeShow: false
+    }
+  },
   components: {
+  },
+  methods: {
+    tglNotice: function() {
+      this.noticeShow = !this.noticeShow;
+    }
   }
 }
 </script>
