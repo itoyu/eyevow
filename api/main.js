@@ -23,41 +23,6 @@ class UserRepo {
   }
 }
 
-class VowRepo {
-  constructor() {
-    this.mem = [];
-  }
-
-  async ofUser(user_id) {
-    for (let v of this.mem) {
-      if (v.user_id === user_id) {
-        return v;
-      }
-    }
-    return null;
-  }
-
-  async post(user_id, text, eyevow) {
-    const id = shortid.generate();
-
-    const v = {
-      id, user_id,
-      text,
-      eyevow,
-      archived: false, cheer_count: 0
-    };
-
-    this.mem.push(v);
-
-    return v;
-  }
-}
-
-const db = {
-  users: new UserRepo(),
-  vow: new VowRepo()
-};
-
 const app = new Koa();
 
 app.use(bodyParser());
@@ -200,4 +165,12 @@ router.put('/vow', async ctx => {
 
 app.use(router.routes());
 
-app.listen(process.env.PORT || 3000);
+async function run() {
+  
+
+  app.vows = new Vows(db);
+  app.listen(process.env.PORT || 3000);
+};
+
+run()
+  .catch(e => { console.error(e); });

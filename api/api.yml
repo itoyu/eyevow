@@ -5,7 +5,15 @@ info:
   version: "1.0.0"
 servers:
   - url: https://eyevow.com/api
+
+# ----
+# エンドポイント
+# ----
+
 paths:
+
+  # ログイン
+
   /api/login/:
     post:
       tags:
@@ -28,6 +36,9 @@ paths:
                 properties:
                   redirect_url:
                     type: string
+  
+  # 誓い
+
   /api/vows/:
     get:
       tags:
@@ -66,6 +77,8 @@ paths:
                     $ref: '#/components/schemas/Vow'
   /api/vow:
     get:
+      security:
+        - AccessToken: []
       tags:
         - 誓い
       summary: 現在の誓いを確認する
@@ -127,7 +140,17 @@ paths:
                 properties:
                   vow:
                     $ref: '#/components/schemas/Vow'
+
+# ----
+# コンポーネント
+# ----
+
 components:
+  securitySchemes:
+    AccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     User:
       properties:
