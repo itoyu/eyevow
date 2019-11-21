@@ -99,6 +99,13 @@ router.get('/api.yml', async ctx => {
   ctx.body = await fs.readFile('./api.yml');
 });
 
+router.use(async (ctx, next) => {
+  ctx.set("Access-Control-Allow-Origin", "*")
+	ctx.set("Access-Control-Allow-Methods", "*")
+  ctx.set("Access-Control-Allow-Headers", "Origin,Accept,Authorization,X-Requested-With")
+  await next();
+});
+
 router.post('/signup/twitter', async ctx => {
 
 });
@@ -115,15 +122,65 @@ router.post('/signin/line', async ctx => {
 
 });
 
-router.get('/vows/', async ctx => {
-  ctx.body = {vows: [
-    {
-      text: "エモすぎる楽曲を作って世界一のロックバンドを結成する！"
+const vows = [
+  {
+    "id": 1,
+    "user": {
+      "id": "e_taro"
     },
-    {
-      text: "たくさん勉強して宇宙の星々を研究する学者になります。たくさん勉強して宇宙の星々を研究する学者になります。たくさん勉強して宇宙の星々を研究する学者になります。"
-    }
-  ]};
+    "text": "01 I going to make a go of this project!",
+    "cheer_count": 10,
+    "archived": true
+  },
+  {
+    "id": 2,
+    "user": {
+      "id": "y_taro"
+    },
+    "text": "02 I going to make a go of this project!",
+    "cheer_count": 20,
+    "archived": false
+  },
+  {
+    "id": 3,
+    "user": {
+      "id": "e_taro"
+    },
+    "text": "03 I going to make a go of this project!",
+    "cheer_count": 30,
+    "archived": true
+  },
+  {
+    "id": 4,
+    "user": {
+      "id": "v_taro"
+    },
+    "text": "04 I going to make a go of this project!",
+    "cheer_count": 0,
+    "archived": true
+  },
+  {
+    "id": 5,
+    "user": {
+      "id": "o_taro"
+    },
+    "text": "05 I going to make a go of this project!",
+    "cheer_count": 0,
+    "archived": false
+  },
+  {
+    "id": 6,
+    "user": {
+      "id": "w_taro"
+    },
+    "text": "06 I going to make a go of this project!",
+    "cheer_count": 60,
+    "archived": false
+  }
+];
+
+router.get('/vows/', async ctx => {
+  ctx.body = {vows: vows};
 });
 
 router.get('/vow', async ctx => {
