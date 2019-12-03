@@ -13,6 +13,14 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
+type Vow struct {
+	ID         primitive.ObjectID `bson:"_id"`
+	Text       string             `bson:"text"`
+	User       primitive.ObjectID `bson:"user"`
+	CheerCount int                `bson:"cheer_count"`
+	Archived   bool               `bson:"archived"`
+}
+
 type jmap map[string]interface{}
 
 func render(w http.ResponseWriter, status int, v interface{}) {
@@ -41,8 +49,8 @@ func buildUser(doc bson.M) jmap {
 	}
 }
 
-func buildVow(ctx context.Context, doc bson.M) jmap {
-	rs := db.Collection("users").FindOne(ctx, bson.M{"_id": doc["user"]})
+func buildVow(ctx context.Context, vow *Vow) jmap {
+	rs := db.Collection("users").FindOne(ctx, bson.M{"_id": vow.User})
 	if rs.Err() != nil {
 		panic(rs.Err())
 	}
@@ -52,28 +60,28 @@ func buildVow(ctx context.Context, doc bson.M) jmap {
 	}
 
 	return jmap{
-		"id":          doc["_id"],
-		"text":        doc["text"],
-		"cheer_count": doc["cheer_count"],
-		"archived":    doc["archived"],
+		"id":          vow.ID,
+		"text":        vow.Text,
+		"cheer_count": vow.CheerCount,
+		"archived":    vow.Archived,
 		"user":        buildUser(ud),
 	}
 }
 
-func buildVows(ctx context.Context, docs []bson.M) []jmap {
-	ss := make([]jmap, len(docs))
-	for i, d := range docs {
+func buildVows(ctx context.Context, vows []*Vow) []jmap {
+	ss := make([]jmap, len(vows))
+	for i, d := range vows {
 		ss[i] = buildVow(ctx, d)
 	}
 	return ss
 }
 
-func renderVow(ctx context.Context, w http.ResponseWriter, doc bson.M) {
-	success(w, jmap{"vow": buildVow(ctx, doc)})
+func renderVow(ctx context.Context, w http.ResponseWriter, vow *Vow) {
+	success(w, jmap{"vow": buildVow(ctx, vow)})
 }
 
-func renderVows(ctx context.Context, w http.ResponseWriter, docs []bson.M) {
-	success(w, jmap{"vows": buildVows(ctx, docs)})
+func renderVows(ctx context.Context, w http.ResponseWriter, vows []*Vow) {
+	success(w, jmap{"vows": buildVows(ctx, vows)})
 }
 
 func bind(r *http.Request, v interface{}) error {
@@ -86,6 +94,16 @@ func bind(r *http.Request, v interface{}) error {
 		return err
 	}
 	return nil
+}
+
+type auth struct{}
+
+func newAuth() *auth {
+	return &auth{}
+}
+
+func (a *auth) Publish(uid primitive.ObjectID) string {
+	return ""
 }
 
 func signup(w http.ResponseWriter, r *http.Request) {
@@ -110,9 +128,9 @@ func currentUser(r *http.Request) primitive.ObjectID {
 
 func getMyVow(w http.ResponseWriter, r *http.Request) {
 	uid := currentUser(r)
-	var rs bson.M
+	var rs *Vow
 
-	err := db.Collection("vows").FindOne(r.Context(), bson.M{"user": uid}).Decode(&rs)
+	err := db.Collection("vows").FindOne(r.Context(), bson.M{"user": uid}).Decode(rs)
 	switch err {
 	case mongo.ErrNoDocuments:
 		failed(w, http.StatusNotFound, "not found")
@@ -129,7 +147,7 @@ func getVows(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	var rs []bson.M
+	var rs []*Vow
 	if err = cursor.All(r.Context(), &rs); err != nil {
 		panic(err)
 	}
@@ -149,9 +167,9 @@ func postVow(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	vow := bson.M{
-		"Text": in.Text,
-		"User": u,
+	vow := &Vow{
+		Text: in.Text,
+		User: u,
 	}
 
 	db.Collection("vows").InsertOne(r.Context(), vow)
@@ -183,7 +201,7 @@ func authorized(h http.Handler) http.Handler {
 	)
 }
 
-func serve() {
+func server() http.Handler {
 	router := chi.NewRouter()
 	router.Post("/signup", signup)
 	router.Post("/signon", signon)
@@ -196,5 +214,9 @@ func serve() {
 		r.Post("/vows", postVow)
 	})
 
-	log.Fatal(http.ListenAndServe(":1256", router))
+	return router
+}
+
+func serve() {
+	log.Fatal(http.ListenAndServe(":1256", server()))
 }

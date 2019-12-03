@@ -1,35 +1,33 @@
 from pymongo import MongoClient
-from aiohttp import web
-routes = web.RouteTableDef()
+from flask import Flask, jsonify
+from db import db
 
-db = MongoClient().eyevow
-
-def user_schema(doc):
+def build_user(doc):
     return {
         "id": str(doc["_id"])
     }
 
-def vow_schema(doc):
+def build_vow(doc):
     return dict(
         {k: doc[k] for k in ['text', 'cheer_count', 'archived']},
         id=str(doc['_id']),
-        user=user_schema(db.users.find_one(doc['user']))
+        user=build_user(db.users.find_one(doc['user']))
     )
 
-def vows_schema(cursor):
-   return [vow_schema(doc) for doc in cursor]
+def render_vows(cs):
+    return [build_vow(d) for d in cs]
 
-@routes.get('/')
-async def hello(request):
-    return web.json_response({"text": "Hello, world"})
+app = Flask(__name__)
 
-@routes.get('/vows/')
-async def vows(request):
+@app.route('/vow')
+def get_vow(request):
+    pass
+
+@app.route('/vows')
+def get_vows():
     vows = db.vows.find()
-    return web.json_response({"vows": vows_schema(vows)})
-
-app = web.Application()
-app.add_routes(routes)
+    return jsonify(render_vows(vows))
 
 if __name__ == '__main__':
-    web.run_app(app)
+    app.debug = True
+    app.run()

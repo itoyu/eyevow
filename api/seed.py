@@ -1,61 +1,54 @@
 from pymongo import MongoClient
+from bson.objectid import ObjectId
+
+userIds = [
+  ObjectId()
+]
 
 users = [
   {
-    "_id": "e_taro" 
-  },
-  {
-    "_id": "y_taro"
-  },
-  {
-    "_id": "v_taro"
-  },
-  {
-    "_id": "o_taro"
-  },
-  {
-    "_id": "w_taro"
+    "_id": userIds[0]
   }
 ]
 
 vows = [
   {
-    "user": "e_taro",
+    "user": userIds[0],
     "text": "01 I going to make a go of this project!",
     "cheer_count": 10,
     "archived": True
   },
   {
     "id": 2,
-    "user": "y_taro",
+    "user": userIds[0],
     "text": "02 I going to make a go of this project!",
     "cheer_count": 20,
     "archived": False
   },
   {
     "id": 3,
-    "user": "e_taro",
+    "user": userIds[0],
     "text": "03 I going to make a go of this project!",
     "cheer_count": 30,
     "archived": True
   },
   {
     "id": 4,
-    "user": "v_taro",
+    "user": userIds[0],
     "text": "04 I going to make a go of this project!",
     "cheer_count": 0,
     "archived": True
   },
   {
     "id": 5,
-    "user": "o_taro",
+    "user": userIds[0],
     "text": "05 I going to make a go of this project!",
     "cheer_count": 0,
     "archived": False
   },
   {
     "id": 6,
-    "user": "w_taro",
+    "user": userIds[0],
     "text": "06 I going to make a go of this project!",
     "cheer_count": 60,
     "archived": False
