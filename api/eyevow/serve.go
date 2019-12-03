@@ -13,12 +13,36 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-type Vow struct {
+type user struct {
+	ID primitive.ObjectID `bson:"_id"`
+}
+
+type vow struct {
 	ID         primitive.ObjectID `bson:"_id"`
 	Text       string             `bson:"text"`
 	User       primitive.ObjectID `bson:"user"`
 	CheerCount int                `bson:"cheer_count"`
 	Archived   bool               `bson:"archived"`
+}
+
+type userData struct {
+	ID string `json:"id"`
+}
+
+type vowData struct {
+	ID         string    `json:"id"`
+	Text       string    `json:"text"`
+	User       *userData `json:"user"`
+	CheerCount int       `json:"cheer_count"`
+	Archived   bool      `json:"archived"`
+}
+
+type vowOut struct {
+	Vow *vowData `json:"vow"`
+}
+
+type vowsOut struct {
+	Vows []*vowData `json:"vows"`
 }
 
 type jmap map[string]interface{}
@@ -43,45 +67,46 @@ func failed(w http.ResponseWriter, status int, m string) {
 	})
 }
 
-func buildUser(doc bson.M) jmap {
-	return jmap{
-		"id": doc["_id"],
+func buildUser(u *user) *userData {
+	return &userData{
+		ID: u.ID.String(),
 	}
 }
 
-func buildVow(ctx context.Context, vow *Vow) jmap {
+func buildVow(ctx context.Context, vow *vow) *vowData {
 	rs := db.Collection("users").FindOne(ctx, bson.M{"_id": vow.User})
 	if rs.Err() != nil {
 		panic(rs.Err())
 	}
-	ud := bson.M{}
+	var ud user
+
 	if err := rs.Decode(&ud); err != nil {
 		panic(err)
 	}
 
-	return jmap{
-		"id":          vow.ID,
-		"text":        vow.Text,
-		"cheer_count": vow.CheerCount,
-		"archived":    vow.Archived,
-		"user":        buildUser(ud),
+	return &vowData{
+		ID:         vow.ID.String(),
+		Text:       vow.Text,
+		CheerCount: vow.CheerCount,
+		Archived:   vow.Archived,
+		User:       buildUser(&ud),
 	}
 }
 
-func buildVows(ctx context.Context, vows []*Vow) []jmap {
-	ss := make([]jmap, len(vows))
+func buildVows(ctx context.Context, vows []*vow) []*vowData {
+	ss := make([]*vowData, len(vows))
 	for i, d := range vows {
 		ss[i] = buildVow(ctx, d)
 	}
 	return ss
 }
 
-func renderVow(ctx context.Context, w http.ResponseWriter, vow *Vow) {
-	success(w, jmap{"vow": buildVow(ctx, vow)})
+func renderVow(ctx context.Context, w http.ResponseWriter, vow *vow) {
+	success(w, vowOut{Vow: buildVow(ctx, vow)})
 }
 
-func renderVows(ctx context.Context, w http.ResponseWriter, vows []*Vow) {
-	success(w, jmap{"vows": buildVows(ctx, vows)})
+func renderVows(ctx context.Context, w http.ResponseWriter, vows []*vow) {
+	success(w, vowsOut{Vows: buildVows(ctx, vows)})
 }
 
 func bind(r *http.Request, v interface{}) error {
@@ -128,7 +153,7 @@ func currentUser(r *http.Request) primitive.ObjectID {
 
 func getMyVow(w http.ResponseWriter, r *http.Request) {
 	uid := currentUser(r)
-	var rs *Vow
+	var rs *vow
 
 	err := db.Collection("vows").FindOne(r.Context(), bson.M{"user": uid}).Decode(rs)
 	switch err {
@@ -147,7 +172,7 @@ func getVows(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	var rs []*Vow
+	var rs []*vow
 	if err = cursor.All(r.Context(), &rs); err != nil {
 		panic(err)
 	}
@@ -167,7 +192,7 @@ func postVow(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	vow := &Vow{
+	vow := &vow{
 		Text: in.Text,
 		User: u,
 	}

@@ -52,7 +52,7 @@ func TestGetVow(t *testing.T) {
 
 	ctx := context.Background()
 	ensureTestVows(ctx)
-	var out jmap
+	var out vowOut
 	if err := testGet(&out, "/vow", testUser); err != nil {
 		t.Fatal(err)
 	}
@@ -64,7 +64,7 @@ func TestGetVows(t *testing.T) {
 	ctx := context.Background()
 	ensureTestVows(ctx)
 
-	var out jmap
+	var out vowsOut
 
 	if err := testGet(&out, "/vows", primitive.ObjectID{}); err != nil {
 		t.Fatal(err)
@@ -84,11 +84,11 @@ func ensureTestVows(ctx context.Context) {
 	})
 
 	db.Collection("vows").InsertMany(ctx, []interface{}{
-		Vow{
+		vow{
 			Text: "test1",
 			User: u1,
 		},
-		Vow{
+		vow{
 			Text: "current vow",
 			User: testUser,
 		},
