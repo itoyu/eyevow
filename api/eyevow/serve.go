@@ -33,6 +33,20 @@ func signon(w http.ResponseWriter, r *http.Request) {
 }
 
 /*
+自分情報取得
+*/
+func getUser(w http.ResponseWriter, r *http.Request) {
+
+}
+
+/*
+自分情報編集
+*/
+func patchUser(w http.ResponseWriter, r *http.Request) {
+
+}
+
+/*
 自分の誓い確認
 */
 func getMyVow(w http.ResponseWriter, r *http.Request) {
@@ -210,7 +224,8 @@ func mux() http.Handler {
 	router.Get("/vows", getVows)
 	router.Group(func(r chi.Router) {
 		r.Use(authorized)
-
+		r.Get("/user", getUser)
+		r.Patch("/user", patchUser)
 		r.Get("/user/vow", getMyVow)
 		r.Patch("/vows/{vow}/archive", patchArchive)
 		r.Put("/vows/{vow}/cheer", putCheer)
