@@ -107,8 +107,9 @@ func postVow(w http.ResponseWriter, r *http.Request) {
 	}
 
 	vow := &vow{
-		Text: in.Text,
-		User: u,
+		Text:     in.Text,
+		User:     u,
+		Archived: false,
 	}
 
 	db.Collection("vows").InsertOne(r.Context(), vow)
