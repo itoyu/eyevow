@@ -72,10 +72,15 @@ func buildVow(ctx context.Context, vow *vow) *vowData {
 		panic(err)
 	}
 
+	cheers, err := db.Collection("cheers").CountDocuments(ctx, bson.M{"vow": vow.ID})
+	if err != nil {
+		panic(err)
+	}
+
 	return &vowData{
 		ID:         vow.ID.String(),
 		Text:       vow.Text,
-		CheerCount: vow.CheerCount,
+		CheerCount: int(cheers),
 		Archived:   vow.Archived,
 		User:       buildUser(&ud),
 	}
