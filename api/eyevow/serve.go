@@ -2,10 +2,9 @@ package eyevow
 
 import (
 	"context"
-	"encoding/json"
-	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/go-chi/chi"
 	"go.mongodb.org/mongo-driver/bson"
@@ -13,123 +12,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-type user struct {
-	ID primitive.ObjectID `bson:"_id"`
-}
+var defaultEnv = parseEnv()
 
-type vow struct {
-	ID         primitive.ObjectID `bson:"_id"`
-	Text       string             `bson:"text"`
-	User       primitive.ObjectID `bson:"user"`
-	CheerCount int                `bson:"cheer_count"`
-	Archived   bool               `bson:"archived"`
-}
-
-type userData struct {
-	ID string `json:"id"`
-}
-
-type vowData struct {
-	ID         string    `json:"id"`
-	Text       string    `json:"text"`
-	User       *userData `json:"user"`
-	CheerCount int       `json:"cheer_count"`
-	Archived   bool      `json:"archived"`
-}
-
-type vowOut struct {
-	Vow *vowData `json:"vow"`
-}
-
-type vowsOut struct {
-	Vows []*vowData `json:"vows"`
-}
-
-type jmap map[string]interface{}
-
-func render(w http.ResponseWriter, status int, v interface{}) {
-	b, err := json.Marshal(v)
-	if err != nil {
-		panic(err)
-	}
-	w.WriteHeader(status)
-	w.Write(b)
-}
-
-func success(w http.ResponseWriter, v interface{}) {
-	render(w, http.StatusOK, v)
-}
-
-func failed(w http.ResponseWriter, status int, m string) {
-	render(w, status, jmap{
-		"code":    status,
-		"message": m,
-	})
-}
-
-func buildUser(u *user) *userData {
-	return &userData{
-		ID: u.ID.String(),
-	}
-}
-
-func buildVow(ctx context.Context, vow *vow) *vowData {
-	rs := db.Collection("users").FindOne(ctx, bson.M{"_id": vow.User})
-	if rs.Err() != nil {
-		panic(rs.Err())
-	}
-	var ud user
-
-	if err := rs.Decode(&ud); err != nil {
-		panic(err)
-	}
-
-	return &vowData{
-		ID:         vow.ID.String(),
-		Text:       vow.Text,
-		CheerCount: vow.CheerCount,
-		Archived:   vow.Archived,
-		User:       buildUser(&ud),
-	}
-}
-
-func buildVows(ctx context.Context, vows []*vow) []*vowData {
-	ss := make([]*vowData, len(vows))
-	for i, d := range vows {
-		ss[i] = buildVow(ctx, d)
-	}
-	return ss
-}
-
-func renderVow(ctx context.Context, w http.ResponseWriter, vow *vow) {
-	success(w, vowOut{Vow: buildVow(ctx, vow)})
-}
-
-func renderVows(ctx context.Context, w http.ResponseWriter, vows []*vow) {
-	success(w, vowsOut{Vows: buildVows(ctx, vows)})
-}
-
-func bind(r *http.Request, v interface{}) error {
-	var b []byte
-	var err error
-	if b, err = ioutil.ReadAll(r.Body); err != nil {
-		return err
-	}
-	if err = json.Unmarshal(b, v); err != nil {
-		return err
-	}
-	return nil
-}
-
-type auth struct{}
-
-func newAuth() *auth {
-	return &auth{}
-}
-
-func (a *auth) Publish(uid primitive.ObjectID) string {
-	return ""
-}
+var (
+	currentUserKey struct{}
+)
 
 func signup(w http.ResponseWriter, r *http.Request) {
 
@@ -139,13 +26,19 @@ func signon(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func authorize(r *http.Request) string {
-	return ""
+func authorize(r *http.Request) primitive.ObjectID {
+	v := r.Header.Get("Authorization")
+	p := strings.Split(v, " ")
+	if len(p) != 2 {
+		return primitive.ObjectID{}
+	}
+	typ := p[0]
+	if typ != "Bearer" {
+		return primitive.ObjectID{}
+	}
+	v = p[1]
+	return defaultAuth.Validate(v)
 }
-
-var (
-	currentUserKey struct{}
-)
 
 func currentUser(r *http.Request) primitive.ObjectID {
 	return r.Context().Value(currentUserKey).(primitive.ObjectID)
@@ -153,21 +46,34 @@ func currentUser(r *http.Request) primitive.ObjectID {
 
 func getMyVow(w http.ResponseWriter, r *http.Request) {
 	uid := currentUser(r)
-	var rs *vow
+	var rs vow
 
-	err := db.Collection("vows").FindOne(r.Context(), bson.M{"user": uid}).Decode(rs)
+	err := db.Collection("vows").FindOne(r.Context(), bson.M{"user": uid}).Decode(&rs)
 	switch err {
 	case mongo.ErrNoDocuments:
 		failed(w, http.StatusNotFound, "not found")
 	case nil:
-		renderVow(r.Context(), w, rs)
+		renderVow(r.Context(), w, &rs)
 	default:
 		panic(err)
 	}
 }
 
+/*
+	達成済の誓い一覧
+*/
 func getVows(w http.ResponseWriter, r *http.Request) {
-	cursor, err := db.Collection("vows").Find(r.Context(), bson.D{})
+	s := r.URL.Query().Get("status")
+	f := bson.M{}
+
+	switch s {
+	case "archived":
+		f = bson.M{"archived": true}
+	case "progress":
+		f = bson.M{"archived": false}
+	}
+
+	cursor, err := db.Collection("vows").Find(r.Context(), f)
 	if err != nil {
 		panic(err)
 	}
@@ -201,8 +107,66 @@ func postVow(w http.ResponseWriter, r *http.Request) {
 	renderVow(r.Context(), w, vow)
 }
 
+/*
+	誓いを達成する
+*/
 func patchArchive(w http.ResponseWriter, r *http.Request) {
+	u := currentUser(r)
+	var rs vow
+	if err := db.Collection("vows").FindOne(r.Context(), bson.M{"user": u}).Decode(&rs); err != nil {
+		panic(err)
+	}
+	if rs.User != u {
+		failed(w, http.StatusForbidden, "permission denied")
+		return
+	}
 
+	rs.Archived = true
+
+	if _, err := db.Collection("vows").ReplaceOne(r.Context(), bson.M{"_id": rs.ID}, rs); err != nil {
+		panic(err)
+	}
+
+	renderVow(r.Context(), w, &rs)
+}
+
+func putCheer(w http.ResponseWriter, r *http.Request) {
+	up := chi.URLParam(r, "vow")
+	u := currentUser(r)
+
+	vid, err := primitive.ObjectIDFromHex(up)
+	if err != nil {
+		failed(w, http.StatusBadRequest, "")
+		return
+	}
+
+	if _, err = db.Collection("cheers").InsertOne(r.Context(), bson.M{
+		"user": u,
+		"vow":  vid,
+	}); err != nil {
+		panic(err)
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}
+
+func deleteCheer(w http.ResponseWriter, r *http.Request) {
+	up := chi.URLParam(r, "vow")
+	u := currentUser(r)
+
+	vid, err := primitive.ObjectIDFromHex(up)
+	if err != nil {
+		failed(w, http.StatusBadRequest, "")
+		return
+	}
+
+	if _, err := db.Collection("cheers").DeleteOne(r.Context(), bson.M{
+		"user": u,
+		"vow":  vid,
+	}); err != nil {
+		panic(err)
+	}
+	w.WriteHeader(http.StatusNoContent)
 }
 
 func authorized(h http.Handler) http.Handler {
@@ -210,17 +174,12 @@ func authorized(h http.Handler) http.Handler {
 		func(w http.ResponseWriter, r *http.Request) {
 			u := authorize(r)
 
-			if u == "" {
+			if u.IsZero() {
 				failed(w, http.StatusUnauthorized, "unauthorized")
 				return
 			}
 
-			id, err := primitive.ObjectIDFromHex(u)
-			if err != nil {
-				panic(err)
-			}
-
-			r = r.WithContext(context.WithValue(r.Context(), currentUserKey, id))
+			r = r.WithContext(context.WithValue(r.Context(), currentUserKey, u))
 			h.ServeHTTP(w, r)
 		},
 	)
@@ -236,6 +195,8 @@ func server() http.Handler {
 
 		r.Get("/user/vow", getMyVow)
 		r.Patch("/vows/{vow}/archive", patchArchive)
+		r.Put("/vows/{vow}/cheer", putCheer)
+		r.Delete("/vows/{vow}/cheer", deleteCheer)
 		r.Post("/vows", postVow)
 	})
 

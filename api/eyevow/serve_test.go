@@ -1,10 +1,12 @@
 package eyevow
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -18,12 +20,21 @@ var (
 	sv       = server()
 )
 
-func testGet(v interface{}, path string, user primitive.ObjectID) error {
+func testDo(method, path string, query jmap, data interface{}, user primitive.ObjectID, v interface{}) error {
+	var body io.Reader
+	if data != nil {
+		b, err := json.Marshal(data)
+		if err != nil {
+			panic(err)
+		}
+		body = bytes.NewReader(b)
+	}
+
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest("GET", path, nil)
+	r := httptest.NewRequest(method, path, body)
 
 	if !user.IsZero() {
-		auth := newAuth()
+		auth := newAuth(defaultEnv.Secret)
 		tk := auth.Publish(user)
 		r.Header.Set("Authorization", fmt.Sprintf("Bearer %s", tk))
 	}
@@ -47,13 +58,25 @@ func testGet(v interface{}, path string, user primitive.ObjectID) error {
 	}
 }
 
-func TestGetVow(t *testing.T) {
+func testGet(path string, user primitive.ObjectID, v interface{}) error {
+	return testDo("GET", path, nil, nil, user, v)
+}
+
+func testPost(path string, data interface{}, user primitive.ObjectID, v interface{}) error {
+	return testDo("POST", path, nil, data, user, v)
+}
+
+func testPatch(path string, data interface{}, user primitive.ObjectID, v interface{}) error {
+	return testDo("PATCH", path, nil, data, user, v)
+}
+
+func TestGetUserVow(t *testing.T) {
 	defer cleanup()
 
 	ctx := context.Background()
 	ensureTestVows(ctx)
 	var out vowOut
-	if err := testGet(&out, "/vow", testUser); err != nil {
+	if err := testGet("/user/vow", testUser, &out); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -66,9 +89,53 @@ func TestGetVows(t *testing.T) {
 
 	var out vowsOut
 
-	if err := testGet(&out, "/vows", primitive.ObjectID{}); err != nil {
+	if err := testGet("/vows", primitive.ObjectID{}, &out); err != nil {
 		t.Fatal(err)
 	}
+
+	if len(out.Vows) != 2 {
+		t.Fatal("invalida length")
+	}
+}
+
+func TestPostVow(t *testing.T) {
+	defer cleanup()
+	txt := "testpost"
+
+	var out vowOut
+	testPost("/vows", vowIn{
+		Text: txt,
+	}, testUser, &out)
+
+	if out.Vow.Text != txt {
+		t.Fatal("invalid text")
+	}
+}
+
+func TestPatchArchive(t *testing.T) {
+	defer cleanup()
+	ctx := context.Background()
+	vid := primitive.NewObjectID()
+	db.Collection("vows").InsertMany(ctx, []interface{}{
+		vow{
+			ID:   vid,
+			Text: "archiving",
+			User: testUser,
+		},
+	})
+	var out vowOut
+	testPatch(fmt.Sprintf("/vows/%s/archive", vid), nil, testUser, &out)
+	if !out.Vow.Archived {
+		t.Fatal("invalid archived status")
+	}
+}
+
+func TestPutCheer(t *testing.T) {
+
+}
+
+func TestDeleteCheer(t *testing.T) {
+
 }
 
 func ensureTestUser(ctx context.Context) {
