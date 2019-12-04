@@ -17,7 +17,7 @@ import (
 
 var (
 	testUser = primitive.NewObjectID()
-	sv       = server()
+	sv       = mux()
 )
 
 func testDo(method, path string, query jmap, data interface{}, user primitive.ObjectID, v interface{}) error {

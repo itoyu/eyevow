@@ -18,32 +18,23 @@ var (
 	currentUserKey struct{}
 )
 
+/*
+ユーザー登録(デバッグ)
+*/
 func signup(w http.ResponseWriter, r *http.Request) {
 
 }
 
+/*
+シングルサインオン
+*/
 func signon(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func authorize(r *http.Request) primitive.ObjectID {
-	v := r.Header.Get("Authorization")
-	p := strings.Split(v, " ")
-	if len(p) != 2 {
-		return primitive.ObjectID{}
-	}
-	typ := p[0]
-	if typ != "Bearer" {
-		return primitive.ObjectID{}
-	}
-	v = p[1]
-	return defaultAuth.Validate(v)
-}
-
-func currentUser(r *http.Request) primitive.ObjectID {
-	return r.Context().Value(currentUserKey).(primitive.ObjectID)
-}
-
+/*
+自分の誓い確認
+*/
 func getMyVow(w http.ResponseWriter, r *http.Request) {
 	uid := currentUser(r)
 	var rs vow
@@ -60,7 +51,7 @@ func getMyVow(w http.ResponseWriter, r *http.Request) {
 }
 
 /*
-	達成済の誓い一覧
+	誓い一覧
 */
 func getVows(w http.ResponseWriter, r *http.Request) {
 	s := r.URL.Query().Get("status")
@@ -86,6 +77,9 @@ func getVows(w http.ResponseWriter, r *http.Request) {
 	renderVows(r.Context(), w, rs)
 }
 
+/*
+誓いを作成
+*/
 func postVow(w http.ResponseWriter, r *http.Request) {
 	u := currentUser(r)
 
@@ -130,6 +124,9 @@ func patchArchive(w http.ResponseWriter, r *http.Request) {
 	renderVow(r.Context(), w, &rs)
 }
 
+/*
+応援する
+*/
 func putCheer(w http.ResponseWriter, r *http.Request) {
 	up := chi.URLParam(r, "vow")
 	u := currentUser(r)
@@ -150,6 +147,9 @@ func putCheer(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
+/*
+応援を消す
+*/
 func deleteCheer(w http.ResponseWriter, r *http.Request) {
 	up := chi.URLParam(r, "vow")
 	u := currentUser(r)
@@ -169,6 +169,24 @@ func deleteCheer(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
+func currentUser(r *http.Request) primitive.ObjectID {
+	return r.Context().Value(currentUserKey).(primitive.ObjectID)
+}
+
+func authorize(r *http.Request) primitive.ObjectID {
+	v := r.Header.Get("Authorization")
+	p := strings.Split(v, " ")
+	if len(p) != 2 {
+		return primitive.ObjectID{}
+	}
+	typ := p[0]
+	if typ != "Bearer" {
+		return primitive.ObjectID{}
+	}
+	v = p[1]
+	return defaultAuth.Validate(v)
+}
+
 func authorized(h http.Handler) http.Handler {
 	return http.HandlerFunc(
 		func(w http.ResponseWriter, r *http.Request) {
@@ -185,7 +203,7 @@ func authorized(h http.Handler) http.Handler {
 	)
 }
 
-func server() http.Handler {
+func mux() http.Handler {
 	router := chi.NewRouter()
 	router.Post("/signup", signup)
 	router.Post("/signon", signon)
@@ -204,5 +222,5 @@ func server() http.Handler {
 }
 
 func serve() {
-	log.Fatal(http.ListenAndServe(":1256", server()))
+	log.Fatal(http.ListenAndServe(":1256", mux()))
 }
