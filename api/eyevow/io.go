@@ -13,16 +13,21 @@ type vowIn struct {
 	Text string `json:"text"`
 }
 
-type userData struct {
-	ID string `json:"id"`
+type userIn struct {
+	Name string `json:"name"`
+	Icon string `json:"icon"`
+}
+
+type userOut struct {
+	User *user `json:"user"`
 }
 
 type vowData struct {
-	ID         string    `json:"id"`
-	Text       string    `json:"text"`
-	User       *userData `json:"user"`
-	CheerCount int       `json:"cheer_count"`
-	Archived   bool      `json:"archived"`
+	ID         string `json:"id"`
+	Text       string `json:"text"`
+	User       *user  `json:"user"`
+	CheerCount int    `json:"cheer_count"`
+	Archived   bool   `json:"archived"`
 }
 
 type vowOut struct {
@@ -31,6 +36,11 @@ type vowOut struct {
 
 type vowsOut struct {
 	Vows []*vowData `json:"vows"`
+}
+
+type tokenOut struct {
+	Token string `json:"token"`
+	User  *user  `json:"user"`
 }
 
 type jmap map[string]interface{}
@@ -55,10 +65,8 @@ func failed(w http.ResponseWriter, status int, m string) {
 	})
 }
 
-func buildUser(u *user) *userData {
-	return &userData{
-		ID: u.ID.String(),
-	}
+func buildUser(u *user) *user {
+	return u
 }
 
 func buildVow(ctx context.Context, vow *vow) *vowData {
@@ -92,6 +100,14 @@ func buildVows(ctx context.Context, vows []*vow) []*vowData {
 		ss[i] = buildVow(ctx, d)
 	}
 	return ss
+}
+
+func renderToken(ctx context.Context, w http.ResponseWriter, tk string, u *user) {
+	success(w, tokenOut{Token: tk, User: u})
+}
+
+func renderUser(ctx context.Context, w http.ResponseWriter, u *user) {
+	success(w, userOut{User: u})
 }
 
 func renderVow(ctx context.Context, w http.ResponseWriter, vow *vow) {

@@ -9,10 +9,12 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
 	"testing"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	_ "eyevow/statik"
 )
 
 var (
@@ -20,8 +22,13 @@ var (
 	sv       = mux()
 )
 
-func testDo(method, path string, query jmap, data interface{}, user primitive.ObjectID, v interface{}) error {
+func testDo(method, path string, query url.Values, data interface{}, user primitive.ObjectID, v interface{}) error {
 	var body io.Reader
+
+	if query != nil {
+		path = fmt.Sprintf("%s?%s", path, query.Encode())
+	}
+
 	if data != nil {
 		b, err := json.Marshal(data)
 		if err != nil {
@@ -58,8 +65,8 @@ func testDo(method, path string, query jmap, data interface{}, user primitive.Ob
 	}
 }
 
-func testGet(path string, user primitive.ObjectID, v interface{}) error {
-	return testDo("GET", path, nil, nil, user, v)
+func testGet(path string, query url.Values, user primitive.ObjectID, v interface{}) error {
+	return testDo("GET", path, query, nil, user, v)
 }
 
 func testPost(path string, data interface{}, user primitive.ObjectID, v interface{}) error {
@@ -70,13 +77,43 @@ func testPatch(path string, data interface{}, user primitive.ObjectID, v interfa
 	return testDo("PATCH", path, nil, data, user, v)
 }
 
+func testPut(path string, data interface{}, user primitive.ObjectID, v interface{}) error {
+	return testDo("PUT", path, nil, data, user, v)
+}
+
+func testDelete(path string, user primitive.ObjectID) error {
+	return testDo("DELETE", path, nil, nil, user, nil)
+}
+
+func TestSignup(t *testing.T) {
+	defer cleanup()
+	var o userOut
+	if err := testPost("/signup", nil, primitive.ObjectID{}, &o); err != nil {
+		panic(err)
+	}
+}
+
+func TestGetSelf(t *testing.T) {
+	defer cleanup()
+	var o userOut
+	if err := testGet("/user", nil, testUser, &o); err != nil {
+		panic(err)
+	}
+}
+
 func TestGetUserVow(t *testing.T) {
 	defer cleanup()
-
 	ctx := context.Background()
-	ensureTestVows(ctx)
+
+	db.Collection("vows").InsertMany(ctx, []interface{}{
+		vow{
+			Text: "current vow",
+			User: testUser,
+		},
+	})
+
 	var out vowOut
-	if err := testGet("/user/vow", testUser, &out); err != nil {
+	if err := testGet("/user/vow", nil, testUser, &out); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -85,17 +122,50 @@ func TestGetVows(t *testing.T) {
 	defer cleanup()
 
 	ctx := context.Background()
-	ensureTestVows(ctx)
+
+	db.Collection("vows").InsertMany(ctx, []interface{}{
+		vow{
+			Text: "progress vow",
+			User: testUser,
+		},
+		vow{
+			Text:     "archived vow",
+			User:     testUser,
+			Archived: true,
+		},
+	})
 
 	var out vowsOut
 
-	if err := testGet("/vows", primitive.ObjectID{}, &out); err != nil {
-		t.Fatal(err)
-	}
+	t.Run("all", func(t *testing.T) {
+		if err := testGet("/vows", nil, primitive.ObjectID{}, &out); err != nil {
+			t.Fatal(err)
+		}
 
-	if len(out.Vows) != 2 {
-		t.Fatal("invalida length")
-	}
+		if len(out.Vows) != 2 {
+			t.Fatal("invalid length")
+		}
+	})
+
+	t.Run("progress", func(t *testing.T) {
+		if err := testGet("/vows", url.Values{"status": {"progress"}}, primitive.ObjectID{}, &out); err != nil {
+			t.Fatal(err)
+		}
+
+		if len(out.Vows) != 1 {
+			t.Fatal("invalid length")
+		}
+	})
+
+	t.Run("archived", func(t *testing.T) {
+		if err := testGet("/vows", url.Values{"status": {"archived"}}, primitive.ObjectID{}, &out); err != nil {
+			t.Fatal(err)
+		}
+
+		if len(out.Vows) != 1 {
+			t.Fatal("invalid length")
+		}
+	})
 }
 
 func TestPostVow(t *testing.T) {
@@ -131,34 +201,55 @@ func TestPatchArchive(t *testing.T) {
 }
 
 func TestPutCheer(t *testing.T) {
+	defer cleanup()
+	vow := primitive.NewObjectID()
 
+	db.Collection("vows").InsertOne(context.Background(), bson.M{
+		"_id":  vow,
+		"user": testUser,
+	})
+
+	if err := testPut(fmt.Sprintf("/vows/%s/cheer", vow.Hex()), nil, testUser, nil); err != nil {
+		panic(err)
+	}
+	var rs vowOut
+	if err := testGet(fmt.Sprintf("/vows/%s", vow.Hex()), nil, testUser, &rs); err != nil {
+		panic(err)
+	}
+	if rs.Vow.CheerCount != 1 {
+		t.Fatal("invalid cheer length")
+	}
 }
 
 func TestDeleteCheer(t *testing.T) {
+	defer cleanup()
+	vow := primitive.NewObjectID()
 
+	db.Collection("vows").InsertOne(context.Background(), bson.M{
+		"_id":  vow,
+		"user": testUser,
+	})
+
+	if err := testPut(fmt.Sprintf("/vows/%s/cheer", vow.Hex()), nil, testUser, nil); err != nil {
+		panic(err)
+	}
+
+	if err := testDelete(fmt.Sprintf("/vows/%s/cheer", vow.Hex()), testUser); err != nil {
+		panic(err)
+	}
+
+	var rs vowOut
+	if err := testGet(fmt.Sprintf("/vows/%s", vow.Hex()), nil, testUser, &rs); err != nil {
+		panic(err)
+	}
+	if rs.Vow.CheerCount != 0 {
+		t.Fatal("invalid cheer length")
+	}
 }
 
 func ensureTestUser(ctx context.Context) {
 	db.Collection("users").InsertOne(ctx, bson.M{
 		"_id": testUser,
-	})
-}
-
-func ensureTestVows(ctx context.Context) {
-	u1 := primitive.NewObjectID()
-	db.Collection("users").InsertOne(ctx, bson.M{
-		"_id": u1,
-	})
-
-	db.Collection("vows").InsertMany(ctx, []interface{}{
-		vow{
-			Text: "test1",
-			User: u1,
-		},
-		vow{
-			Text: "current vow",
-			User: testUser,
-		},
 	})
 }
 

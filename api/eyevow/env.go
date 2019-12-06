@@ -1,9 +1,14 @@
 package eyevow
 
-import "os"
+import (
+	"net/url"
+	"os"
+)
 
 type env struct {
 	Secret string
+	URL    *url.URL
+	Bucket string
 }
 
 func envOr(key, def string) string {
@@ -15,7 +20,15 @@ func envOr(key, def string) string {
 }
 
 func parseEnv() *env {
+	s := envOr("URL", "http://localhost:1256")
+	u, err := url.Parse(s)
+	if err != nil {
+		panic(err)
+	}
+
 	return &env{
 		Secret: envOr("SECRET", "deadbeef"),
+		URL:    u,
+		Bucket: envOr("BUCKET", "var/eyevow/"),
 	}
 }

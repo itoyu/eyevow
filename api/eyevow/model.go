@@ -3,9 +3,9 @@ package eyevow
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type user struct {
-	ID   primitive.ObjectID `bson:"_id,omitempty"`
-	Name string             `bson:"name"`
-	Icon string             `bson:"icon"`
+	ID   primitive.ObjectID `bson:"_id,omitempty" json:"id"`
+	Name string             `bson:"name" json:"name"`
+	Icon string             `bson:"icon" json:"icon"`
 }
 
 type vow struct {
