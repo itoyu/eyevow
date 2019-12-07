@@ -1,0 +1,200 @@
+openapi: "3.0.0"
+info:
+  title: "eyevow api"
+  description: ""
+  version: "1.0.0"
+servers:
+  - url: https://eyevow.com/api
+
+# ----
+# エンドポイント
+# ----
+
+paths:
+
+  # ログイン
+
+  /api/signup:
+    post:
+      tags:
+        - 認証
+      summary: デバッグ用のユーザー登録
+      responses:
+        200:
+          $ref: '#/components/responses/Token'
+  
+  # ユーザー
+  /api/user:
+    get:
+      security:
+        - AccessToken: []
+      tags: [ユーザー]
+      summary: ユーザー情報取得
+      responses:
+        200: {$ref: '#/components/responses/User'}
+    patch:
+      security:
+        - AccessToken: []
+      tags: [ユーザー]
+      summary: ユーザー情報更新
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name: {type: string}
+                icon:
+                  type: string
+                  example: data:image/jpeg;base64,xyyzzz
+      responses:
+        200: {$ref: '#/components/responses/User'}
+  # 誓い
+
+  /api/vows:
+    get:
+      tags: [誓い]
+      summary: みんなの誓いを確認する
+      parameters: 
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: ["progress", "archived"]
+      responses:
+        200:
+          $ref: '#/components/responses/Vows'
+    post:
+      security:
+        - AccessToken: []
+      tags:
+        - 誓い
+      summary: 誓いを立てる
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                text:
+                  type: string
+      responses:
+        200:
+          $ref: '#/components/responses/Vow'
+  /api/user/vow:
+    get:
+      security:
+        - AccessToken: []
+      tags:
+        - 誓い
+      summary: 現在の誓いを確認する
+      responses:
+        200:
+          $ref: '#/components/responses/Vow'
+  /api/user/vow/archive:
+    patch:
+      security:
+        - AccessToken: []
+      tags: [誓い]
+      summary: 誓いを達成する
+      responses:
+        200:
+          $ref: '#/components/responses/Vow'
+  /api/vows/{vow}/cheer:
+    put:
+      security:
+        - AccessToken: []
+      tags:
+        - 応援
+      summary: 応援する
+      parameters:
+        - name: vow
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        204:
+          description: 成功
+    delete:
+      security:
+        - AccessToken: []    
+      tags: [応援]
+      summary: 応援を取り消す
+      parameters:
+        - name: vow
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        204:
+          description: 成功
+
+# ----
+# コンポーネント
+# ----
+
+components:
+  securitySchemes:
+    AccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    Token:
+      description: 成功
+      content:
+        application/json:
+          schema:
+            properties:
+              token:
+                type: string
+              user:
+                $ref: '#/components/schemas/User'
+    User:
+      description: 成功
+      content:
+        application/json:
+          schema:
+            properties:
+              user:
+                $ref: '#/components/schemas/User'
+    Vow:
+      description: 成功
+      content:
+        application/json:
+          schema:
+            properties:
+              vow:
+                $ref: '#/components/schemas/Vow'
+    Vows:
+      description: 成功
+      content:
+        application/json:
+          schema:
+            properties:
+              vows:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vow'
+  schemas:
+    User:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        icon:
+          type: string
+          example: http://eyevow.com/blob/user/icon.jpg
+    Vow:
+      properties:
+        id:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        text:
+          type: string
+        cheer_count:
+          type: integer
+        archived:
+          type: boolean
