@@ -14,7 +14,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 	"strings"
 
 	"github.com/disintegration/imaging"
@@ -363,11 +362,7 @@ func mux() http.Handler {
 }
 
 func spec(w http.ResponseWriter, r *http.Request) {
-	f, err := os.Open("api.yml")
-	if err != nil {
-		w.WriteHeader(http.StatusForbidden)
-		return
-	}
+	f, err := defaultAssets.Open("/api.yml")
 	defer f.Close()
 	b, err := ioutil.ReadAll(f)
 	if err != nil {
