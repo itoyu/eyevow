@@ -33,7 +33,6 @@ curl -H "Authorization: Bearer xyyzzz" http://eyevow.work.suichu.net/api/user
 
 ### 誓う
 
-```
-curl -X POST -H "Authorization: Bearer xyyzzz" -d '{"text": "wish!"}' http://eyevow.work.suichu.net/api/vows/
+``url -X POST -H "Authorization: Bearer xyyzzz" -d '{"text": "wish!"}' http://eyevow.work.suichu.net/api/vows
 ```
 
