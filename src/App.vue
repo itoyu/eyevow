@@ -17,6 +17,7 @@
 <script>
 import Header from '@/components/Header.vue'
 import Nav from '@/components/Nav.vue'
+import api from './api/client';
 
 export default {
   name: 'app',
@@ -25,6 +26,10 @@ export default {
     Nav
   },
   mounted () {
+    api.get('/vows/')
+      .then(res => res.data)
+      .then(() => console.log("API is success"))
+      .then(json => console.log(json));
     // const contents = document.querySelector('#contents');
     // contents.style.height = window.innerHeight + 'px';
   }
