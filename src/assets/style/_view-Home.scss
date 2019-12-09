@@ -8,6 +8,7 @@
   flex-wrap: wrap;
   align-items: flex-start;
   height: calc(100vh - 150px);
+  min-height: 380px;
 
   .catch {
     position: absolute;

@@ -38,6 +38,15 @@ export default {
   },
   created() {
     this.init();
+  },
+  mounted () {
+    const contents = document.querySelector('#contents .home');
+    contents.style.height = (window.innerHeight - 150) + 'px';
+
+    window.addEventListener('resize', function() {
+      contents.style.height = (window.innerHeight - 150) + 'px';
+      console.log('resize');
+    });
   }
 }
 </script>
