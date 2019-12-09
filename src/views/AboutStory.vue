@@ -55,6 +55,7 @@ export default {
   methods: {
     init: function() {
       document.querySelector('body').classList.remove('focus');
+      document.querySelector('body').classList.remove('focus_vow');
     }
   }
 }

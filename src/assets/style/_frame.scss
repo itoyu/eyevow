@@ -29,6 +29,11 @@ body {
       height: 100vh;
     }
   }
+  &.focus_vow {
+    #nav {
+      display: none;
+    }
+  }
 }
 
 #contents {
