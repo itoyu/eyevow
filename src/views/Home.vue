@@ -2,7 +2,7 @@
   <div class="home">
     <div v-if="!login">
       <p class="catch">あなたの誓いを応援する相棒</p>
-      <h1 class="title"><img alt="eyevow" src="@/assets/img/title.png"></h1>
+      <h1 class="title"><img alt="eyevow" src="@/assets/img/logo.svg"></h1>
     </div>
     <Character />
     <Chat />
@@ -50,9 +50,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-#contents {
-  height: 100vh;
-}
-</style>
