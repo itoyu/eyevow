@@ -9,7 +9,7 @@
       <router-link to="/about/story/epilogue" class="tab_nav_item">Epilogue</router-link>
     </ul>
 
-    <div class="story story_detail">
+    <div class="story story_detail" v-if="storyNum === '01'">
       <p class="story_detail_tit"><span class="num">Ep.01</span>「祈願」の消滅</p>
 
       <figure class="story_detail_img">
@@ -51,19 +51,22 @@
 
 export default {
   name: 'AboutStoryDetail',
-  computed: {
+  data: function() {
+    return {
+      storyNum: ''
+    }
+  },
+  methods: {
     storypath: function() {
-      console.log(location.pathname);
-      var pathSep = location.pathname.split('/story/');
-      var storyNum = pathSep[1];
-
-      console.log(pathSep);
-      console.log(storyNum);
-
-      return storyNum;
+      const pathSep = location.pathname.split('/story/');
+      this.storyNum = pathSep[1];
     }
   },
   created() {
+    this.storypath();
+  },
+  beforeRouteUpdate(to, from, next) {
+    next();
     this.storypath();
   }
 }
