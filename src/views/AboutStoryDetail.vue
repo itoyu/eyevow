@@ -44,12 +44,27 @@
       </ul>
     </div>
 
-  </div>  
+  </div>
 </template>
 
 <script>
 
 export default {
-  name: 'AboutStoryDetail'
+  name: 'AboutStoryDetail',
+  computed: {
+    storypath: function() {
+      console.log(location.pathname);
+      var pathSep = location.pathname.split('/story/');
+      var storyNum = pathSep[1];
+
+      console.log(pathSep);
+      console.log(storyNum);
+
+      return storyNum;
+    }
+  },
+  created() {
+    this.storypath();
+  }
 }
 </script>
