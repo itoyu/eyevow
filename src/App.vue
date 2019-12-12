@@ -26,7 +26,7 @@ export default {
     Nav
   },
   mounted () {
-    api.get('/vows/')
+    api.get('/vows')
       .then(res => res.data)
       .then(() => console.log("API is success"))
       .then(json => console.log(json));
