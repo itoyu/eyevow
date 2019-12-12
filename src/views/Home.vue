@@ -46,7 +46,6 @@ export default {
 
     window.addEventListener('resize', function() {
       contents.style.height = (window.innerHeight - 150) + 'px';
-      console.log('resize');
     });
   }
 }

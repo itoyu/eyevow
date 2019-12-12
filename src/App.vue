@@ -30,13 +30,12 @@ export default {
       .then(res => res.data)
       .then(() => console.log("API is success"))
       .then(json => console.log(json));
-    
+
     const contents = document.querySelector('#contents');
     contents.style.height = window.innerHeight + 'px';
 
     window.addEventListener('resize', function() {
       contents.style.height = window.innerHeight + 'px';
-      console.log('resize');
     });
   }
 }
