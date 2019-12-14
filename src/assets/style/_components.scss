@@ -51,7 +51,9 @@ a {
     color: $title_color;
     background: #fff;
     font-size: 12px;
+    cursor: pointer;
 
+    &.active,
     &.router-link-active {
       color: #fff;
       background: $menu_color_active;

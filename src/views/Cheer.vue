@@ -12,85 +12,37 @@
     </div>
 
     <ul class="tab_nav">
-      <li class="tab_nav_item active">Hot</li>
-      <li class="tab_nav_item">Progress</li>
-      <li class="tab_nav_item">Achived</li>
+      <li @click="tabSort('all')" class="tab_nav_item all active">Hot</li>
+      <li @click="tabSort('progress')" class="tab_nav_item progress">Progress</li>
+      <li @click="tabSort('achived')" class="tab_nav_item achived">Achived</li>
     </ul>
 
     <div class="tab_contents">
       <div class="tab_contents_item">
-
         <ul class="cheer_list">
-          <li class="cheer_list_item">
-            <figure class="cheer_icon"><img alt="" src="@/assets/img/eyevow/icon_illust_01.png"></figure>
+          <!-- {{vowlist}} -->
+          <li v-for="(vows) in vowlist" v-bind:key="vows.id" v-bind:id="vows.id" class="cheer_list_item show" v-bind:class="{ achieved: vows.archived }">
+            <span class="icon_achieve" v-show="vows.archived"><iconAchieve /></span>
+            <figure class="cheer_icon"><img alt="" v-bind:src="vows.user.icon"></figure>
             <div class="cheer_info">
-              <p class="cheer_name">Name</p>
-              <p class="cheer_text">エモすぎる楽曲を作って世界一のロックバンドを結成する！</p>
-              <p class="cheer_time">2h</p>
-            </div>
-            <div class="cheer_action current">
-              <p class="cheer_action_num">3</p>
-              <button class="cheer_action_btn"><iconLike /></button>
-            </div>
-          </li>
-          <li class="cheer_list_item">
-            <figure class="cheer_icon"><img alt="" src="@/assets/img/eyevow/icon_illust_01.png"></figure>
-            <div class="cheer_info">
-              <p class="cheer_name">User Name User Name User Name User Name User Name </p>
-              <p class="cheer_text">エモすぎる楽曲を作って世界一のロックバンドを結成する！</p>
-              <p class="cheer_time">19.12.27</p>
+              <p class="cheer_name">{{vows.user.name}}</p>
+              <p class="cheer_text">{{vows.text}}</p>
+              <p class="cheer_time">TIME</p>
             </div>
             <div class="cheer_action">
-              <!-- <p class="cheer_action_num">3</p> -->
-              <button class="cheer_action_btn"><iconLike /></button>
-            </div>
-          </li>
-          <li class="cheer_list_item achived">
-            <span class="icon_achieve"><iconAchieve /></span>
-            <figure class="cheer_icon"><img alt="" src="@/assets/img/eyevow/icon_illust_01.png"></figure>
-            <div class="cheer_info">
-              <p class="cheer_name">Name</p>
-              <p class="cheer_text">たくさん勉強して宇宙の星々を研究する学者になります。たくさん勉強して宇宙の星々を研究する学者になります。たくさん勉強して宇宙の星々を研究する学者になります。</p>
-              <p class="cheer_time">19.11.03</p>
-            </div>
-            <div class="cheer_action">
-              <!-- <p class="cheer_action_num">3</p> -->
-              <button class="cheer_action_btn"><iconLike /></button>
-            </div>
-          </li>
-          <li class="cheer_list_item achived">
-            <span class="icon_achieve"><iconAchieve /></span>
-            <figure class="cheer_icon"><img alt="" src="@/assets/img/eyevow/icon_illust_01.png"></figure>
-            <div class="cheer_info">
-              <p class="cheer_name">Name</p>
-              <p class="cheer_text">たくさん勉強して宇宙の星々を研究する学者になります。たくさん勉強して宇宙の星々を研究する学者になります。たくさん勉強して宇宙の星々を研究する学者になります。</p>
-              <p class="cheer_time">19.10.03</p>
-            </div>
-            <div class="cheer_action">
-              <p class="cheer_action_num">333</p>
-              <button class="cheer_action_btn"><iconLike /></button>
+              <p class="cheer_action_num">{{vows.cheer_count}}</p>
+              <button class="cheer_action_btn" @click="vowCheer(vows.id, $event)"><iconLike /></button>
             </div>
           </li>
         </ul>
       </div>
     </div>
-
-    <!-- <ul>
-      <li v-for="(item, index) in list" v-bind:key="item.id">
-        ID:{{item.id}}
-        User:{{item.user.id}}
-        Vow:{{item.text}}
-        Cheer:{{item.cheer_count}}
-        Achieved:{{item.archived}}
-        Index: {{index}}
-      </li>
-    </ul> -->
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
-import vows from '@/api/vows.json'
+import api from '@/api/client';
+// import vows from '@/api/vows.json'
 import iconLike from '@/assets/img/icon_like.svg?inline'
 import iconAchieve from '@/assets/img/icon_achieve.svg?inline'
 
@@ -98,21 +50,92 @@ export default {
   name: 'Cheer',
   data: function() {
     return {
-      list: []
+      vowlist: [],
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWRmNGYzZDk2YTM0MzMxNGNlODUxNDM2IiwiZXhwIjoxNzM0MDE0Mjk3fQ.37yVyjK5fR9JVc3MOgqZUkpmDJlLTDQ61gPSWFIs1-o'
     }
   },
   components: {
     iconLike,
     iconAchieve
   },
-  created() {
-    // axios
-    //   .get('./vows.json')
-    //   .then(function(res) {
-    //     this.list = res.data
-    // })
-    this.list = vows;
-    // console.log(this.list);
+  methods: {
+    vowCheer: function(vowid) {
+      const cheerBtn = document.getElementById(vowid).getElementsByClassName('cheer_action_btn');
+
+      if(cheerBtn[0].classList.contains('cheered')) {
+        api.delete(`vows/${vowid}/cheer`, {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          }
+        })
+          // .then(res => {
+          .then(function() {
+            cheerBtn[0].classList.remove('cheered');
+            console.log('remove cheered');
+          })
+      } else {
+        api.put(`vows/${vowid}/cheer`, {}, {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          }
+        })
+          .then(function() {
+            cheerBtn[0].classList.add('cheered');
+            console.log('add cheered');
+          })
+      }
+    },
+    tabSort: function(sort) {
+      var cheersSort;
+      const cheersAll = document.querySelectorAll('.cheer_list_item'),
+            tabAll = document.querySelectorAll('.tab_nav_item');
+
+      cheersAll.forEach((el) => {
+        el.classList.remove('show');
+      });
+      tabAll.forEach((el) => {
+        el.classList.remove('active');
+      });
+
+      if(sort === 'progress') {
+        cheersSort = document.querySelectorAll('.cheer_list_item:not(.achieved)');
+      } else if(sort === 'achived') {
+        cheersSort = document.querySelectorAll('.cheer_list_item.achieved');
+      } else {
+        cheersSort = document.querySelectorAll('.cheer_list_item');
+      }
+
+      // var curnav = document.querySelector(`.tab_nav_item.${sort}`);
+      // console.log(curnav);
+
+      document.querySelector(`.tab_nav_item.${sort}`).classList.add('active');
+
+      cheersSort.forEach((el) => {
+        console.log(el);
+        el.classList.add('show');
+      });
+    }
+  },
+  mounted () {
+    api.get('/vows')
+      .then(res => res.data)
+      .then(json => {
+        // console.log(json);
+        this.vowlist = json.vows.reverse();
+        // console.log(this.vowlist);
+      })
+
+    // #Get User
+    api.get('/user', {
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      }
+    })
+      .then(res => res.data)
+      // .then(json => {
+      //   // console.log(json);
+      // })
+
   }
 }
 </script>

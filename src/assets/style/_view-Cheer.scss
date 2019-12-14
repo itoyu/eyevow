@@ -10,16 +10,21 @@
 
   .cheer_list {
     padding: 0;
+    border-top: 2px solid rgba(255,255,255,0.8);
 
     &_item {
       position: relative;
       padding: 20px 15px 10px;
       border-bottom: 2px solid rgba(255,255,255,0.8);
-      display: flex;
       flex-wrap: wrap;
+      display: none;
+
+      &.show {
+        display: flex;
+      }
 
       &:first-child {
-        border-top: 2px solid rgba(255,255,255,0.8);
+        // border-top: 2px solid rgba(255,255,255,0.8);
       }
       &:last-child {
         // border-bottom: 0;
@@ -92,11 +97,11 @@
               stroke-linejoin: round;
             }
           }
-        }
-        &.current {
-          .cheer_action_btn svg path {
-            fill: $icon_like;
-            stroke: none;
+          &.cheered {
+            svg path {
+              fill: $icon_like;
+              stroke: none;
+            }
           }
         }
       }
