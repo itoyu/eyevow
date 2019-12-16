@@ -4,7 +4,7 @@
     <div class="story">
       <router-link to="/about/story/01" class="story_item">
         <figure class="story_img">
-          <img alt="" src="@/assets/img/about/img_story01.png">
+          <img alt="" src="@/assets/img/story/1-3.jpg">
         </figure>
         <div class="story_info">
           <p class="label"><span class="num">Ep.01</span>「祈願」の消滅</p>
@@ -13,7 +13,7 @@
       </router-link>
       <router-link to="/about/story/02" class="story_item">
         <figure class="story_img">
-          <img alt="" src="@/assets/img/about/img_story02.png">
+          <img alt="" src="@/assets/img/story/2-1.jpg">
         </figure>
         <div class="story_info">
           <p class="label"><span class="num">Ep.02</span>“VOWS WORLD”</p>
@@ -22,7 +22,7 @@
       </router-link>
       <router-link to="/about/story/03" class="story_item">
         <figure class="story_img">
-          <img alt="" src="@/assets/img/about/img_story03.png">
+          <img alt="" src="@/assets/img/story/3-5.jpg">
         </figure>
         <div class="story_info">
           <p class="label"><span class="num">Ep.03</span>eye, vow !!</p>
