@@ -3,12 +3,14 @@
 
     <div class="statement">
       <h2 class="statement_tit">Statement</h2>
-      <h2 class="statement_catch">自分を切り開け</h2>
+      <h2 class="statement_catch">
+        Humans, <br>be ambitious
+        <!-- copyStatement / -->
+      </h2>
       <div class="statement_txt">
-        <p>このプロジェクト誓いによって”夢”と”覚悟”を問いかけるプロジェクトです。</p>
-        <p>近い将来、遺伝子の研究と解明が進んで人の限界値が見えてしまうと思います。</p>
-        <p>AIが人間の知能を超え、ロボットが人間の肉体を超えた時、人が自ら何かをすることに意味を見出せるでしょうか？</p>
-        <p>私たちは絶対にあると信じています。<br>一人一人が誓いを立てて、<br>夢を叶える世の中にしましょう。</p>
+        <p>これは”誓い”を通して<br>人に夢と覚悟を問いかけるプロジェクトです。</p>
+        <p>AIやロボットの台頭によって人類は<br>存在意義を見つめ直されています。</p>
+        <p>人類がデータや効率に囚われずに夢を見出すために、1人1人が多様な未来を描くために、あなたの背中を少しでも押すことができればこのプロジェクトは成功だと考えています。</p>
       </div>
     </div>
   </div>
@@ -16,9 +18,12 @@
 
 <script>
 
+import copyStatement from '@/assets/img/about/copy.svg?inline'
+
 export default {
   name: 'AboutTutorial',
   components: {
+    copyStatement
   }
 }
 </script>

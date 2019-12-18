@@ -7,8 +7,8 @@
           <img alt="" src="@/assets/img/story/1-3.jpg">
         </figure>
         <div class="story_info">
-          <p class="label"><span class="num">Ep.01</span>「祈願」の消滅</p>
-          <p class="txt">21xx年、技術と科学の発展により人類の進化は遂に終わりを迎えた。</p>
+          <p class="label"><span class="num">Ep.01</span>アニミズム</p>
+          <p class="txt">2080年、AIとロボットの発展により人類の進化は終わりを迎えた。</p>
         </div>
       </router-link>
       <router-link to="/about/story/02" class="story_item">
@@ -16,8 +16,8 @@
           <img alt="" src="@/assets/img/story/2-1.jpg">
         </figure>
         <div class="story_info">
-          <p class="label"><span class="num">Ep.02</span>“VOWS WORLD”</p>
-          <p class="txt">ここは宇宙中の「希望」と「誓い」を原動力にしている星、“VOWS WORLD” </p>
+          <p class="label"><span class="num">Ep.02</span>Thing World</p>
+          <p class="txt">ここは生き物からの希望や誓いを原動力にしている「モノ」たちの世界「Thing World」</p>
         </div>
       </router-link>
       <router-link to="/about/story/03" class="story_item">
@@ -31,7 +31,7 @@
       </router-link>
       <router-link to="/about/story/epilogue" class="story_item">
         <figure class="story_img">
-          <img alt="" src="@/assets/img/about/img_storyEp.png">
+          <img alt="" src="https://dummyimage.com/1000x1000/333333/ffffff&text= SECRET">
         </figure>
         <div class="story_info">
           <p class="label">Epilogue</p>
