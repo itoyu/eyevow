@@ -17,19 +17,29 @@ var dummyUserIDs = []primitive.ObjectID{
 
 var dummyUsers = []interface{}{
 	bson.M{
-		"_id": dummyUserIDs[0],
+		"_id":  dummyUserIDs[0],
+		"name": "ゲスト1",
+		"icon": "https://placehold.it/200x200.jpg?text=guest1",
 	},
 	bson.M{
-		"_id": dummyUserIDs[1],
+		"_id":  dummyUserIDs[1],
+		"name": "ゲスト2",
+		"icon": "https://placehold.it/200x200.jpg?text=guest2",
 	},
 	bson.M{
-		"_id": dummyUserIDs[2],
+		"_id":  dummyUserIDs[2],
+		"name": "ゲスト3",
+		"icon": "https://placehold.it/200x200.jpg?text=guest3",
 	},
 	bson.M{
-		"_id": dummyUserIDs[3],
+		"_id":  dummyUserIDs[3],
+		"name": "ゲスト4",
+		"icon": "https://placehold.it/200x200.jpg?text=guest4",
 	},
 	bson.M{
-		"_id": dummyUserIDs[4],
+		"_id":  dummyUserIDs[4],
+		"name": "ゲスト5",
+		"icon": "https://placehold.it/200x200.jpg?text=guest5",
 	},
 }
 

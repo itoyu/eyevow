@@ -86,7 +86,7 @@ func buildVow(ctx context.Context, vow *vow) *vowData {
 	}
 
 	return &vowData{
-		ID:         vow.ID.String(),
+		ID:         vow.ID.Hex(),
 		Text:       vow.Text,
 		CheerCount: int(cheers),
 		Archived:   vow.Archived,
