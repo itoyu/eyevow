@@ -124,18 +124,6 @@ export default {
         this.vowlist = json.vows.reverse();
         // console.log(this.vowlist);
       })
-
-    // #Get User
-    api.get('/user', {
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      }
-    })
-      .then(res => res.data)
-      // .then(json => {
-      //   // console.log(json);
-      // })
-
   }
 }
 </script>

@@ -50,15 +50,25 @@
 </template>
 
 <script>
+import api from '@/api/client';
 import iconArr from '@/assets/img/icon_arr_right.svg?inline'
 
 export default {
   name: 'vowComplete',
+  data: function() {
+    return {
+      testUser: {
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWRmNGYzZDk2YTM0MzMxNGNlODUxNDM2IiwiZXhwIjoxNzM0MDE0Mjk3fQ.37yVyjK5fR9JVc3MOgqZUkpmDJlLTDQ61gPSWFIs1-o',
+        id: '5df4f3d96a343314ce851436',
+      }
+
+    }
+  },
   components: {
     iconArr
   },
   created() {
-    console.log('setVow');
+    // console.log('setVow');
     this.$store.commit('setVow');
   },
   methods: {
@@ -67,16 +77,44 @@ export default {
       document.querySelector('.popup').classList.add('show');
     },
     completeSignup: function() {
-      console.log('completeSignup');
+
+
+
+      // console.log('completeSignup');
       this.$store.commit('isLogin');
       // window.location = "/"
 
-        // window.location = '/';
-      console.log(this.$store.state.app.isLogin);
+      // window.location = '/';
+      // console.log(this.$store.state.app.isLogin);
       setTimeout(function() {
         window.location = '/';
-      },300)
+      },500)
     }
+  },
+  mounted () {
+    // #Set Vow
+    api.post('/vows', { 'text':'誓いテキスト' }, {
+      headers: {
+        Authorization: `Bearer ${this.testUser.token}`,
+      }
+    })
+      .then(res => res.data)
+      .then(json => {
+        console.log('set vow');
+        console.log(json);
+      })
+
+    // #Get User
+    // api.get('/user', {
+    //   headers: {
+    //     Authorization: `Bearer ${this.token}`,
+    //   }
+    // })
+    //   .then(res => res.data)
+    //   .then(json => {
+    //     console.log('user list');
+    //     console.log(json);
+    //   })
   }
 }
 </script>
