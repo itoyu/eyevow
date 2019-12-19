@@ -1,0 +1,25 @@
+{
+  "name": "eyevow",
+  "short_name": "eyevow",
+  "theme_color": "#1867c0",
+  "background_color": "#f5f5f6",
+  "display": "fullscreen",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "pwa/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "pwa/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "pwa/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
