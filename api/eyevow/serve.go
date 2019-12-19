@@ -347,18 +347,28 @@ func mux() http.Handler {
 	router.Post("/signon", signon)
 	router.Get("/vows", getVows)
 	router.Get("/vows/{vow}", getVow)
-	router.Group(func(r chi.Router) {
-		r.Use(authorized)
-		r.Get("/user", getSelf)
-		r.Patch("/user", patchUser)
-		r.Get("/user/vow", getMyVow)
-		r.Patch("/vows/{vow}/archive", patchArchive)
-		r.Put("/vows/{vow}/cheer", putCheer)
-		r.Delete("/vows/{vow}/cheer", deleteCheer)
-		r.Post("/vows", postVow)
+	router.Group(func(rt chi.Router) {
+		rt.Use(authorized)
+		rt.Get("/user", getSelf)
+		rt.Patch("/user", patchUser)
+		rt.Get("/user/vow", getMyVow)
+		rt.Patch("/vows/{vow}/archive", patchArchive)
+		rt.Put("/vows/{vow}/cheer", putCheer)
+		rt.Delete("/vows/{vow}/cheer", deleteCheer)
+		rt.Post("/vows", postVow)
 	})
 
-	return router
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "*")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type,Origin,Accept,Authorization,X-Requested-With")
+
+		if r.Method != "OPTIONS" {
+			router.ServeHTTP(w, r)
+		} else {
+			w.WriteHeader(http.StatusOK)
+		}
+	})
 }
 
 func spec(w http.ResponseWriter, r *http.Request) {
