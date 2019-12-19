@@ -11,12 +11,12 @@
         <span class="icon"><iconAbout /></span>
         <span class="label">About</span>
       </router-link>
-      <a class="action action_shop" href="https://thebase.in/" target="_blank" v-if="achieve">
+      <a class="action action_shop" href="https://thebase.in/" target="_blank" v-if="isAchieve">
         <span class="bg"><img alt="" src="@/assets/img/icon_action_bg.svg"></span>
         <span class="icon"><iconShop /></span>
         <span class="label">Shop</span>
       </a>
-      <router-link class="action action_achieve" to="/achieve" v-else-if="login">
+      <router-link class="action action_achieve" to="/achieve" v-else-if="isLogin">
         <span class="bg"><img alt="" src="@/assets/img/icon_action_bg.svg"></span>
         <span class="icon"><iconEye /></span>
         <span class="label">Achieved</span>
@@ -61,23 +61,23 @@ export default {
   },
   data: function () {
     return {
-      state: 'vow'
+      state: {}
     }
   },
   watch: {
-    login: function(newValue) {
-      return newValue;
+    isLogin: function(newVal) {
+      return newVal;
     },
-    achieve: function(newValue) {
-      return newValue;
+    isAchieve: function(newVal) {
+      return newVal;
     }
   },
   computed: {
-    login: function() {
-      return this.$store.state.app.isLogin
+    isLogin: function() {
+      return this.$store.getters.isLogin
     },
-    achieve: function() {
-      return this.$store.state.app.isAchieve
+    isAchieve: function() {
+      return this.$store.getters.isAchieve
     }
   }
 }

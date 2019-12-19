@@ -68,8 +68,6 @@ export default {
     iconArr
   },
   created() {
-    // console.log('setVow');
-    this.$store.commit('setVow');
   },
   methods: {
     signup: function(s) {
@@ -77,15 +75,8 @@ export default {
       document.querySelector('.popup').classList.add('show');
     },
     completeSignup: function() {
-
-
-
-      // console.log('completeSignup');
       this.$store.commit('isLogin');
-      // window.location = "/"
-
-      // window.location = '/';
-      // console.log(this.$store.state.app.isLogin);
+      
       setTimeout(function() {
         window.location = '/';
       },500)
@@ -100,21 +91,9 @@ export default {
     })
       .then(res => res.data)
       .then(json => {
-        console.log('set vow');
+        this.$store.commit('setVow');
         console.log(json);
       })
-
-    // #Get User
-    // api.get('/user', {
-    //   headers: {
-    //     Authorization: `Bearer ${this.token}`,
-    //   }
-    // })
-    //   .then(res => res.data)
-    //   .then(json => {
-    //     console.log('user list');
-    //     console.log(json);
-    //   })
   }
 }
 </script>

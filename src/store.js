@@ -7,10 +7,19 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   strict: true,
   state: {
+    devData: {
+      token:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWRmNGYzZDk2YTM0MzMxNGNlODUxNDM2IiwiZXhwIjoxNzM0MDE0Mjk3fQ.37yVyjK5fR9JVc3MOgqZUkpmDJlLTDQ61gPSWFIs1-o',
+      user: {
+        isLogin: false,
+        isAchieve: false,
+        isVow: false,
+        id: '5df4f3d96a343314ce851436',
+        name: 'ゲスト',
+        icon: 'http://eyevow.work.suichu.net/blob/user/NUKwnnfWg.jpg'
+      }
+    },
     app: {
-      pageTitle: 'Home',
-      isAchieve: false,
-      isLogin: false,
+      pageTitle: 'Home'
     },
     user: {
       isLogin: false,
@@ -43,44 +52,44 @@ const store = new Vuex.Store({
       // }
     ]
   },
+  getters: {
+    pageTitle(state) {
+      return state.app.pageTitle;
+    },
+    isLogin(state) {
+      return state.user.isLogin;
+    }
+  },
   actions: {
     changePage({ commit }, title) {
       commit('cahgePageTitle', title);
     },
   },
   mutations: {
-    // test:count up
     cahgePageTitle(state, title) {
-      const st = state;
-      st.pageTitle = title;
+      state.app.pageTitle = title;
     },
-    countup(state) {
-      state.count ++
+    cheerCountup(state) {
+      // state.count ++
     },
     isLogin(state) {
-      state.app.isLogin = true;
+      state.user.isLogin = true;
     },
     isLogout(state) {
-      state.app.isLogin = false;
+      state.user.isLogin = false;
     },
     setVow(state) {
-      state.vow = true;
+      state.user.isVow = true;
     },
     unsetVow(state) {
-      state.vow = false;
+      state.user.isVow = false;
     },
     setAchieve(state) {
-      state.app.isAchieve = true;
+      state.user.isAchieve = true;
     },
     unsetAchieve(state) {
-      state.app.isAchieve = false;
+      state.user.isAchieve = false;
     }
-  },
-  getters: {
-    pageTitle(state) {
-      const st = state;
-      return st.pageTitle;
-    },
   },
   plugins: [createPersistedState()]
 })

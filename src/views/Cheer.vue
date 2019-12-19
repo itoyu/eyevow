@@ -105,13 +105,9 @@ export default {
         cheersSort = document.querySelectorAll('.cheer_list_item');
       }
 
-      // var curnav = document.querySelector(`.tab_nav_item.${sort}`);
-      // console.log(curnav);
-
       document.querySelector(`.tab_nav_item.${sort}`).classList.add('active');
 
       cheersSort.forEach((el) => {
-        console.log(el);
         el.classList.add('show');
       });
     }
@@ -120,9 +116,7 @@ export default {
     api.get('/vows')
       .then(res => res.data)
       .then(json => {
-        // console.log(json);
         this.vowlist = json.vows.reverse();
-        // console.log(this.vowlist);
       })
   }
 }

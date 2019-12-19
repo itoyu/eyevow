@@ -1,5 +1,5 @@
 <template>
-  <header id="header" :class="{'active': $route.path !== '/' || login }">
+  <header id="header" :class="{'active': $route.path !== '/' || isLogin }">
     <nav class="logo">
       <router-link to="/">
         <!-- <img alt="eyevow" src="@/assets/img/title_min.png" v-if="$route.path !== '/'"> -->
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+// import { mapGetters } from 'vuex';
 
 export default {
   name: 'Header',
@@ -33,25 +33,25 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      pageTitle:'pageTitle',
-    }),
-    login() {
-      return this.$store.state.app.isLogin
+    pageTitle: function() {
+      return this.$store.getters.pageTitle
+    },
+    isLogin: function() {
+      return this.$store.getters.isLogin
     }
   },
   watch: {
-    login: function(newValue) {
-      return newValue;
+    isLogin: function(newVal) {
+      return newVal;
     }
   },
   created() {
     // console.log(this.$store.state.count);
     // console.log(location.pathname);
-    console.log('login: ' + this.$store.state.app.isLogin);
+    // console.log('login: ' + this.$store.state.app.isLogin);
   },
   mounted() {
-    console.log('mounted: ',location.pathname);
+    // console.log('mounted: ',location.pathname);
   }
 }
 

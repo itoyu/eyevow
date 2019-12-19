@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <div v-if="!login">
+    <div v-if="!isLogin">
       <p class="catch">あなたの誓いを応援する相棒</p>
       <h1 class="title"><img alt="eyevow" src="@/assets/img/logo.svg"></h1>
     </div>
     <Character />
     <Chat />
-    <Notice  v-if="login" />
+    <Notice  v-if="isLogin" />
     <!-- <StartBtn v-if="!login" /> -->
   </div>
 </template>
@@ -28,13 +28,12 @@ export default {
   },
   methods: {
     init: function() {
-      document.querySelector('body').classList.remove('focus');
-      document.querySelector('body').classList.remove('focus_vow');
+      document.querySelector('body').classList.remove('focus', 'focus_vow');
     }
   },
   computed: {
-    login: function() {
-      return this.$store.state.app.isLogin
+    isLogin: function() {
+      return this.$store.getters.isLogin
     }
   },
   created() {
@@ -43,7 +42,7 @@ export default {
   mounted () {
     const contents = document.querySelector('#contents .home');
     contents.style.height = (window.innerHeight - 150) + 'px';
-
+    
     window.addEventListener('resize', function() {
       contents.style.height = (window.innerHeight - 150) + 'px';
     });
