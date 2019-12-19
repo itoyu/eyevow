@@ -7,14 +7,41 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   strict: true,
   state: {
-    count: 0,
-    pageTitle: 'Home',
-    vow: false,
-    achieve: false,
     app: {
+      pageTitle: 'Home',
       isAchieve: false,
       isLogin: false,
-    }
+    },
+    user: {
+      isLogin: false,
+      isAchieve: false,
+      isVow: false,
+      id: String,
+      name: String,
+      icon: String
+    },
+    myVows: [
+      // {
+      //   id: String,
+      //   type: String,
+      //   text: String,
+      //   cheer_count: Number,
+      //   archived: false
+      // }
+    ],
+    allVows: [
+      // {
+      //   id: String,
+      //   user: {
+      //     id: String,
+      //     name: String,
+      //     icon: String
+      //   },
+      //   text: String,
+      //   cheer_count: Number,
+      //   archived: false
+      // }
+    ]
   },
   actions: {
     changePage({ commit }, title) {
