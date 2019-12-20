@@ -168,13 +168,13 @@
 
       <div class="story_detail_item">
         <figure class="img">
-          <img alt="" src="https://dummyimage.com/1000x1000/aaaaaa/ffffff&text=Ep1-1">
+          <img alt="" src="@/assets/img/story/4-1.jpg">
         </figure>
         <p class="txt">だるま：「あ、あれはなんと！誓い達成の光だ！」</p>
       </div>
       <div class="story_detail_item">
         <figure class="img">
-          <img alt="" src="https://dummyimage.com/1000x1000/aaaaaa/ffffff&text=Ep1-2">
+          <img alt="" src="@/assets/img/story/4-2.jpg">
         </figure>
         <p class="txt">
           『Achieved!』
@@ -182,7 +182,7 @@
       </div>
       <div class="story_detail_item">
         <figure class="img">
-          <img alt="" src="https://dummyimage.com/1000x1000/aaaaaa/ffffff&text=Ep1-3">
+          <img alt="" src="@/assets/img/story/4-3.jpg">
         </figure>
         <p class="txt">
           だるま：「よかった…！これで私は魂に昇華できて、みんなも救われる」
@@ -190,7 +190,7 @@
       </div>
       <div class="story_detail_item">
         <figure class="img">
-          <img alt="" src="https://dummyimage.com/1000x1000/aaaaaa/ffffff&text=Ep1-4">
+          <img alt="" src="@/assets/img/story/4-4.jpg">
         </figure>
         <p class="txt">
           招き猫：「よくやったな、おめでとう<br>これでお主にも新たな命が宿るだろう<br>さあ、宿り木の元へ行こう」
@@ -198,25 +198,25 @@
       </div>
       <div class="story_detail_item">
         <figure class="img">
-          <img alt="" src="https://dummyimage.com/1000x1000/aaaaaa/ffffff&text=Ep1-5">
+          <img alt="" src="@/assets/img/story/4-5.jpg">
         </figure>
         <p class="txt">だるまが達成した誓いの想いを捧げると、だるまと宿り木は光に包まれた。</p>
       </div>
       <div class="story_detail_item">
         <figure class="img">
-          <img alt="" src="https://dummyimage.com/1000x1000/aaaaaa/ffffff&text=Ep1-6">
+          <img alt="" src="@/assets/img/story/4-6.jpg">
         </figure>
         <p class="txt">だるまはついに「魂」というカタチになった。<br>そして"希望の雨"をThing Worldに降らせながら空に昇っていった。</p>
       </div>
       <div class="story_detail_item">
         <figure class="img">
-          <img alt="" src="https://dummyimage.com/1000x1000/aaaaaa/ffffff&text=Ep1-7">
+          <img alt="" src="@/assets/img/story/4-7.jpg">
         </figure>
         <p class="txt">希望に満ちた、新たな命がまた1つ誕生した。</p>
       </div>
       <div class="story_detail_item">
         <figure class="img">
-          <img alt="" src="https://dummyimage.com/1000x1000/aaaaaa/ffffff&text=Ep1-8">
+          <img alt="" src="@/assets/img/story/4-8.jpg">
         </figure>
         <p class="txt">だるま：「誓いをありがとう。キミとまた会えるのを楽しみにしているよ」</p>
       </div>
