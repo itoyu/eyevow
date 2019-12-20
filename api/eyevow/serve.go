@@ -163,7 +163,7 @@ func getMyVow(w http.ResponseWriter, r *http.Request) {
 	case mongo.ErrNoDocuments:
 		failed(w, http.StatusNotFound, "not found")
 	case nil:
-		renderVow(r.Context(), w, &rs)
+		renderVow(r.Context(), w, &rs, uid)
 	default:
 		panic(err)
 	}
@@ -173,6 +173,7 @@ func getMyVow(w http.ResponseWriter, r *http.Request) {
 	誓い一覧
 */
 func getVows(w http.ResponseWriter, r *http.Request) {
+	uid := currentUser(r)
 	s := r.URL.Query().Get("status")
 	f := bson.M{}
 
@@ -193,13 +194,14 @@ func getVows(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	renderVows(r.Context(), w, rs)
+	renderVows(r.Context(), w, rs, uid)
 }
 
 /*
 誓い取得
 */
 func getVow(w http.ResponseWriter, r *http.Request) {
+	uid := currentUser(r)
 	s := chi.URLParam(r, "vow")
 	vid, err := primitive.ObjectIDFromHex(s)
 	if err != nil {
@@ -210,7 +212,7 @@ func getVow(w http.ResponseWriter, r *http.Request) {
 	if err := db.Collection("vows").FindOne(r.Context(), bson.M{"_id": vid}).Decode(&v); err != nil {
 		panic(err)
 	}
-	renderVow(r.Context(), w, &v)
+	renderVow(r.Context(), w, &v, uid)
 }
 
 /*
@@ -235,7 +237,7 @@ func postVow(w http.ResponseWriter, r *http.Request) {
 	}
 
 	db.Collection("vows").InsertOne(r.Context(), vow)
-	renderVow(r.Context(), w, vow)
+	renderVow(r.Context(), w, vow, u)
 }
 
 /*
@@ -258,7 +260,7 @@ func patchArchive(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	renderVow(r.Context(), w, &rs)
+	renderVow(r.Context(), w, &rs, u)
 }
 
 /*
@@ -307,7 +309,11 @@ func deleteCheer(w http.ResponseWriter, r *http.Request) {
 }
 
 func currentUser(r *http.Request) primitive.ObjectID {
-	return r.Context().Value(currentUserKey).(primitive.ObjectID)
+	v, ok := r.Context().Value(currentUserKey).(primitive.ObjectID)
+	if !ok {
+		return primitive.ObjectID{}
+	}
+	return v
 }
 
 func authorize(r *http.Request) primitive.ObjectID {

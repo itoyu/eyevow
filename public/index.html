@@ -14,5 +14,16 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script>
+      if (navigator['serviceWorker']) {
+        navigator.serviceWorker.register('/sw.js', {scope: '/'})
+          .then(function(reg) {
+            console.log('Service Worker Registration successed.');
+          })
+          .catch(function(reg) {
+            console.error('Service Worker Registration failed.')
+          });
+      }
+    </script>
   </body>
 </html>

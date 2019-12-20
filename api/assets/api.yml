@@ -192,9 +192,13 @@ components:
           type: string
         user:
           $ref: '#/components/schemas/User'
+        type:
+          type: string
         text:
           type: string
         cheer_count:
           type: integer
         archived:
+          type: boolean
+        cheered:
           type: boolean

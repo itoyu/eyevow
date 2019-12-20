@@ -10,6 +10,7 @@ type user struct {
 
 type vow struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty"`
+	Type     string             `bson:"type"`
 	Text     string             `bson:"text"`
 	User     primitive.ObjectID `bson:"user"`
 	Archived bool               `bson:"archived"`
