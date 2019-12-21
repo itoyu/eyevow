@@ -17,6 +17,10 @@ body {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
 
+  @include mq(pc) {
+    background: $menu_color_active;
+  }
+
   &.focus {
     width: 100%;
     height: 100%;
@@ -45,4 +49,11 @@ body {
   padding-bottom: 80px;
   overflow-y: scroll;
   border: 1px solid transparent;
+
+  @include mq(pc) {
+    margin: 0 auto;
+    max-width: 750px;
+    box-shadow: $bar_shadow;
+    background-color: $bg_def;
+  }
 }
