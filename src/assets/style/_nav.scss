@@ -13,6 +13,13 @@
   justify-content: space-around;
   z-index: 2;
 
+  @include mq(pc) {
+    margin: 0 auto;
+    max-width: 750px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   a {
     position: relative;
     width: 50px;
