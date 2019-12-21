@@ -49,36 +49,36 @@ const router  = new Router({
         }
       ]
     },
-    {
-      path: '/vow',
-      meta: { title: 'Vow' },
-      component: () => import('./views/Vow.vue')
-    },
-    {
-      path: '/achieve',
-      meta: { title: 'Achieved' },
-      component: () => import('./views/Achieve.vue')
-    },
-    {
-      path: '/achieved',
-      meta: { title: 'Achieved' },
-      component: () => import('./views/Achieved.vue')
-    },
-    {
-      path: '/eyevow',
-      meta: { title: 'eyevow' },
-      component: () => import('./views/Eyevow.vue')
-    },
-    {
-      path: '/cheer',
-      meta: { title: 'Cheer' },
-      component: () => import('./views/Cheer.vue')
-    },
-    {
-      path: '/edit',
-      meta: { title: 'Edit' },
-      component: () => import('./views/Edit.vue')
-    }
+    // {
+    //   path: '/vow',
+    //   meta: { title: 'Vow' },
+    //   component: () => import('./views/Vow.vue')
+    // },
+    // {
+    //   path: '/achieve',
+    //   meta: { title: 'Achieved' },
+    //   component: () => import('./views/Achieve.vue')
+    // },
+    // {
+    //   path: '/achieved',
+    //   meta: { title: 'Achieved' },
+    //   component: () => import('./views/Achieved.vue')
+    // },
+    // {
+    //   path: '/eyevow',
+    //   meta: { title: 'eyevow' },
+    //   component: () => import('./views/Eyevow.vue')
+    // },
+    // {
+    //   path: '/cheer',
+    //   meta: { title: 'Cheer' },
+    //   component: () => import('./views/Cheer.vue')
+    // },
+    // {
+    //   path: '/edit',
+    //   meta: { title: 'Edit' },
+    //   component: () => import('./views/Edit.vue')
+    // }
   ],
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
