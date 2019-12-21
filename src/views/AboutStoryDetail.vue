@@ -5,7 +5,7 @@
 <router-link to="/about/story/01" class="tab_nav_item" :class="{'active': (storyNum === '01')}">Ep.01</router-link>
 <router-link to="/about/story/02" class="tab_nav_item" :class="{'active': (storyNum === '02')}">Ep.02</router-link>
 <router-link to="/about/story/03" class="tab_nav_item" :class="{'active': (storyNum === '03')}">Ep.03</router-link>
-<router-link to="/about/story/epilogue" class="tab_nav_item" :class="{'active': (storyNum === 'epilogue')}">Epilogue</router-link>
+<!-- <router-link to="/about/story/epilogue" class="tab_nav_item" :class="{'active': (storyNum === 'epilogue')}">Epilogue</router-link> -->
     </ul>
 
     <div class="story story_detail" v-if="storyNum === '01'">
@@ -164,6 +164,10 @@
 
 
     <div class="story story_detail" v-if="storyNum === 'epilogue'">
+
+      <p class="txt">このお話は誓いを達成したら見れるよ。</p>
+
+      <!--
       <p class="story_detail_tit"><span class="num">Epilogue</span></p>
 
       <div class="story_detail_item">
@@ -222,6 +226,7 @@
       </div>
 
       <p class="story_detail_tit">Thank you!</p>
+      -->
     </div>
 
     <ul class="tab_nav">

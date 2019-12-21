@@ -2,58 +2,69 @@
   <div class="tab_contents_item">
 
     <div class="tutorial">
-      <div class="tutorial_item txt">
-        <p>あなたが誓いを立て、あなたが実現をする、あなたの物語を問いかけ・見守るサービスです。<br>「eyevow」というキャラクターが、あなたの誓い達成を、目入れという行為で表現して応援します。</p>
-      </div>
 
-      <div class="tutorial_item">
-        <figure class="tutorial_img">
-          <img alt="" src="@/assets/img/about/img_tutorial01.png">
-        </figure>
-        <div class="tutorial_info">
-          <p class="label">Step.01</p>
-          <p class="txt">[イラスト] or [レイヤー] のどちらかのeyevowタイプを選びます。</p>
-        </div>
-      </div>
-      <div class="tutorial_item">
-        <figure class="tutorial_img">
-          <img alt="" src="@/assets/img/about/img_tutorial02.png">
-        </figure>
-        <div class="tutorial_info">
-          <p class="label">Step.02</p>
-          <p class="txt">あなたの達成したい「誓い」を入力します。</p>
-        </div>
-      </div>
-      <div class="tutorial_item">
-        <figure class="tutorial_img">
-          <img alt="" src="@/assets/img/about/img_tutorial03.png">
-        </figure>
-        <div class="tutorial_info">
-          <p class="label">Step.03</p>
-          <p class="txt">入力した「誓い」がeyevowの片目に込められ、目入れ完了です。</p>
+      <div class="tutorial_box">
+        <h2 class="statement_tit">What's eyevow</h2>
+
+        <div class="page_lead">
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt">
+              日本では、古くから誓いを立てる時に縁起物である「だるま」に目入れをする文化があるらしい。<br>
+              <span class="img"><img alt="" src="@/assets/img/about/about01.png"></span>
+            </span>
+          </p>
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt">そんな「だるま」が、人々の誓いを応援するために人の姿になったのが私「eyevow」だよ。</span>
+          </p>
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt">私は、あなたの誓いを瞳に込めることで、“相棒”となり、あなたの誓いを応援するよ。<br>
+              <span class="img"><img alt="" src="@/assets/img/about/about02.png"></span>
+            </span>
+          </p>
         </div>
       </div>
 
-      <div class="tutorial_item txt">
-        <p>誓い達成を目指して、日々活動しましょう。</p>
-      </div>
 
-      <div class="tutorial_item">
-        <figure class="tutorial_img">
-          <img alt="" src="@/assets/img/about/img_tutorial04.png">
-        </figure>
-        <div class="tutorial_info">
-          <p class="label">Step.04</p>
-          <p class="txt">誓いを達成したら「Achived」ボタンを押します。</p>
-        </div>
-      </div>
-      <div class="tutorial_item">
-        <figure class="tutorial_img">
-          <img alt="" src="@/assets/img/about/img_tutorial05.png">
-        </figure>
-        <div class="tutorial_info">
-          <p class="label">Step.05</p>
-          <p class="txt">もう片方に目入れを行い、eyevowが完全体となります。</p>
+      <div class="tutorial_box">
+        <h2 class="statement_tit">How to</h2>
+
+        <div class="page_lead">
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt"><span class="step">Step.01</span><br>
+              まず、目入れをするeyevowのタイプを選んで。<br>イラストか写真が選べるよ。<br>
+              <span class="img"><img alt="" src="@/assets/img/about/about03.png"></span>
+            </span>
+          </p>
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt"><span class="step">Step.02</span><br>
+               次に、あなたの誓いを入力して。<br>
+              <span class="img"><img alt="" src="@/assets/img/about/about04.png"></span>
+            </span>
+          </p>
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt"><span class="step">Step.03</span><br>
+              そうすると1回目の「目入れ」完了だよ。<br>
+              <span class="img"><img alt="" src="@/assets/img/about/about05.png"></span>
+            </span>
+          </p>
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt">
+              あとは達成に向けてがんばってね。
+            </span>
+          </p>
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt"><span class="step">Step.04</span><br>
+              そしていよいよ誓いを達成したら教えてね。<br>何が起こるかは、達成してからのお楽しみ。がんばってねー。
+            </span>
+          </p>
         </div>
       </div>
     </div>
@@ -72,7 +83,7 @@ export default {
     // console.log('about vue:' + this.$store.state.count);
 
     // count up store counter(commit method)
-    this.$store.commit('countup')
+    // this.$store.commit('countup')
   }
 }
 </script>

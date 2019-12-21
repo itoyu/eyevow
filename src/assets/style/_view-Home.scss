@@ -123,6 +123,19 @@
       background: #fff;
       line-height: 1.5;
       border-radius: 0px 6px 6px 6px;
+
+      .step {
+        display: inline-block;
+        padding: 5px 0;
+        font-weight: 600;
+        color: $menu_color_active;
+      }
+
+      .img {
+        display: block;
+        box-sizing: border-box;
+        padding: 5px 30px;
+      }
     }
   }
 }

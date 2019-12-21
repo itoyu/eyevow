@@ -8,6 +8,10 @@
   .tutorial {
     padding: 0 20px;
 
+    &_box {
+      margin-bottom: 30px;
+    }
+
     &_item {
       margin-bottom: 20px;
       display: flex;
@@ -129,6 +133,7 @@
 
     &_tit {
       margin-bottom: 20px;
+      text-align: center;
       color: $icon_notice;
     }
     &_catch {
