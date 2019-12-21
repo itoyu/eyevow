@@ -56,7 +56,7 @@
       display: flex;
 
       .story_img {
-        width: 162px;
+        width: 120px;
         box-shadow: $bar_shadow;
         overflow: hidden;
         border-radius: 6px;
@@ -193,7 +193,7 @@
 
     .credit_list {
       margin-bottom: 60px;
-      padding: 0 20px 0;
+      // padding: 0 20px 0;
 
       &_item {
         margin-bottom: 30px;
@@ -203,10 +203,10 @@
 
         .credit_icon {
           position: relative;
-          top: 5px;
-          width: 45px;
-          height: 45px;
-          border-radius: 50%;
+          // top: 5px;
+          width: 120px;
+          height: 120px;
+          border-radius: 4px;
           overflow: hidden;
 
           img {
@@ -235,6 +235,7 @@
           font-size: 14px;
           line-height: 1.5;
           font-size: 12px;
+          color: $fc_def;
         }
       }
     }
