@@ -109,7 +109,7 @@ export default {
   },
   created() {
     this.init();
-    this.$store.commit('countup')
+    // this.$store.commit('countup')
   }
 }
 </script>

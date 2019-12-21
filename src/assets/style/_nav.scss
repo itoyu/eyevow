@@ -65,6 +65,10 @@
           color: $menu_color_active;
         }
       }
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.6;
+      }
     }
 
     // Action Btn
@@ -76,6 +80,7 @@
       overflow: hidden;
       border: 2px solid #ffffff;
       box-shadow: $bar_shadow;
+      opacity: 0.4;
 
       &.action_shop,
       &.action_vow {

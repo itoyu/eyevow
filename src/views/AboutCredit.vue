@@ -77,7 +77,7 @@ export default {
     // console.log('about vue:' + this.$store.state.count);
 
     // count up store counter(commit method)
-    this.$store.commit('countup')
+    // this.$store.commit('countup')
   }
 }
 </script>

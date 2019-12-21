@@ -7,14 +7,14 @@
       </router-link>
     </nav>
     <h1 class="title" v-if="$route.path !== '/'">{{ pageTitle }}</h1>
-    <nav class="config">
+
+    <!-- <nav class="config">
       <button @click="signout">
-        <!-- <span class="badge"></span> -->
         <figure class="icon">
           <img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png">
         </figure>
       </button>
-    </nav>
+    </nav> -->
   </header>
 </template>
 

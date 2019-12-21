@@ -11,7 +11,7 @@
         <span class="icon"><iconAbout /></span>
         <span class="label">About</span>
       </router-link>
-      <a class="action action_shop" href="https://thebase.in/" target="_blank" v-if="isAchieve">
+      <!-- <a class="action action_shop" href="https://thebase.in/" target="_blank" v-if="isAchieve">
         <span class="bg"><img alt="" src="@/assets/img/icon_action_bg.svg"></span>
         <span class="icon"><iconShop /></span>
         <span class="label">Shop</span>
@@ -20,20 +20,26 @@
         <span class="bg"><img alt="" src="@/assets/img/icon_action_bg.svg"></span>
         <span class="icon"><iconEye /></span>
         <span class="label">Achieved</span>
-      </router-link>
-      <router-link class="action action_vow" to="/vow" v-else>
+      </router-link> -->
+      <!-- <router-link class="action action_vow" to="/vow" v-else> -->
+      <a class="action action_vow disabled">
         <span class="bg"><img alt="" src="@/assets/img/icon_action_bg.svg"></span>
         <span class="icon"><iconEye /></span>
         <span class="label">Vow</span>
-      </router-link>
-      <router-link to="/cheer" class="nav_item nav_cheer">
+      </a>
+      <!-- </router-link> -->
+      <a class="nav_item nav_cheer disabled">
+      <!-- <router-link to="/cheer" class="nav_item nav_cheer"> -->
         <span class="icon"><iconCheer /></span>
         <span class="label">Cheer</span>
-      </router-link>
-      <router-link to="/edit" class="nav_item nav_edit">
+      </a>
+      <!-- </router-link> -->
+      <a class="nav_item nav_edit disabled">
+      <!-- <router-link to="/edit" class="nav_item nav_edit"> -->
         <span class="icon"><iconEdit /></span>
         <span class="label">Edit</span>
-      </router-link>
+      </a>
+      <!-- </router-link> -->
     </nav>
   </div>
 </template>
