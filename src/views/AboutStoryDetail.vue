@@ -89,7 +89,7 @@
         <figure class="img">
           <img alt="" src="@/assets/img/story/2-5.jpg">
         </figure>
-        <p class="txt">だるまは、縁起物族の力で仮の姿に返信し、地球に降り立った。<br>「人類奮起計画」が今、幕を開けた。</p>
+        <p class="txt">だるまは、縁起物族の力で仮の姿に変身し、地球に降り立った。<br>「人類奮起計画」が今、幕を開けた。</p>
       </div>
 
       <p class="story_detail_tit"><span class="num">Ep.02</span>　完</p>
@@ -103,7 +103,7 @@
         <figure class="img">
           <img alt="" src="@/assets/img/story/3-1.jpg">
         </figure>
-        <p class="txt">無事に地球に降り立った「だるま」は早速、希望を抱いている人を探し始めた。<br>すると人組の親子に目が止まった。</p>
+        <p class="txt">無事に地球に降り立った「だるま」は早速、希望を抱いている人を探し始めた。<br>すると一組の親子に目が止まった。</p>
       </div>
       <div class="story_detail_item">
         <figure class="img">
