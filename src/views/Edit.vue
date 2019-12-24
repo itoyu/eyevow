@@ -4,7 +4,7 @@
     <div class="page_lead">
       <p class="chat_item">
         <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-        <span class="txt">ここではアカウント情報の変更や、画像のダウンロードができるわ</span>
+        <span class="txt">ここではアカウント情報の変更や、画像のダウンロードができるよ</span>
       </p>
     </div>
 
@@ -14,7 +14,7 @@
         <dl class="profile_name">
           <dt>Name</dt>
           <dd>
-            <input type="text" name="profile_name" value="user name" />
+            <input type="text" name="profile_name" :value="userInfo.name" />
             <button @click="updateProfile" :class="{'disabled': updateProfileReady}" class="btn btn_min">Save</button>
           </dd>
         </dl>
@@ -23,9 +23,9 @@
           <dd>
             <figure>
               <label for="file_upload" class="file_upload">
-                <img alt="" src="@/assets/img/eyevow/icon_illust_01.png">
+                <img alt="" :src="userInfo.icon">
                 <span class="cover"><img alt="" src="@/assets/img/common/icon_camera.svg"></span>
-                <input type="file" id="file_upload" @change="updateProfilePhoto" />
+                <input type="file" id="file_upload" accept="image/jpeg, image/png" @change="updateProfilePhoto" />
               </label>
             </figure>
           </dd>
@@ -74,11 +74,18 @@
 </template>
 
 <script>
+import api from '@/api/client';
 
 export default {
   data() {
     return {
-      edit: false
+      edit: false,
+      userInfo: {
+        // name: this.$store.getters.userInfo.name,
+        // icon: this.$store.getters.userInfo.icon
+        name: this.$store.state.devData.user.name,
+        icon: this.$store.state.devData.user.icon
+      }
     }
   },
   methods: {
@@ -90,10 +97,41 @@ export default {
       console.log('updateProfile');
     },
     // プロフィール画像の変更
+    getBase64 (file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = error => reject(error)
+      })
+    },
     updateProfilePhoto: function(e) {
-      const file = e.srcElement.files[0];
-      console.log(file);
+      const images = e.target.files || e.dataTransfer.files
+      this.getBase64(images[0])
+        // .then(image => this.avatar = image)
+        .then(image => {
+          var dataUrl = image;
+          this.userInfo.icon = dataUrl;
+          // console.log(dataUrl);
+          // this.vowlist = json.vows.reverse();
 
+          api.patch('/user', {
+            name: 'guest',
+            icon: dataUrl
+          }, {
+            headers: {
+              Authorization: `Bearer ${this.$store.state.devData.token}`,
+            }
+          })
+            // .then(function() {
+            //   console.log('update user info');
+            // })
+            // .catch(function (error) {
+            //   // handle error
+            //   console.log(error);
+            // });
+        })
+        .catch(error => this.setError(error, 'error upload image.'))
     },
     openPopup: function() {
       document.querySelector('.popup').classList.add('show');
@@ -109,7 +147,6 @@ export default {
   },
   created() {
     this.init();
-    this.$store.commit('countup')
   }
 }
 </script>

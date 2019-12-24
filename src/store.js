@@ -8,7 +8,7 @@ const store = new Vuex.Store({
   strict: true,
   state: {
     devData: {
-      token:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWUwMWJkNDZlZGJmYjc3MDVkODJjZjVlIiwiZXhwIjoxNzM0ODUyMjk0fQ.wtYaIolcCobuS_BdLVvd5Bu5yCOYhpXXlv_CZ8GzzeM',
+      token:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWUwMWQyOTllZGJmYjc3MDVkODJjZjYzIiwiZXhwIjoxNzM0ODU3NzUzfQ.D6SsyXjPjX1jTGXEAnrNa-xEQEinPvR4ngwz82Ln7Yo',
       user: {
         isLogin: false,
         isVow: false,
@@ -57,6 +57,9 @@ const store = new Vuex.Store({
     },
     myVow(state) {
       return state.myVow;
+    },
+    userInfo(state) {
+      return state.user;
     },
     isLogin(state) {
       return state.user.isLogin;
