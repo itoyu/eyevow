@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <ul class="tab_nav">
-      <router-link to="/about" class="tab_nav_item" exact>Tutorial</router-link>
+      <router-link to="/about" class="tab_nav_item" exact>About</router-link>
       <router-link to="/about/story" class="tab_nav_item">Story</router-link>
       <router-link to="/about/statement" class="tab_nav_item">Statement</router-link>
       <router-link to="/about/credit" class="tab_nav_item">Credit</router-link>
@@ -17,7 +17,6 @@
 
 export default {
   created() {
-    console.log('about page!');
     this.init();
   },
   methods: {

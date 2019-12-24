@@ -29,6 +29,7 @@
           <p class="txt">星からの司令で、人類に再び「誓い」を与えるために地球に降り立ったヒロイン</p>
         </div>
       </router-link>
+      <!--
       <router-link to="/about/story/epilogue" class="story_item">
         <figure class="story_img">
           <img alt="" src="https://dummyimage.com/1000x1000/333333/ffffff&text= SECRET">
@@ -38,6 +39,7 @@
           <p class="txt note">※このエピソードは誓い達成後に見ることができます。</p>
         </div>
       </router-link>
+      -->
     </div>
   </div>
 

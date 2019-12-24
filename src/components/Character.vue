@@ -1,9 +1,9 @@
 <template>
   <div class="character">
-    <div v-if="achieve" class="character_slide">
+    <div v-if="isAchieve" class="character_slide">
       <figure class="character_img character_img_illust03"></figure>
     </div>
-    <div v-else-if="login" class="character_slide">
+    <div v-else-if="isLogin" class="character_slide">
       <figure class="character_img character_img_illust02"></figure>
     </div>
     <div v-else class="character_slide">
@@ -16,16 +16,16 @@
 export default {
   name: 'Character',
   computed: {
-    achieve() {
-      return this.$store.state.app.isAchieve
+    isLogin: function() {
+      return this.$store.getters.isLogin
     },
-    login() {
-      return this.$store.state.app.isLogin
+    isAchieve: function() {
+      return this.$store.getters.isAchieve
     }
   },
   watch: {
-    login: function(newValue) {
-      return newValue;
+    isLogin: function(newVal) {
+      return newVal;
     }
   },
   created() {

@@ -1,13 +1,13 @@
 <template>
 
-  <div class="chat" :class="{'member': login }">
-    <div class="chat_wrap" v-if="!login">
+  <div class="chat" :class="{'member': isLogin }">
+    <div class="chat_wrap" v-if="!isLogin">
       <p v-for="item in guestChats" v-bind:key="item.id" class="chat_item">
         <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
         <span class="txt" id="`${ item.id }`">{{ item.text }}</span>
       </p>
     </div>
-    <div class="chat_wrap" v-if="login">
+    <div class="chat_wrap" v-if="isLogin">
       <p v-for="item in memberChats" v-bind:key="item.id" class="chat_item">
         <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_02.png"></span>
         <span class="txt" id="`${ item.id }`" v-html="`${ item.text }`"></span>
@@ -30,18 +30,16 @@ export default {
     }
   },
   watch: {
-    login: function(newValue) {
-      return newValue;
+    isLogin: function(newVal) {
+      return newVal;
     }
   },
   methods: {
     init: function() {
       const chatWrap = document.querySelector('.chat'),
             chatItems = document.querySelectorAll('.chat_item'),
-            isLogin = this.$store.state.app.isLogin;
+            stateLogin = this.$store.state.user.isLogin;
       var initChatSet, chatCnt = 0;
-
-      console.log('isLogin: ' + isLogin);
 
       function chatStart() {
         initChatSet = setInterval(chatPush, 3000);
@@ -60,13 +58,13 @@ export default {
         chatCnt ++;
 
         // if(chatCnt >= chatItems.length) {
-        if(chatCnt >= 4 && !isLogin) {
+        if(chatCnt >= 4 && !stateLogin) {
           chatStop();
         }
-        if(chatCnt >= 3 && isLogin) {
+        if(chatCnt >= 3 && stateLogin) {
           chatStop();
         }
-        if(chatCnt === 4 && !isLogin) {
+        if(chatCnt === 4 && !stateLogin) {
           if(document.getElementById('startbtn')) {
             document.getElementById('startbtn').classList.add('show');
           }
@@ -86,9 +84,9 @@ export default {
     }
   },
   computed: {
-    login: function() {
-      return this.$store.state.app.isLogin
-    }
+    isLogin: function() {
+      return this.$store.getters.isLogin
+    },
     // homeMessage: function() {
     //   // chatMessage.fetch();
     //   console.log();

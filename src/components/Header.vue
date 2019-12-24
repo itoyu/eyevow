@@ -3,7 +3,7 @@
     <nav class="logo">
       <router-link to="/">
         <!-- <img alt="eyevow" src="@/assets/img/title_min.png" v-if="$route.path !== '/'"> -->
-        <img alt="eyevow" src="@/assets/img/logo_i.svg">
+        <img alt="eyevow" src="@/assets/img/common/logo_i.svg">
       </router-link>
     </nav>
     <h1 class="title" v-if="$route.path !== '/'">{{ pageTitle }}</h1>

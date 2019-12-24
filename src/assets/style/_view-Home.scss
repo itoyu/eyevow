@@ -43,6 +43,13 @@
     padding: 20px 0 60px;
     transition: .5s $Base;
 
+    @include mq(pc) {
+      margin: 0 auto;
+      max-width: 750px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     &.show {
       opacity: 1;
     }
@@ -123,6 +130,19 @@
       background: #fff;
       line-height: 1.5;
       border-radius: 0px 6px 6px 6px;
+
+      .step {
+        display: inline-block;
+        padding: 5px 0;
+        font-weight: 600;
+        color: $menu_color_active;
+      }
+
+      .img {
+        display: block;
+        box-sizing: border-box;
+        padding: 5px 30px;
+      }
     }
   }
 }

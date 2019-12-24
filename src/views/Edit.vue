@@ -24,7 +24,7 @@
             <figure>
               <label for="file_upload" class="file_upload">
                 <img alt="" src="@/assets/img/eyevow/icon_illust_01.png">
-                <span class="cover"><img alt="" src="@/assets/img/icon_camera.svg"></span>
+                <span class="cover"><img alt="" src="@/assets/img/common/icon_camera.svg"></span>
                 <input type="file" id="file_upload" @change="updateProfilePhoto" />
               </label>
             </figure>

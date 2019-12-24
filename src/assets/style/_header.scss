@@ -15,6 +15,13 @@
   box-shadow: $bar_shadow;
   z-index: 5;
 
+  @include mq(pc) {
+    margin: 0 auto;
+    max-width: 750px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   &.active {
     top: 0px;
   }

@@ -45,7 +45,7 @@
 
 <script>
 
-import iconEye from '@/assets/img/icon_eye.svg?inline'
+import iconEye from '@/assets/img/common/icon_eye.svg?inline'
 
 export default {
   name: 'Achieved',

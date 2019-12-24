@@ -23,7 +23,7 @@ const router  = new Router({
       children: [
         {
           path: '/about/',
-          meta: { title: 'Tutorial' },
+          meta: { title: 'About' },
           component:() => import('./views/AboutTutorial')
         },
         {

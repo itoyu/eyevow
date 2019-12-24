@@ -109,7 +109,7 @@
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
-import iconEye from '@/assets/img/icon_eye.svg?inline'
+import iconEye from '@/assets/img/common/icon_eye.svg?inline'
 
 export default {
   data() {

@@ -51,7 +51,7 @@
 
 <script>
 import api from '@/api/client';
-import iconArr from '@/assets/img/icon_arr_right.svg?inline'
+import iconArr from '@/assets/img/common/icon_arr_right.svg?inline'
 
 export default {
   name: 'vowComplete',
