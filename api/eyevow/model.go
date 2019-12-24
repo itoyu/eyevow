@@ -8,6 +8,11 @@ type user struct {
 	Icon string             `bson:"icon" json:"icon"`
 }
 
+type self struct {
+	user
+	TwitterID string `bson:"twitter_id,omitempty" json:"twitter_id,omitempty"`
+}
+
 type vow struct {
 	ID       primitive.ObjectID `bson:"_id,omitempty"`
 	Type     string             `bson:"type"`
