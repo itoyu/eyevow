@@ -7,6 +7,7 @@
     position: relative;
     padding-top: 10px;
     width: 100%;
+    z-index: 2;
   }
   .swiper-pagination-bullet {
     margin: 0 3px;
@@ -227,7 +228,12 @@
       overflow: hidden;
 
       .vow_complete_img {
-
+        display: block;
+        width: 100%;
+        padding-top: 125%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
       }
       .vow_complete_text {
         position: relative;

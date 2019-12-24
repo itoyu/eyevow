@@ -59,7 +59,7 @@
           </p>
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-            <span class="txt">∵∴∵∴∵∴∵∴∵∴∵∴<br>■タイプ：{{vowMake.type}}<br>■誓い：{{vowMake.text}}<br>∵∴∵∴∵∴∵∴∵∴∵∴</span>
+            <span class="txt">∵∴∵∴∵∴∵∴∵∴∵∴<br>タイプ：{{vowMake.displayType}}<br>誓い：{{vowMake.text}}<br>∵∴∵∴∵∴∵∴∵∴∵∴</span>
           </p>
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
@@ -67,9 +67,9 @@
           </p>
         </dt>
         <dd>
-          <nav class="vow_make_nav center"> <!-- v-on:click="vowMakeHandlerCheck" -->
+          <nav class="vow_make_nav center">
             <!-- <router-link class="btn btn_vow" to="/eyevow"></router-link> -->
-            <button @click="showPopup" :class="{'disabled': vowMakeReady}" class="btn btn_vow"><iconEye />OK !</button>
+            <button @click="showPopup(); putTemporaryVow();" :class="{'disabled': vowMakeReady}" class="btn btn_vow"><iconEye />OK !</button>
           </nav>
         </dd>
       </dl>
@@ -84,11 +84,11 @@
             </p>
             <p class="chat_item">
               <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-              <span class="txt">∵∴∵∴∵∴∵∴∵∴∵∴<br>■タイプ：{{vowMake.type}}<br>■誓い：{{vowMake.text}}<br>∵∴∵∴∵∴∵∴∵∴∵∴</span>
+              <span class="txt">∵∴∵∴∵∴∵∴∵∴∵∴<br>タイプ：{{vowMake.displayType}}<br>誓い：{{vowMake.text}}<br>∵∴∵∴∵∴∵∴∵∴∵∴</span>
             </p>
           </dt>
           <dd>
-            <nav class="vow_make_nav center"> <!-- v-on:click="vowMakeHandlerCheck" -->
+            <nav class="vow_make_nav center">
               <button @click="hidePopup" class="btn btn_back">Back</button>
               <router-link  class="btn btn_vow" to="/eyevow"><iconEye />Vow !</router-link>
             </nav>
@@ -119,7 +119,8 @@ export default {
         step01: false,
         step02: false,
         type: '',
-        text: ''
+        text: '',
+        displayType: ''
       },
       swiperOption: {
         // loop: true,
@@ -152,11 +153,14 @@ export default {
       const vowMakeType = document.getElementById('vow_make_step01'),
             vowMakeText = document.getElementById('vow_make_step02'),
             sliderPickItem = document.querySelector('.swiper-slide-active');
+      var vowMakeTypeDisplayText = '';
 
       if(e.value) {
         vowMakeType.classList.add('disabled');
+        vowMakeTypeDisplayText = ('photo' === sliderPickItem.getAttribute('data-vowtype')) ? '写真' : 'イラスト'
         this.vowMake.type = sliderPickItem.getAttribute('data-vowtype');
         this.vowMake.step01 = true;
+        this.vowMake.displayType = vowMakeTypeDisplayText;
 
         // Enable Step02
         vowMakeText.classList.add('show');
@@ -185,10 +189,11 @@ export default {
       }
     },
 
-    // Check
-    vowMakeHandlerCheck: function() {
-      console.log(this.vowMake.type);
-      console.log(this.vowMake.text);
+    putTemporaryVow: function() {
+      this.$store.dispatch('putTemporaryVow', {
+        vowType: this.vowMake.type,
+        vowText: this.vowMake.text
+      })
     },
 
     // Confirm Popup

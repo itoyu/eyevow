@@ -11,12 +11,12 @@
         <span class="icon"><iconAbout /></span>
         <span class="label">About</span>
       </router-link>
-      <a class="action action_shop" href="https://eyevow.stores.jp/" target="_blank" v-if="isAchieve">
+      <a class="action action_shop" href="https://eyevow.stores.jp/" target="_blank" v-if="isVow">
         <span class="bg"><img alt="" src="@/assets/img/common/icon_action_bg.svg"></span>
         <span class="icon"><iconShop /></span>
         <span class="label">Shop</span>
       </a>
-      <router-link class="action action_achieve" to="/achieve" v-else-if="isLogin">
+      <router-link class="action action_achieve" to="/achieve" v-else-if="isAchieve"><!-- tether -->
         <span class="bg"><img alt="" src="@/assets/img/common/icon_action_bg.svg"></span>
         <span class="icon"><iconEye /></span>
         <span class="label">Achieved</span>
@@ -68,6 +68,9 @@ export default {
     isLogin: function(newVal) {
       return newVal;
     },
+    isVow: function(newVal) {
+      return newVal;
+    },
     isAchieve: function(newVal) {
       return newVal;
     }
@@ -75,6 +78,9 @@ export default {
   computed: {
     isLogin: function() {
       return this.$store.getters.isLogin
+    },
+    isVow: function() {
+      return this.$store.getters.isVow
     },
     isAchieve: function() {
       return this.$store.getters.isAchieve

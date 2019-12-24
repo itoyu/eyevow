@@ -9,11 +9,9 @@
         </p>
       </dt>
       <dd class="vow_complete_wrap">
-        <div class="vow_complete_img">
-          <figure class="img"><img alt="" src="@/assets/img/eyevow/character_illust_02.png"></figure>
-        </div>
+        <div class="vow_complete_img" :class="myVow.type"></div>
         <div class="vow_complete_text">
-          <p>たくさん勉強して宇宙の星々を研究する学者になるぞ！</p>
+          <p>{{myVow.text}}</p>
         </div>
       </dd>
     </dl>
@@ -57,11 +55,11 @@ export default {
   name: 'vowComplete',
   data: function() {
     return {
-      testUser: {
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWRmNGYzZDk2YTM0MzMxNGNlODUxNDM2IiwiZXhwIjoxNzM0MDE0Mjk3fQ.37yVyjK5fR9JVc3MOgqZUkpmDJlLTDQ61gPSWFIs1-o',
-        id: '5df4f3d96a343314ce851436',
+      myVow: {
+        type: this.$store.getters.myVow.type,
+        text: this.$store.getters.myVow.text,
+        displayType: ('photo' === this.$store.getters.myVow.type) ? '写真' : 'イラスト'
       }
-
     }
   },
   components: {
@@ -76,7 +74,7 @@ export default {
     },
     completeSignup: function() {
       this.$store.commit('isLogin');
-      
+
       setTimeout(function() {
         window.location = '/';
       },500)
@@ -84,16 +82,19 @@ export default {
   },
   mounted () {
     // #Set Vow
-    api.post('/vows', { 'text':'誓いテキスト' }, {
-      headers: {
-        Authorization: `Bearer ${this.testUser.token}`,
-      }
-    })
-      .then(res => res.data)
-      .then(json => {
-        this.$store.commit('setVow');
-        console.log(json);
-      })
+    // api.post('/vows', {
+    //     text: this.$store.getters.myVow.text,
+    //     type: this.$store.getters.myVow.type
+    //   }, {
+    //   headers: {
+    //     Authorization: `Bearer ${this.$store.state.devData.token}`,
+    //   }
+    // })
+    //   .then(res => res.data)
+    //   .then(json => {
+    //     this.$store.commit('setVow');
+    //     console.log(json);
+    //   })
   }
 }
 </script>
@@ -101,4 +102,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.vow_complete_img.illust {
+  background-image: url(../assets/img/eyevow/character_illust_02.png);
+}
+.vow_complete_img.photo {
+  background-image: url(../assets/img/eyevow/character_photo_02.png);
+}
 </style>

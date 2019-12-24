@@ -11,8 +11,8 @@ const store = new Vuex.Store({
       token:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWRmNGYzZDk2YTM0MzMxNGNlODUxNDM2IiwiZXhwIjoxNzM0MDE0Mjk3fQ.37yVyjK5fR9JVc3MOgqZUkpmDJlLTDQ61gPSWFIs1-o',
       user: {
         isLogin: false,
-        isAchieve: false,
         isVow: false,
+        isAchieve: false,
         id: '5df4f3d96a343314ce851436',
         name: 'ゲスト',
         icon: 'http://eyevow.work.suichu.net/blob/user/NUKwnnfWg.jpg'
@@ -23,21 +23,20 @@ const store = new Vuex.Store({
     },
     user: {
       isLogin: false,
-      isAchieve: false,
       isVow: false,
-      id: String,
-      name: String,
-      icon: String
+      isAchieve: false,
+      id: '',
+      name: '',
+      icon: ''
     },
-    myVows: [
-      // {
-      //   id: String,
-      //   type: String,
-      //   text: String,
-      //   cheer_count: Number,
-      //   archived: false
-      // }
-    ],
+    myVow: {
+      id: '',
+      type: 'illust',
+      text: '',
+      cheer_count: 0,
+      set: false,
+      archived: false
+    },
     allVows: [
       // {
       //   id: String,
@@ -56,20 +55,37 @@ const store = new Vuex.Store({
     pageTitle(state) {
       return state.app.pageTitle;
     },
+    myVow(state) {
+      return state.myVow;
+    },
     isLogin(state) {
       return state.user.isLogin;
+    },
+    isVow(state) {
+      return state.user.isVow;
+    },
+    isAchieve(state) {
+      return state.user.isAchieve;
     }
   },
   actions: {
     changePage({ commit }, title) {
       commit('cahgePageTitle', title);
     },
+    putTemporaryVow({ commit }, {vowType, vowText }) {
+      const putVow = { type: vowType, text: vowText }
+      commit('changeMyVow', putVow);
+    }
   },
   mutations: {
     cahgePageTitle(state, title) {
       state.app.pageTitle = title;
     },
-    cheerCountup(state) {
+    changeMyVow(state, putVow) {
+      state.myVow.type = putVow.type;
+      state.myVow.text = putVow.text;
+    },
+    cheerCountup() {
       // state.count ++
     },
     isLogin(state) {
@@ -91,6 +107,6 @@ const store = new Vuex.Store({
       state.user.isAchieve = false;
     }
   },
-  plugins: [createPersistedState()]
+  // plugins: [createPersistedState()]
 })
 export default store;

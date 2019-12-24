@@ -21,6 +21,7 @@ export default {
   methods: {
     init: function() {
       document.querySelector('body').classList.add('focus');
+      // console.log(this.$store.getters.myVow);
     }
   },
   created() {
