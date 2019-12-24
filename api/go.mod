@@ -4,6 +4,8 @@ go 1.12
 
 require (
 	github.com/aws/aws-sdk-go v1.25.48
+	github.com/dghubble/go-twitter v0.0.0-20190719072343-39e5462e111f
+	github.com/dghubble/oauth1 v0.6.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/disintegration/imaging v1.6.2
 	github.com/friendsofgo/errors v0.9.2 // indirect

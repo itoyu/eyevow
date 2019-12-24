@@ -78,6 +78,10 @@ const router  = new Router({
       path: '/edit',
       meta: { title: 'Edit' },
       component: () => import('./views/Edit.vue')
+    },
+    {
+      path: '/signed',
+      component: () => import('./views/Signed.vue')
     }
   ],
   scrollBehavior (to, from, savedPosition) {

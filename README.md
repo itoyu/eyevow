@@ -24,3 +24,9 @@ npm run test
 ```
 npm run lint
 ```
+
+## 開発環境でのTwitterログイン
+
+1. https://eyevow.work.suichu.net/id/ にアクセス
+2. https://eyevow.work.suichu.net/signed?token=xxx の ホスト部分をローカルホストに変更してアクセス
+3. localStorageの"USER"キーにトークンが保存されます

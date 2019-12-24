@@ -15,7 +15,12 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	"time"
 
+	"github.com/dghubble/go-twitter/twitter"
+	"github.com/dghubble/oauth1"
+	oauth1twitter "github.com/dghubble/oauth1/twitter"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/disintegration/imaging"
 	"github.com/go-chi/chi"
 	"github.com/rakyll/statik/fs"
@@ -38,10 +43,7 @@ var (
 	currentUserKey struct{}
 )
 
-/*
-ユーザー登録(デバッグ)
-*/
-func signup(w http.ResponseWriter, r *http.Request) {
+func register(ctx context.Context, twitterID string) (*user, error) {
 	var rs *mongo.InsertOneResult
 	var err error
 	var f http.File
@@ -59,16 +61,33 @@ func signup(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	u := &user{
-		Name: "ゲスト",
-		Icon: defaultBucket.URL(icon),
+	u := &self{
+		user: user{
+			Name: "ゲスト",
+			Icon: defaultBucket.URL(icon),
+		},
+		TwitterID: twitterID,
 	}
 
-	if rs, err = db.Collection("users").InsertOne(r.Context(), u); err != nil {
+	if rs, err = db.Collection("users").InsertOne(ctx, u); err != nil {
 		panic(err)
 	}
 	u.ID = rs.InsertedID.(primitive.ObjectID)
+
+	return &u.user, nil
+}
+
+/*
+ユーザー登録(デバッグ)
+*/
+func signup(w http.ResponseWriter, r *http.Request) {
+	u, err := register(r.Context(), "")
 	tk := defaultAuth.Publish(u.ID)
+
+	if err != nil {
+		failed(w, http.StatusInternalServerError, "error")
+		return
+	}
 
 	renderToken(r.Context(), w, tk, u)
 }
@@ -76,8 +95,113 @@ func signup(w http.ResponseWriter, r *http.Request) {
 /*
 シングルサインオン
 */
-func signon(w http.ResponseWriter, r *http.Request) {
+type signonClaims struct {
+	Provider string
+	Token    string
+	Secret   string
+	jwt.StandardClaims
+}
 
+func signon(w http.ResponseWriter, r *http.Request) {
+	var in struct {
+		Token string `json:"token"`
+	}
+
+	bind(r, &in)
+
+	token, err := jwt.ParseWithClaims(in.Token, &signonClaims{}, func(tk *jwt.Token) (interface{}, error) {
+		return []byte(defaultEnv.Secret), nil
+	})
+
+	if err != nil {
+		failed(w, http.StatusBadRequest, "invalid claims")
+		return
+	}
+
+	if claims, ok := token.Claims.(*signonClaims); ok && token.Valid {
+		tk, u, err := signonTwitter(r.Context(), claims.Token, claims.Secret)
+		if err != nil {
+			failed(w, http.StatusInternalServerError, "")
+			return
+		}
+		renderToken(r.Context(), w, tk, u)
+		return
+	}
+
+	failed(w, http.StatusForbidden, "invalid claims")
+}
+
+func signonTwitter(ctx context.Context, token, secret string) (string, *user, error) {
+	tw := twitter.NewClient(twitterConfig.Client(ctx, oauth1.NewToken(token, secret)))
+	tu, _, err := tw.Accounts.VerifyCredentials(&twitter.AccountVerifyParams{})
+	if err != nil {
+		return "", nil, err
+	}
+	u := &user{}
+
+	if err := db.Collection("users").FindOne(ctx, bson.M{"twitter_id": tu.IDStr}).Decode(u); err != nil {
+		// register
+		if u, err = register(ctx, tu.IDStr); err != nil {
+			return "", nil, err
+		}
+
+		return defaultAuth.Publish(u.ID), u, nil
+	}
+	// found
+	return defaultAuth.Publish(u.ID), u, nil
+}
+
+var twitterConfig = oauth1.Config{
+	ConsumerKey:    "nKlZ6svJS7bSDODmO3U2Tg",
+	ConsumerSecret: "L8oyRKBuFKWGg33o4vbgNWEAWLNZsOFofTD2bC1Z0",
+	CallbackURL:    "https://eyevow.work.suichu.net/id/callbacks/twitter",
+	Endpoint:       oauth1twitter.AuthenticateEndpoint,
+}
+
+func login(w http.ResponseWriter, r *http.Request) {
+	//via := r.URL.Query().Get("via")
+	tk, _, err := twitterConfig.RequestToken()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	url, err := twitterConfig.AuthorizationURL(tk)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, url.String(), http.StatusFound)
+}
+
+func twitterCallback(w http.ResponseWriter, r *http.Request) {
+	tk, v, err := oauth1.ParseAuthorizationCallback(r)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	tk, sec, err := twitterConfig.AccessToken(tk, v, v)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	d := time.Duration(5 * time.Minute)
+
+	stk, err := jwt.NewWithClaims(jwt.SigningMethodHS256, &signonClaims{
+		"twitter",
+		tk,
+		sec,
+		jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(d).Unix(),
+		},
+	}).SignedString([]byte(defaultEnv.Secret))
+
+	if err != nil {
+		panic(err)
+	}
+
+	http.Redirect(w, r, fmt.Sprintf("https://eyevow.work.suichu.net/signed?token=%s", stk), http.StatusFound)
 }
 
 /*
@@ -222,6 +346,7 @@ func postVow(w http.ResponseWriter, r *http.Request) {
 	u := currentUser(r)
 
 	in := struct {
+		Type string `json:"type"`
 		Text string `json:"text"`
 	}{}
 
@@ -231,6 +356,7 @@ func postVow(w http.ResponseWriter, r *http.Request) {
 	}
 
 	vow := &vow{
+		Type:     in.Type,
 		Text:     in.Text,
 		User:     u,
 		Archived: false,
@@ -414,10 +540,19 @@ func spec(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(html))
 }
 
+func id() http.Handler {
+	router := chi.NewRouter()
+	router.Get("/id/", login)
+	router.Get("/id/callbacks/twitter", twitterCallback)
+
+	return router
+}
+
 func serve() {
 	api := mux()
 	m := http.NewServeMux()
 	m.Handle("/api/", http.StripPrefix("/api", api))
+	m.Handle("/id/", id())
 	m.Handle("/blob/", http.StripPrefix("/blob/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		rd, err := defaultBucket.Get(r.URL.Path)
 		if err != nil {
