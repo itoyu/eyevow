@@ -8,14 +8,14 @@ const store = new Vuex.Store({
   strict: true,
   state: {
     devData: {
-      token:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWRmNGYzZDk2YTM0MzMxNGNlODUxNDM2IiwiZXhwIjoxNzM0MDE0Mjk3fQ.37yVyjK5fR9JVc3MOgqZUkpmDJlLTDQ61gPSWFIs1-o',
+      token:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWUwMWJkNDZlZGJmYjc3MDVkODJjZjVlIiwiZXhwIjoxNzM0ODUyMjk0fQ.wtYaIolcCobuS_BdLVvd5Bu5yCOYhpXXlv_CZ8GzzeM',
       user: {
         isLogin: false,
         isVow: false,
         isAchieve: false,
-        id: '5df4f3d96a343314ce851436',
+        id: '5e01bd46edbfb7705d82cf5e',
         name: 'ゲスト',
-        icon: 'http://eyevow.work.suichu.net/blob/user/NUKwnnfWg.jpg'
+        icon: 'http://eyevow.work.suichu.net/blob/user/qu63MqBZR.jpg'
       }
     },
     app: {
