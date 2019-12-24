@@ -28,7 +28,7 @@
     <nav class="reward">
       <h2 class="title">REWARDS</h2>
       <router-link to="/about/story/epilogue" class="nav_item reward_item btn"><iconArr />EPILOGUE</router-link>
-      <a href="https://thebase.in/" target="_blank" class="nav_item reward_item btn"><iconArr />ONLINE SHOP</a>
+      <a href="https://eyevow.stores.jp/" target="_blank" class="nav_item reward_item btn"><iconArr />ONLINE SHOP</a>
       <router-link to="/" class="nav_item btn btn_back"><iconArr />HOME</router-link>
     </nav>
 
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import iconArr from '@/assets/img/icon_arr_right.svg?inline'
+import iconArr from '@/assets/img/common/icon_arr_right.svg?inline'
 
 export default {
   name: 'AchieveComplete',

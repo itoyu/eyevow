@@ -2,7 +2,7 @@
   <div class="home">
     <div v-if="!isLogin">
       <p class="catch">あなたの誓いを応援する相棒</p>
-      <h1 class="title"><img alt="eyevow" src="@/assets/img/logo.svg"></h1>
+      <h1 class="title"><img alt="eyevow" src="@/assets/img/common/logo.svg"></h1>
     </div>
     <Character />
     <Chat />
@@ -42,7 +42,7 @@ export default {
   mounted () {
     const contents = document.querySelector('#contents .home');
     contents.style.height = (window.innerHeight - 150) + 'px';
-    
+
     window.addEventListener('resize', function() {
       contents.style.height = (window.innerHeight - 150) + 'px';
     });

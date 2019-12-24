@@ -43,8 +43,8 @@
 <script>
 import api from '@/api/client';
 // import vows from '@/api/vows.json'
-import iconLike from '@/assets/img/icon_like.svg?inline'
-import iconAchieve from '@/assets/img/icon_achieve.svg?inline'
+import iconLike from '@/assets/img/common/icon_like.svg?inline'
+import iconAchieve from '@/assets/img/common/icon_achieve.svg?inline'
 
 export default {
   name: 'Cheer',

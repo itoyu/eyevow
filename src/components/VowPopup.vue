@@ -9,7 +9,7 @@
       </div>
       <nav class="popup_nav">
         <router-link to="/" class="btn btn_back">
-          <img alt="Back" src="@/assets/img/icon_arr_left.svg">
+          <img alt="Back" src="@/assets/img/common/icon_arr_left.svg">
         </router-link>
         <router-link to="#" class="btn btn_normal">+ NEW VOW</router-link>
       </nav>
