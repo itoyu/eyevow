@@ -23,9 +23,11 @@ export default {
   },
   beforeCreate() {
     // Set Vow
+    console.log(this.$store.state.devData.token);
+    
     api.post('/vows', {
         text: this.$store.getters.myVow.text,
-        // type: this.$store.getters.myVow.type
+        type: this.$store.getters.myVow.type
       }, {
       headers: {
         Authorization: `Bearer ${this.$store.state.devData.token}`,
@@ -33,7 +35,8 @@ export default {
     })
       .then(res => res.data)
       .then(json => {
-        // console.log(json);
+        console.log(json);
+
         this.$store.dispatch('initSetVow', {
           vowType: this.$store.getters.myVow.type,
           vowText: this.$store.getters.myVow.text
