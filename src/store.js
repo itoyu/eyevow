@@ -125,8 +125,15 @@ const store = new Vuex.Store({
     },
     unsetAchieve(state) {
       state.user.isAchieve = false;
+    },
+    signout(state) {
+      state.user.token = '';
+      state.user.isLogin = false;
+      state.user.isVow = false;
+      state.user.isAchieve = false;
+      state.myVow.id = '';
     }
   },
-  // plugins: [createPersistedState()]
+  plugins: [createPersistedState()]
 })
 export default store;
