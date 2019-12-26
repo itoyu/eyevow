@@ -76,8 +76,8 @@ const store = new Vuex.Store({
     changePage({ commit }, title) {
       commit('cahgePageTitle', title);
     },
-    setUserToken({ commit }, token) {
-      commit('setToken', token);
+    setUserToken({ commit }, userToken) {
+      commit('setToken', userToken);
     },
     putTemporaryVow({ commit }, {vowType, vowText }) {
       const putVow = { type: vowType, text: vowText }
@@ -92,8 +92,8 @@ const store = new Vuex.Store({
     cahgePageTitle(state, title) {
       state.app.pageTitle = title;
     },
-    setToken(state, token) {
-      state.user.token = token;
+    setToken(state, userToken) {
+      state.user.token = userToken;
     },
     changeMyVow(state, putVow) {
       state.myVow.type = putVow.type;

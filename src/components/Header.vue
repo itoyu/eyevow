@@ -28,8 +28,8 @@ export default {
   },
   methods: {
     signout: function() {
-      this.$store.commit('isLogout');
-      this.$store.commit('unsetAchieve');
+      this.$store.commit('signout');
+      this.$router.push({ path: '/'})
     }
   },
   computed: {
