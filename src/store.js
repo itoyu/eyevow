@@ -27,7 +27,8 @@ const store = new Vuex.Store({
       isAchieve: false,
       id: '',
       name: '',
-      icon: ''
+      icon: '',
+      token: ''
     },
     myVow: {
       id: '',
@@ -75,18 +76,34 @@ const store = new Vuex.Store({
     changePage({ commit }, title) {
       commit('cahgePageTitle', title);
     },
+    setUserToken({ commit }, token) {
+      commit('setToken', token);
+    },
     putTemporaryVow({ commit }, {vowType, vowText }) {
       const putVow = { type: vowType, text: vowText }
       commit('changeMyVow', putVow);
+    },
+    initSetVow({ commit }, {vowType, vowText }) {
+      const setVow = { type: vowType, text: vowText }
+      commit('setMyVow', setVow);
     }
   },
   mutations: {
     cahgePageTitle(state, title) {
       state.app.pageTitle = title;
     },
+    setToken(state, token) {
+      state.user.token = token;
+    },
     changeMyVow(state, putVow) {
       state.myVow.type = putVow.type;
       state.myVow.text = putVow.text;
+    },
+    setMyVow(state, setVow) {
+      state.user.isLogin = true;
+      state.user.isVow = true;
+      state.myVow.type = setVow.type;
+      state.myVow.text = setVow.text;
     },
     cheerCountup() {
       // state.count ++

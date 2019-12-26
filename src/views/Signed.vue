@@ -4,16 +4,21 @@
 <script>
 import qs from 'qs';
 import api from '@/api/client';
+import store from '@/store'
+
 
 export default {
   beforeRouteEnter(to, from, next) {
     const q = qs.parse(location.search, {ignoreQueryPrefix: true});
-    console.log(q);
+    // console.log(q);
 
     // Signon
     api.post('/signon', {token: q.token})
       .then(res => res.data.token)
-      .then(token => localStorage.setItem('USER', token))
+      .then(token => {
+        store.dispatch('setUserToken', { userToken: token })
+        // localStorage.setItem('USER', token)
+      })
       .then(next());
   },
   beforeCreate() {
@@ -28,10 +33,13 @@ export default {
     })
       .then(res => res.data)
       .then(json => {
-        // this.$store.commit('setVow');
-        console.log(json);
-
-        this.$router.push({ path: '/'})
+        // console.log(json);
+        this.$store.dispatch('initSetVow', {
+          vowType: this.$store.getters.myVow.type,
+          vowText: this.$store.getters.myVow.text
+        }).then(() => {
+          this.$router.push({ path: '/'})
+        });
       })
   }
 }
