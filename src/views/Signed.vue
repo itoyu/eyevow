@@ -8,6 +8,15 @@ import api from '@/api/client';
 
 export default {
   // beforeRouteEnter(to, from, next) {
+  data: function() {
+    return {
+      myVow: {
+        type: localStorage.getItem('vowType'),
+        text: localStorage.getItem('vowText'),
+        vowId: ''
+      }
+    }
+  },
   beforeCreate() {
     const q = qs.parse(location.search, {ignoreQueryPrefix: true});
     // console.log(q);
@@ -20,8 +29,8 @@ export default {
 
         // #Set Vow
         api.post('/vows', {
-            text: this.$store.getters.myVow.text,
-            type: this.$store.getters.myVow.type
+            text: this.myVow.type,
+            type: this.myVow.text
           }, {
           headers: {
             Authorization: `Bearer ${this.$store.state.user.token.userToken}`,
@@ -29,10 +38,10 @@ export default {
         })
           .then(res => res.data)
           .then(json => {
-
+            console.log(json);
             this.$store.dispatch('initSetVow', {
-              vowType: this.$store.getters.myVow.type,
-              vowText: this.$store.getters.myVow.text
+              vowType: this.myVow.type,
+              vowText: this.myVow.text
             }).then(() => {
               this.$router.push({ path: '/'})
             });

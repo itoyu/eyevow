@@ -51,6 +51,8 @@ export default {
     iconArr
   },
   created() {
+    localStorage.setItem('vowType', this.$store.getters.myVow.type)
+    localStorage.setItem('vowText', this.$store.getters.myVow.text)
   }
 }
 </script>
