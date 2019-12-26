@@ -5,7 +5,7 @@
       <dt>
         <p class="chat_item">
           <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-          <span class="txt">おつかれさま。あなたの誓い、受けとったわ。</span>
+          <span class="txt">おつかれさま。あなたの誓いを受けとったよ。</span>
         </p>
       </dt>
       <dd class="vow_complete_wrap">
@@ -27,28 +27,13 @@
       </p>
 
       <nav class="signup">
-        <button @click="signup('twitter')" class="signup_item signup_item_twitter btn"><iconArr />Twitter</button>
-        <button @click="signup('line')" class="signup_item signup_item_line btn"><iconArr />Line</button>
-        <button @click="signup('google')" class="signup_item signup_item_google btn"><iconArr />Google</button>
+        <a href="https://eyevow.work.suichu.net/id/" class="signup_item signup_item_twitter btn"><iconArr />Twitter</a>
       </nav>
     </div>
-
-    <div class="popup popup_signup">
-      <div class="popup_in">
-        <div style="text-align: center;">
-          <p style="margin-bottom: 20px;">Social login...</p>
-          <button class="btn btn_vow" @click="completeSignup">Home</button>
-        </div>
-      </div>
-    </div>
-
-
-
   </div>
 </template>
 
 <script>
-import api from '@/api/client';
 import iconArr from '@/assets/img/common/icon_arr_right.svg?inline'
 
 export default {
@@ -66,35 +51,6 @@ export default {
     iconArr
   },
   created() {
-  },
-  methods: {
-    signup: function(s) {
-      console.log(s);
-      document.querySelector('.popup').classList.add('show');
-    },
-    completeSignup: function() {
-      this.$store.commit('isLogin');
-
-      setTimeout(function() {
-        window.location = '/';
-      },500)
-    }
-  },
-  mounted () {
-    // #Set Vow
-    // api.post('/vows', {
-    //     text: this.$store.getters.myVow.text,
-    //     type: this.$store.getters.myVow.type
-    //   }, {
-    //   headers: {
-    //     Authorization: `Bearer ${this.$store.state.devData.token}`,
-    //   }
-    // })
-    //   .then(res => res.data)
-    //   .then(json => {
-    //     this.$store.commit('setVow');
-    //     console.log(json);
-    //   })
   }
 }
 </script>
