@@ -27,25 +27,34 @@ export default {
       .then(token => {
         this.$store.dispatch('setUserToken', { userToken: token })
 
-        // #Set Vow
-        api.post('/vows', {
-            text: this.myVow.type,
-            type: this.myVow.text
-          }, {
-          headers: {
-            Authorization: `Bearer ${this.$store.state.user.token.userToken}`,
-          }
-        })
-          .then(res => res.data)
-          .then(json => {
-            console.log(json);
-            this.$store.dispatch('initSetVow', {
-              vowType: this.myVow.type,
-              vowText: this.myVow.text
-            }).then(() => {
-              this.$router.push({ path: '/'})
-            });
+        if(this.myVow.text !== '') {
+
+          // #Set Vow
+          api.post('/vows', {
+              text: this.myVow.type,
+              type: this.myVow.text
+            }, {
+            headers: {
+              Authorization: `Bearer ${this.$store.state.user.token.userToken}`,
+            }
           })
+            .then(res => res.data)
+            .then(json => {
+              console.log(json);
+              this.$store.dispatch('initSetVow', {
+                vowType: this.myVow.type,
+                vowText: this.myVow.text
+              }).then(() => {
+                localStorage.setItem('vowType', '');
+                localStorage.setItem('vowText', '');
+
+                this.$router.push({ path: '/'})
+              });
+            })
+        } else {
+          this.$store.commit('isLogin');
+          this.$router.push({ path: '/'})
+        }
       })
   }
 }

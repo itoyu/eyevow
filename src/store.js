@@ -132,6 +132,8 @@ const store = new Vuex.Store({
       state.user.isVow = false;
       state.user.isAchieve = false;
       state.myVow.id = '';
+      localStorage.setItem('vowType', '');
+      localStorage.setItem('vowText', '');
     }
   },
   plugins: [createPersistedState()]

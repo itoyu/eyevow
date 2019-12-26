@@ -7,7 +7,10 @@
       </router-link>
     </nav>
     <h1 class="title" v-if="$route.path !== '/'">{{ pageTitle }}</h1>
-    <nav class="config">
+    <nav class="config config_login" v-if="!isLogin">
+      <a href="https://eyevow.work.suichu.net/id/">ログイン</a>
+    </nav>
+    <nav class="config" v-if="isLogin">
       <button @click="signout">
         <!-- <span class="badge"></span> -->
         <figure class="icon">

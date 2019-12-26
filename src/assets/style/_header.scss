@@ -65,6 +65,17 @@
       overflow: hidden;
       border: 2px solid #ffffff;
     }
+
+    &_login {
+      width: 60px;
+      height: auto;
+      font-size: 12px;
+      a {
+        padding: 5px;
+        display: inline-block;
+        text-decoration: underline;
+      }
+    }
   }
 
   .title {
