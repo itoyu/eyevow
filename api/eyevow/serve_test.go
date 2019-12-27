@@ -12,9 +12,10 @@ import (
 	"net/url"
 	"testing"
 
+	_ "eyevow/statik"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	_ "eyevow/statik"
 )
 
 var (
@@ -174,10 +175,11 @@ func TestPostVow(t *testing.T) {
 
 	var out vowOut
 	testPost("/vows", vowIn{
+		Type: "image",
 		Text: txt,
 	}, testUser, &out)
 
-	if out.Vow.Text != txt {
+	if out.Vow.Type == "image" && out.Vow.Text != txt {
 		t.Fatal("invalid text")
 	}
 }

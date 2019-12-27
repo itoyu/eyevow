@@ -351,7 +351,23 @@ func postVow(w http.ResponseWriter, r *http.Request) {
 	}{}
 
 	if err := bind(r, &in); err != nil {
+		failed(w, http.StatusBadRequest, "フォーマットエラー")
+		return
+	}
+
+	if in.Type == "" || in.Text == "" {
 		failed(w, http.StatusBadRequest, "パラメータエラー")
+		return
+	}
+
+	c, err := db.Collection("vows").CountDocuments(r.Context(), bson.M{"user": u})
+	if err != nil {
+		failed(w, http.StatusInternalServerError, "エラー")
+		return
+	}
+
+	if c != 0 {
+		failed(w, http.StatusForbidden, "already exists")
 		return
 	}
 
@@ -466,8 +482,18 @@ func authorized(h http.Handler) http.Handler {
 				return
 			}
 
-			r = r.WithContext(context.WithValue(r.Context(), currentUserKey, u))
-			h.ServeHTTP(w, r)
+			ok, err := db.Collection("users").CountDocuments(r.Context(), bson.M{"_id": u})
+			if err != nil {
+				failed(w, http.StatusInternalServerError, "error")
+				return
+			}
+
+			if ok == 1 {
+				r = r.WithContext(context.WithValue(r.Context(), currentUserKey, u))
+				h.ServeHTTP(w, r)
+			} else {
+				failed(w, http.StatusForbidden, "user not found")
+			}
 		},
 	)
 }
