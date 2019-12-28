@@ -10,7 +10,7 @@ export default {
   // beforeRouteEnter(to, from, next) {
   data: function() {
     return {
-      myVow: {
+      setVow: {
         type: localStorage.getItem('vowType'),
         text: localStorage.getItem('vowText'),
         vowId: ''
@@ -27,25 +27,28 @@ export default {
       .then(token => {
         this.$store.dispatch('setUserToken', { userToken: token })
 
-        if(this.myVow.text !== '') {
+        if(this.setVow.text !== '') {
 
           // #Set Vow
           api.post('/vows', {
-              text: this.myVow.type,
-              type: this.myVow.text
+              text: this.setVow.type,
+              type: this.setVow.text
             }, {
             headers: {
               Authorization: `Bearer ${this.$store.state.user.token.userToken}`,
             }
           })
             .then(res => res.data)
-            .then(() => {
-              // console.log(json);
+            .then(json => {
+              console.log(json);
               this.$store.commit('unsetMakeVow');
+
               this.$store.dispatch('initSetVow', {
-                vowType: this.myVow.type,
-                vowText: this.myVow.text
+                vowType: this.setVow.type,
+                vowText: this.setVow.text
               }).then(() => {
+                console.log(this.$store.getters.myVow);
+
                 localStorage.setItem('vowType', '');
                 localStorage.setItem('vowText', '');
 

@@ -49,6 +49,9 @@ export default {
     setTimeout(function() {
       document.querySelector('.character').classList.add('show');
     }, 1000)
+
+    console.log('vow type');
+    console.log(this.$store.getters.myVow);
   }
 }
 </script>

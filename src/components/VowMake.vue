@@ -193,7 +193,10 @@ export default {
       this.$store.dispatch('putTemporaryVow', {
         vowType: this.vowMake.type,
         vowText: this.vowMake.text
-      })
+      }).then(() => {
+        console.log('make vow');
+        console.log(this.$store.getters.myVow);
+      });
     },
 
     // Confirm Popup

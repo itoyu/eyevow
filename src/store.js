@@ -7,17 +7,6 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   strict: true,
   state: {
-    devData: {
-      token:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWUwNDJiNzllZGJmYjc3MDVkODJjZjc1IiwiZXhwIjoxNzM1MDExNTc3fQ.QYgFEQi09Uq3ZqbQLnuFKXcU19AUGDj_sR_1B7am7aw',
-      user: {
-        isLogin: false,
-        isVow: false,
-        isAchieve: false,
-        id: '5e01bd46edbfb7705d82cf5e',
-        name: 'ゲスト',
-        icon: 'http://eyevow.work.suichu.net/blob/user/qu63MqBZR.jpg'
-      }
-    },
     app: {
       pageTitle: 'Home',
       makeVow: false
@@ -34,7 +23,7 @@ const store = new Vuex.Store({
     myVow: {
       id: '',
       type: 'illust',
-      text: '',
+      text: 'text',
       cheer_count: 0,
       set: false,
       archived: false
