@@ -3,11 +3,11 @@
     <div class="page_lead">
       <p class="chat_item">
         <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-        <span class="txt">みんなの誓いがここに集まっているわ</span>
+        <span class="txt">みんなの誓いがここに集まっているよ。</span>
       </p>
       <p class="chat_item">
         <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-        <span class="txt">応援したいものがあったら「Cheer」ボタンを押して声援を送ってあげて</span>
+        <span class="txt">応援したいものがあったら「Cheer」ボタンを押してくれると嬉しい。</span>
       </p>
     </div>
 

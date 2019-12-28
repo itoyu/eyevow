@@ -35,7 +35,7 @@
         <dt>
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-            <span class="txt">最後にあなたの誓いを入力して。</span>
+            <span class="txt">次にあなたの誓いを入力して。</span>
           </p>
         </dt>
         <dd>
@@ -63,7 +63,7 @@
           </p>
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-            <span class="txt">ちなみに、誓いは後から変更できないから。<br>上に戻って直せるのは今だけ。</span>
+            <span class="txt">ちなみに、誓いは後から変更できないからね。<br>上に戻って直せるのは今だけ。</span>
           </p>
         </dt>
         <dd>
@@ -80,7 +80,7 @@
           <dt>
             <p class="chat_item">
               <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-              <span class="txt">じゃあいよいよ目入れするわ。</span>
+              <span class="txt">じゃあいよいよ目入れする。</span>
             </p>
             <p class="chat_item">
               <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>

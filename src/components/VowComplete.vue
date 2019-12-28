@@ -19,7 +19,7 @@
     <div class="page_lead">
       <p class="chat_item">
         <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-        <span class="txt">この誓いを残しておくために<br>アカウント登録してね。</span>
+        <span class="txt">誓いを記録しておくために<br>アカウント登録してね。</span>
       </p>
       <p class="chat_item">
         <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>

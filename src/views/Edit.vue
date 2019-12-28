@@ -4,7 +4,7 @@
     <div class="page_lead">
       <p class="chat_item">
         <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-        <span class="txt">ここではアカウント情報の変更や、画像のダウンロードができるよ</span>
+        <span class="txt">ここではアカウント情報の変更や、画像のダウンロードができるよ。</span>
       </p>
     </div>
 

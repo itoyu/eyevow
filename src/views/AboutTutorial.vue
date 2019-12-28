@@ -9,20 +9,32 @@
         <div class="page_lead">
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt">あらためて「eyevow」について説明するね。</span>
+          </p>
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
             <span class="txt">
-              日本では、古くから誓いを立てる時に縁起物である「だるま」に目入れをする文化があるらしい。<br>
+              日本では、古くから誓いを立てる時に縁起物である「だるま」に目入れをする文化があるんだ。<br>
               <span class="img"><img alt="" src="@/assets/img/about/about01.png"></span>
             </span>
           </p>
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-            <span class="txt">そんな「だるま」が、人々の誓いを応援するために人の姿になったのが私「eyevow」だよ。</span>
+            <span class="txt">そんな「だるま」が、人々の"誓い"を応援するために人の姿になったのが私「eyevow」だよ。</span>
           </p>
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-            <span class="txt">私は、あなたの誓いを瞳に込めることで、“相棒”となり、あなたの誓いを応援するよ。<br>
+            <span class="txt">私は、あなたの誓いを瞳に込めることで、“相棒”となり、あなたの誓いを応援する。<br>
               <span class="img"><img alt="" src="@/assets/img/about/about02.png"></span>
             </span>
+          </p>
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt">だから素敵な誓いを立てて、達成してね。</span>
+          </p>
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt">ちなみに、なぜ誓いが必要になったかは「Story」ページで紹介しているわ。</span>
           </p>
         </div>
       </div>
@@ -34,6 +46,10 @@
         <div class="page_lead">
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
+            <span class="txt">次に「eyevow」への誓い方について説明する。</span>
+          </p>
+          <p class="chat_item">
+            <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
             <span class="txt"><span class="step">Step.01</span><br>
               まず、目入れをするeyevowのタイプを選んで。<br>イラストか写真が選べるよ。<br>
               <span class="img"><img alt="" src="@/assets/img/about/about03.png"></span>
@@ -42,27 +58,27 @@
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
             <span class="txt"><span class="step">Step.02</span><br>
-               次に、あなたの誓いを入力して。<br>
+               そして、あなたの誓いを入力して。<br>
               <span class="img"><img alt="" src="@/assets/img/about/about04.png"></span>
             </span>
           </p>
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
             <span class="txt"><span class="step">Step.03</span><br>
-              そうすると1回目の「目入れ」完了だよ。<br>
+              すると1回目の「目入れ」完了するよ。<br>
               <span class="img"><img alt="" src="@/assets/img/about/about05.png"></span>
             </span>
           </p>
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
             <span class="txt">
-              あとは達成に向けてがんばってね。
+              あとは達成に向けて進むべし。
             </span>
           </p>
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
             <span class="txt"><span class="step">Step.04</span><br>
-              そしていよいよ誓いを達成したら教えてね。<br>何が起こるかは、達成してからのお楽しみ。がんばってねー。
+              そしていよいよ誓いを達成したら教えて。<br>何が起こるかは、達成してからのお楽しみ。応援してるから、がんばってね。
             </span>
           </p>
         </div>

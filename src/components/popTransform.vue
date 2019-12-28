@@ -6,7 +6,7 @@
           <dt>
             <p class="chat_item">
               <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
-              <span class="txt">じゃあいよいよ目入れするわ。</span>
+              <span class="txt">じゃあいよいよ目入れするね。</span>
             </p>
             <p class="chat_item">
               <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>

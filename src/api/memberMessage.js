@@ -1,15 +1,19 @@
 const msgs = [
   {
     id: 1,
-    text: '誓いをたててくれてありがとう'
+    text: '誓いをたててくれてありがとう。'
   },
   {
     id: 2,
-    text: 'あなたの「誓い」、達成を願っている'
+    text: 'あなたの「誓い」達成を心から応援する。'
   },
   {
     id: 3,
-    text: '<a href="https://thebase.in/" class="txtlink" target="_blank">ECサイト</a>のグッズもチェックしてね'
+    text: '「達成」の機能はもうすぐ実装される予定なので、もう少しだけ待って。。。'
+  },
+  {
+    id: 4,
+    text: '<a href="https://eyevow.stores.jp/" class="txtlink" target="_blank">あなたに寄り添うためのグッズも見てみてね。</a>'
   }
 ];
 
