@@ -26,11 +26,11 @@
         <span class="icon"><iconEye /></span>
         <span class="label">Vow</span>
       </router-link>
-      <router-link to="/cheer" class="nav_item nav_cheer" :class="{'active': isLogin }">
+      <router-link to="/cheer" class="nav_item nav_cheer" :class="{'disabled': !isLogin }">
         <span class="icon"><iconCheer /></span>
         <span class="label">Cheer</span>
       </router-link>
-      <router-link to="/edit" class="nav_item nav_edit" :class="{'active': isLogin }">
+      <router-link to="/edit" class="nav_item nav_edit" :class="{'disabled': !isLogin }">
         <span class="icon"><iconEdit /></span>
         <span class="label">Edit</span>
       </router-link>

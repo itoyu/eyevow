@@ -1,5 +1,5 @@
 <template>
-  <header id="header" :class="{'active': $route.path !== '/' || isLogin }">
+  <header id="header" :class="{'active': $route.path !== '/' || isVow }">
     <nav class="logo">
       <router-link to="/">
         <!-- <img alt="eyevow" src="@/assets/img/title_min.png" v-if="$route.path !== '/'"> -->
@@ -35,12 +35,29 @@ export default {
       this.$router.push({ path: '/'})
     }
   },
+  watch: {
+    isLogin: function(newVal) {
+      return newVal;
+    },
+    isVow: function(newVal) {
+      return newVal;
+    },
+    isAchieve: function(newVal) {
+      return newVal;
+    }
+  },
   computed: {
     pageTitle: function() {
       return this.$store.getters.pageTitle
     },
     isLogin: function() {
       return this.$store.getters.isLogin
+    },
+    isVow: function() {
+      return this.$store.getters.isVow
+    },
+    isAchieve: function() {
+      return this.$store.getters.isAchieve
     }
   },
   watch: {

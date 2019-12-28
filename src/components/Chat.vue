@@ -1,13 +1,13 @@
 <template>
 
-  <div class="chat" :class="{'member': isLogin }">
-    <div class="chat_wrap" v-if="!isLogin">
+  <div class="chat" :class="{'member': isVow }">
+    <div class="chat_wrap" v-if="!isVow">
       <p v-for="item in guestChats" v-bind:key="item.id" class="chat_item">
         <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
         <span class="txt" id="`${ item.id }`">{{ item.text }}</span>
       </p>
     </div>
-    <div class="chat_wrap" v-if="isLogin">
+    <div class="chat_wrap" v-if="isVow">
       <p v-for="item in memberChats" v-bind:key="item.id" class="chat_item">
         <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_02.png"></span>
         <span class="txt" id="`${ item.id }`" v-html="`${ item.text }`"></span>
@@ -29,8 +29,25 @@ export default {
       displayMessageNum: 3
     }
   },
+  computed: {
+    isLogin: function() {
+      return this.$store.getters.isLogin
+    },
+    isVow: function() {
+      return this.$store.getters.isVow
+    },
+    isAchieve: function() {
+      return this.$store.getters.isAchieve
+    }
+  },
   watch: {
     isLogin: function(newVal) {
+      return newVal;
+    },
+    isVow: function(newVal) {
+      return newVal;
+    },
+    isAchieve: function(newVal) {
       return newVal;
     }
   },
@@ -82,15 +99,6 @@ export default {
       // chatPush();
       chatStart();
     }
-  },
-  computed: {
-    isLogin: function() {
-      return this.$store.getters.isLogin
-    },
-    // homeMessage: function() {
-    //   // chatMessage.fetch();
-    //   console.log();
-    // }
   },
   mounted() {
     this.init();

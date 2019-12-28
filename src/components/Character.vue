@@ -3,7 +3,7 @@
     <div v-if="isAchieve" class="character_slide">
       <figure class="character_img character_img_illust03"></figure>
     </div>
-    <div v-else-if="isLogin" class="character_slide">
+    <div v-else-if="isVow" class="character_slide">
       <figure class="character_img character_img_illust02"></figure>
     </div>
     <div v-else class="character_slide">
@@ -19,12 +19,21 @@ export default {
     isLogin: function() {
       return this.$store.getters.isLogin
     },
+    isVow: function() {
+      return this.$store.getters.isVow
+    },
     isAchieve: function() {
       return this.$store.getters.isAchieve
     }
   },
   watch: {
     isLogin: function(newVal) {
+      return newVal;
+    },
+    isVow: function(newVal) {
+      return newVal;
+    },
+    isAchieve: function(newVal) {
       return newVal;
     }
   },

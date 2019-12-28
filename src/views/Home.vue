@@ -1,12 +1,15 @@
 <template>
   <div class="home">
-    <div v-if="!isLogin">
+    <nav class="home_login" v-if="!isLogin">
+      <a href="https://eyevow.work.suichu.net/id/">ログイン</a>
+    </nav>
+    <div v-if="!isVow">
       <p class="catch">あなたの誓いを応援する相棒</p>
       <h1 class="title"><img alt="eyevow" src="@/assets/img/common/logo.svg"></h1>
     </div>
     <Character />
     <Chat />
-    <Notice  v-if="isLogin" />
+    <Notice v-if="isVow" />
     <!-- <StartBtn v-if="!login" /> -->
   </div>
 </template>
@@ -31,9 +34,26 @@ export default {
       document.querySelector('body').classList.remove('focus', 'focus_vow');
     }
   },
+  watch: {
+    isLogin: function(newVal) {
+      return newVal;
+    },
+    isVow: function(newVal) {
+      return newVal;
+    },
+    isAchieve: function(newVal) {
+      return newVal;
+    }
+  },
   computed: {
     isLogin: function() {
       return this.$store.getters.isLogin
+    },
+    isVow: function() {
+      return this.$store.getters.isVow
+    },
+    isAchieve: function() {
+      return this.$store.getters.isAchieve
     }
   },
   created() {

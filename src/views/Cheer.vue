@@ -118,6 +118,12 @@ export default {
       .then(json => {
         this.vowlist = json.vows.reverse();
       })
+  },
+  beforeCreate() {
+    // #isLogin
+    if(!this.$store.getters.isLogin) {
+      this.$router.push({ path: '/'})
+    }
   }
 }
 </script>

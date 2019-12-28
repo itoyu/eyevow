@@ -147,6 +147,12 @@ export default {
   },
   created() {
     this.init();
+  },
+  beforeCreate() {
+    // #isLogin
+    if(!this.$store.getters.isLogin) {
+      this.$router.push({ path: '/'})
+    }
   }
 }
 </script>

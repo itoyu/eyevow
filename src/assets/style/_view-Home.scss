@@ -10,6 +10,22 @@
   height: calc(100vh - 150px);
   min-height: 380px;
 
+  &_login {
+    position: fixed;
+    top: 13px;
+    right: 10px;
+    width: 60px;
+    height: auto;
+    font-size: 12px;
+    z-index: 3;
+    
+    a {
+      padding: 5px;
+      display: inline-block;
+      text-decoration: underline;
+    }
+  }
+
   .catch {
     position: absolute;
     top: -10px;
