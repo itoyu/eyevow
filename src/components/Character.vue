@@ -51,7 +51,9 @@ export default {
     }, 1000)
 
     console.log('vow type');
-    console.log(this.$store.getters.myVow);
+    console.log(this.$store.getters.getMyVow);
+    console.log('userInfo');
+    console.log(this.$store.getters.userInfo);
   }
 }
 </script>

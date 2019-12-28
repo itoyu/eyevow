@@ -41,9 +41,9 @@ export default {
   data: function() {
     return {
       myVow: {
-        type: this.$store.getters.myVow.type,
-        text: this.$store.getters.myVow.text,
-        displayType: ('photo' === this.$store.getters.myVow.type) ? '写真' : 'イラスト'
+        type: this.$store.getters.getMyVow.type,
+        text: this.$store.getters.getMyVow.text,
+        displayType: ('photo' === this.$store.getters.getMyVow.type) ? '写真' : 'イラスト'
       }
     }
   },
@@ -51,8 +51,8 @@ export default {
     iconArr
   },
   created() {
-    localStorage.setItem('vowType', this.$store.getters.myVow.type)
-    localStorage.setItem('vowText', this.$store.getters.myVow.text)
+    localStorage.setItem('vowType', this.$store.getters.getMyVow.type)
+    localStorage.setItem('vowText', this.$store.getters.getMyVow.text)
   }
 }
 </script>

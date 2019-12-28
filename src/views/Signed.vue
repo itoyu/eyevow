@@ -47,7 +47,7 @@ export default {
                 vowType: this.setVow.type,
                 vowText: this.setVow.text
               }).then(() => {
-                console.log(this.$store.getters.myVow);
+                console.log(this.$store.getters.getMyVow);
 
                 localStorage.setItem('vowType', '');
                 localStorage.setItem('vowText', '');

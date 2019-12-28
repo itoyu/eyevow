@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
+// import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -21,26 +21,13 @@ const store = new Vuex.Store({
       token: ''
     },
     myVow: {
-      id: '',
+      set: false,
+      archived: false,
       type: 'illust',
       text: 'text',
       cheer_count: 0,
-      set: false,
-      archived: false
-    },
-    allVows: [
-      // {
-      //   id: String,
-      //   user: {
-      //     id: String,
-      //     name: String,
-      //     icon: String
-      //   },
-      //   text: String,
-      //   cheer_count: Number,
-      //   archived: false
-      // }
-    ]
+      id: ''
+    }
   },
   getters: {
     pageTitle(state) {
@@ -49,7 +36,7 @@ const store = new Vuex.Store({
     makeVow(state) {
       return state.app.makeVow;
     },
-    myVow(state) {
+    getMyVow(state) {
       return state.myVow;
     },
     userInfo(state) {
@@ -135,6 +122,6 @@ const store = new Vuex.Store({
       localStorage.setItem('vowText', '');
     }
   },
-  plugins: [createPersistedState()]
+  // plugins: [createPersistedState()]
 })
 export default store;

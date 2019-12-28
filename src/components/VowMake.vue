@@ -195,7 +195,7 @@ export default {
         vowText: this.vowMake.text
       }).then(() => {
         console.log('make vow');
-        console.log(this.$store.getters.myVow);
+        console.log(this.$store.getters.getMyVow);
       });
     },
 
