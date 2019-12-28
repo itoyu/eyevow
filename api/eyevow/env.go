@@ -6,9 +6,16 @@ import (
 )
 
 type env struct {
-	Secret string
-	URL    *url.URL
-	Bucket string
+	Env     string
+	Secret  string
+	URL     *url.URL
+	Bucket  string
+	Twitter twitterEnv
+}
+
+type twitterEnv struct {
+	ConsumerKey    string
+	ConsumerSecret string
 }
 
 func envOr(key, def string) string {
@@ -27,8 +34,13 @@ func parseEnv() *env {
 	}
 
 	return &env{
+		Env:    envOr("ENV", "development"),
 		Secret: envOr("SECRET", "deadbeef"),
 		URL:    u,
 		Bucket: envOr("BUCKET", "var/eyevow/"),
+		Twitter: twitterEnv{
+			ConsumerKey:    os.Getenv("TWITTER_CONSUMER_KEY"),
+			ConsumerSecret: os.Getenv("TWITTER_CONSUMER_SECRET"),
+		},
 	}
 }

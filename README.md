@@ -30,3 +30,11 @@ npm run lint
 1. https://eyevow.work.suichu.net/id/ にアクセス
 2. https://eyevow.work.suichu.net/signed?token=xxx の ホスト部分をローカルホストに変更してアクセス
 3. localStorageの"USER"キーにトークンが保存されます
+
+## リリース
+
+```
+yarn release
+```
+
+本番環境が更新されます

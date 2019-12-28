@@ -152,9 +152,9 @@ func signonTwitter(ctx context.Context, token, secret string) (string, *user, er
 }
 
 var twitterConfig = oauth1.Config{
-	ConsumerKey:    "nKlZ6svJS7bSDODmO3U2Tg",
-	ConsumerSecret: "L8oyRKBuFKWGg33o4vbgNWEAWLNZsOFofTD2bC1Z0",
-	CallbackURL:    "https://eyevow.work.suichu.net/id/callbacks/twitter",
+	ConsumerKey:    defaultEnv.Twitter.ConsumerKey,
+	ConsumerSecret: defaultEnv.Twitter.ConsumerSecret,
+	CallbackURL:    "https://" + defaultEnv.URL.Host + "/id/callbacks/twitter",
 	Endpoint:       oauth1twitter.AuthenticateEndpoint,
 }
 
@@ -201,7 +201,7 @@ func twitterCallback(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	http.Redirect(w, r, fmt.Sprintf("https://eyevow.work.suichu.net/signed?token=%s", stk), http.StatusFound)
+	http.Redirect(w, r, fmt.Sprintf("%s/signed?token=%s", defaultEnv.URL, stk), http.StatusFound)
 }
 
 /*
@@ -500,7 +500,9 @@ func authorized(h http.Handler) http.Handler {
 
 func mux() http.Handler {
 	router := chi.NewRouter()
-	router.Get("/", spec)
+	if defaultEnv.Env != "production" {
+		router.Get("/", spec)
+	}
 	router.Post("/signup", signup)
 	router.Post("/signon", signon)
 	router.Get("/vows", getVows)

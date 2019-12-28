@@ -6,8 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy:stg": "run-s build upload:stg",
-    "upload:stg": "rsync -av --delete dist/ ubuntu@work.suichu.net:/var/www/eyevow/"
+    "release": "run-s build upload",
+    "upload": "rsync -av --delete dist/ ubuntu@suichu.net:/var/www/eyevow/"
   },
   "dependencies": {
     "core-js": "^2.6.5",
