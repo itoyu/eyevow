@@ -3,11 +3,14 @@
     <div class="transform_in">
       <div class="transform_anim">
         <div id="trans_anim_gif" class="transform_parts transform_bg"><img alt="" src="@/assets/img/effect_trans_bg.gif"></div>
-        <figure class="transform_char01 transform_char transform_parts"><img alt="" src="@/assets/img/eyevow/character_illust_01.png"></figure>
-        <span class="transform_effect01 transform_parts"><img alt="" src="@/assets/img/effect_trans0101.gif"></span>
-        <span class="transform_effect02 transform_parts"><img alt="" src="@/assets/img/effect_trans0102.gif"></span>
-        <!-- <span class="transform_effect03 transform_parts"><img alt="" src="@/assets/img/effect_trans0103.gif"></span>
-        <figure class="transform_char02 transform_char transform_parts"><img alt="" src="@/assets/img/eyevow/character_cosplayers_02.png"></figure> -->
+        <figure class="transform_char transform_parts">
+          <span class="img img01"><img alt="" src="@/assets/img/story/3-5.jpg"></span>
+          <span class="img img02"><img alt="" src="@/assets/img/story/3-6.jpg"></span>
+          <span class="img img03 trans_eyevow" id="trans_eyevow01" :class="myVow.type"></span>
+          <span class="img img04 trans_eyevow" id="trans_eyevow02" :class="myVow.type"></span>
+        </figure>
+        <span class="transform_effect01 transform_parts"><img alt="" src="@/assets/img/effect_card.gif"></span>
+        <span class="transform_effect02 transform_parts"><img alt="" src="@/assets/img/effect_card.gif"></span>
       </div>
     </div>
   </div>
@@ -16,9 +19,12 @@
 <script>
 
 export default {
-  data() {
+  data: function() {
     return {
-
+      myVow: {
+        type: this.$store.getters.getMyVow.type,
+        text: this.$store.getters.getMyVow.text
+      }
     }
   },
   components: {
@@ -50,23 +56,33 @@ export default {
       // done!
       window.setTimeout(() => {
         this.endTransform();
-      }, 4500);
+      }, 6000);
 
       // プロトタイプ表示
       window.setTimeout(() => {
-        document.querySelector('.transform_char01').classList.add('ready');
+        document.querySelector('.transform_char').classList.add('step01');
       }, 1000);
+      window.setTimeout(() => {
+        document.querySelector('.transform_char').classList.add('step02');
+      }, 2000);
+      window.setTimeout(() => {
+        document.querySelector('.transform_char').classList.add('step03');
+      }, 3000);
+      window.setTimeout(() => {
+        document.querySelector('.transform_char').classList.add('step04');
+      }, 4000);
 
       window.setTimeout(() => {
         document.querySelector('.transform_effect01').classList.add('ready');
         document.querySelector('.transform_effect02').classList.add('ready');
-      }, 2000);
-
-
+      }, 500);
     },
     endTransform: function() {
-      document.querySelector('.transform').classList.remove('show');
-      document.querySelector('.transform').classList.add('hide');
+      // document.querySelector('.transform').classList.remove('show');
+      document.querySelector('.transform').classList.add('white');
+      window.setTimeout(() => {
+        document.querySelector('.transform').classList.add('fadeout');
+      }, 800);
     }
   },
   mounted() {
@@ -90,14 +106,15 @@ export default {
 }
 
 .transform {
-  transform-style:preserve-3d;
+  transform-style: preserve-3d;
+  transition: .8s;
 
-  &_anim {
-
-  }
   &_parts {
     position: absolute;
     transition: .5s;
+    * {
+      transition: .5s;
+    }
   }
   &_char {
     top: 50%;
@@ -105,24 +122,107 @@ export default {
     transform: translate(-50%,-50%);
     width: 100%;
   }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+    transition: .7s;
+  }
+  &.white {
+    &::after {
+      background: #fff;
+    }
+  }
+  &.fadeout {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .transform_bg {
     top: 50%;
     transform: translateY(-50%);
   }
-  .transform_char01 {
-    opacity: 0;
-    transform: translate(-40%, -60%) rotate(10deg);
-    filter: blur(1.5rem);
-
-
-    &.ready {
-      opacity: 1;
-      filter: blur(0);
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
+  .trans_eyevow {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
   }
-  .transform_char02 {
-    opacity: 0;
+  #trans_eyevow01 {
+    &.illust { background-image: url(../assets/img/eyevow/character_illust_transform.png); }
+    &.photo { background-image: url(../assets/img/eyevow/character_photo_transform.png); }
+  }
+  #trans_eyevow02 {
+    &.illust { background-image: url(../assets/img/eyevow/character_illust_02.png); }
+    &.photo { background-image: url(../assets/img/eyevow/character_photo_02.png); }
+  }
+  .transform_char {
+    // opacity: 0;
+    overflow: hidden;
+    height: 0px;
+
+    .img {
+      display: block;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      transform: translate(80%, 0%) rotate(20deg);
+      filter: blur(10px);
+      opacity: 0;
+    }
+    &.step01 {
+      height: 200px;
+      .img01 {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate(0, -50%) rotate(0deg);
+      }
+    }
+    &.step02 {
+      height: 300px;
+      .img01 {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translate(-80%, 0%) rotate(-20deg);
+      }
+      .img02 {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate(0, -50%) rotate(0deg);
+      }
+    }
+    &.step03 {
+      height: 70%;
+      .img02 {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translate(-80%, 0%) rotate(-20deg);
+      }
+      .img03 {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate(0, -50%) rotate(0deg);
+      }
+    }
+    &.step04 {
+      height: 90%;
+      .img03 {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translate(-80%, 0%) rotate(-20deg);
+      }
+      .img04 {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate(0, -50%) rotate(0deg);
+      }
+    }
   }
   .transform_effect01,
   .transform_effect02 {
@@ -141,18 +241,6 @@ export default {
     bottom: 15%;
     right: 5%;
     width: 200px;
-  }
-  .transform_effect03 {
-    opacity: 0;
-
-    &.ready {
-      display: block;
-      opacity: 1;
-      left: 0;
-      top: 0;
-      width: auto;
-      height: 100vh;
-    }
   }
 }
 </style>
