@@ -199,9 +199,11 @@ export default {
     // Confirm Popup
     showPopup: function() {
       document.querySelector('.popup').classList.add('show');
+      this.$store.commit('setMakeVow');
     },
     hidePopup: function() {
       document.querySelector('.popup').classList.remove('show');
+      this.$store.commit('unsetMakeVow');
     }
 
   },

@@ -39,8 +39,9 @@ export default {
             }
           })
             .then(res => res.data)
-            .then(json => {
-              console.log(json);
+            .then(() => {
+              // console.log(json);
+              this.$store.commit('unsetMakeVow');
               this.$store.dispatch('initSetVow', {
                 vowType: this.myVow.type,
                 vowText: this.myVow.text

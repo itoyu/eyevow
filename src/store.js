@@ -19,7 +19,8 @@ const store = new Vuex.Store({
       }
     },
     app: {
-      pageTitle: 'Home'
+      pageTitle: 'Home',
+      makeVow: false
     },
     user: {
       isLogin: false,
@@ -55,6 +56,9 @@ const store = new Vuex.Store({
   getters: {
     pageTitle(state) {
       return state.app.pageTitle;
+    },
+    makeVow(state) {
+      return state.app.makeVow;
     },
     myVow(state) {
       return state.myVow;
@@ -107,6 +111,12 @@ const store = new Vuex.Store({
     },
     cheerCountup() {
       // state.count ++
+    },
+    setMakeVow(state) {
+      state.app.makeVow = true;
+    },
+    unsetMakeVow(state) {
+      state.app.makeVow = false;
     },
     isLogin(state) {
       state.user.isLogin = true;

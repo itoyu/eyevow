@@ -24,6 +24,12 @@ export default {
       // console.log(this.$store.getters.myVow);
     }
   },
+  beforeCreate() {
+    // #isLogin
+    if(!this.$store.getters.makeVow) {
+      this.$router.push({ path: '/vow/'})
+    }
+  },
   created() {
     this.init();
   }
