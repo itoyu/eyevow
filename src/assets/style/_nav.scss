@@ -114,6 +114,22 @@
           margin-top: -8px;
         }
       }
+      &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+
+        &::after {
+          content: '';
+          position: absolute;
+          margin: -3px 0 0 -15px;
+          top: 50%;
+          left: 50%;
+          width: 30px;
+          height: 1px;
+          background: $title_color;
+          transform: rotate(-45deg);
+        }
+      }
 
       // &.action_shop,
       // &.action_achieve {

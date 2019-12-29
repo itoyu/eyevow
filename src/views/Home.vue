@@ -1,8 +1,10 @@
 <template>
   <div class="home">
+    <!--
     <nav class="home_login" v-if="!isLogin">
       <a href="https://eyevow.work.suichu.net/id/">ログイン</a>
     </nav>
+    -->
     <div v-if="!isVow">
       <p class="catch">あなたの誓いを応援する相棒</p>
       <h1 class="title"><img alt="eyevow" src="@/assets/img/common/logo.svg"></h1>

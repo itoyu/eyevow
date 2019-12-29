@@ -21,16 +21,16 @@
         <span class="icon"><iconEye /></span>
         <span class="label">Achieved</span>
       </router-link>
-      <router-link class="action action_vow" to="/vow" v-else>
+      <router-link class="action action_vow" to="/vow" :class="{'disabled': !isAchieve }"> <!-- v-else -->
         <span class="bg"><img alt="" src="@/assets/img/common/icon_action_bg.svg"></span>
         <span class="icon"><iconEye /></span>
         <span class="label">Vow</span>
       </router-link>
-      <router-link to="/cheer" class="nav_item nav_cheer" :class="{'disabled': !isLogin }">
+      <router-link to="/cheer" class="nav_item nav_cheer" :class="{'disabled': !isAchieve }">
         <span class="icon"><iconCheer /></span>
         <span class="label">Cheer</span>
       </router-link>
-      <router-link to="/edit" class="nav_item nav_edit" :class="{'disabled': !isLogin }">
+      <router-link to="/edit" class="nav_item nav_edit" :class="{'disabled': !isAchieve }">
         <span class="icon"><iconEdit /></span>
         <span class="label">Edit</span>
       </router-link>
