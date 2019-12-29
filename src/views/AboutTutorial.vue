@@ -58,7 +58,7 @@
           <p class="chat_item">
             <span class="icon"><img alt="profile icon" src="@/assets/img/eyevow/icon_illust_01.png"></span>
             <span class="txt"><span class="step">Step.02</span><br>
-               そして、あなたの誓いを入力して。<br>
+              そして、あなたの誓いを入力して。<br>
               <span class="img"><img alt="" src="@/assets/img/about/about04.png"></span>
             </span>
           </p>
